@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="./vue.global.js"></script>
+    <script src="./element.js"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="./element.css" />
+    <!-- import JavaScript -->
+    <title>Element Plus demo</title>
+  </head>
+  <body>
+    <div id="app">
+      <el-carousel indicator-position="outside">
+        <el-carousel-item v-for="item in 4" :key="item">
+          <h3 text="2xl" justify="center">{{ item }}</h3>
+        </el-carousel-item>
+      </el-carousel>
+      <el-button>{{ message }}</el-button>
+    </div>
+    <script>
+      const App = {
+        data() {
+          return {
+            message: 'Hello Element Plus',
+          };
+        },
+      };
+      const app = Vue.createApp(App);
+      app.use(ElementPlus);
+      app.mount('#app');
+    </script>
+  </body>
+</html>
