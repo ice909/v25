@@ -6,25 +6,293 @@
     <script src="./element.js"></script>
     <!-- import CSS -->
     <link rel="stylesheet" href="./element.css" />
-    <!-- import JavaScript -->
-    <title>Element Plus demo</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>deepin v25 Preview</title>
   </head>
   <body>
     <div id="app">
-      <el-carousel indicator-position="outside">
-        <el-carousel-item v-for="item in 4" :key="item">
-          <h3 text="2xl" justify="center">{{ item }}</h3>
-        </el-carousel-item>
-      </el-carousel>
-      <el-button>{{ message }}</el-button>
+      <div class="navigation"></div>
+      <div class="banner1">
+        <img src="./assets/imgs/banner.png" alt="" />
+        <div class="content">
+          <div class="title">Deepin V25 Preview</div>
+          <div class="slogen">全新设计从心出发</div>
+          <a class="btn"><span>了解更多</span></a>
+        </div>
+      </div>
+      <div class="monolith">
+        <div class="title">系统稳定，坚如磐石</div>
+        <div class="list">
+          <div class="item">
+            <img src="./assets/imgs/更稳固.png" alt="图标" />
+            <p>系统核心层文件为只读权限不可修改，系统使用更放心更稳固</p>
+          </div>
+          <div class="item">
+            <img src="./assets/imgs/兼容.png" alt="图标" />
+            <p>提供应用和驱动兼容层，软件安装和硬件支持更全面更友好</p>
+          </div>
+          <div class="item">
+            <img src="./assets/imgs/原子系统.png" alt="图标" />
+            <p>系统原子化设计，更新包小，仅需更新少量模块，速度更快</p>
+          </div>
+          <div class="item">
+            <img src="./assets/imgs/快照.png" alt="图标" />
+            <p>系统原子化设计，更新包小，仅需更新少量模块，速度更快</p>
+          </div>
+        </div>
+      </div>
+      <div class="desktop">
+        <div class="title">全新桌面，简介高效</div>
+        <div class="banner">
+          <div class="container" :style="{transform: `translateX(${desktopOffsetWidth}px)`}">
+            <div class="item" @click="switchDeskTopBanner(0)">
+              <p>
+                全新设计的控制中心、任务栏、通知中心，界面空间利用设计的更合理，
+                同时拟物化的设计让功能更直观更易理解
+              </p>
+              <img src="./assets/imgs/笔记本.png" style="margin-top: 40px;width: 1020px;height: 611px;"></img>
+            </div>
+            <div class="item" @click="switchDeskTopBanner(1)">
+              <p>
+                QML重构让桌面占用的系统资源更少运行响应速度快，同时全新设计的动效让画面过度更自然更高效
+              </p>
+              <img src="./assets/imgs/笔记本.png" style="margin-top: 40px;width: 1020px;height: 611px;"></img>
+            </div>
+          </div>
+        </div>
+
+        <div class="replay">
+          <span>再次播放</span>
+          <img src="./assets/icons/再次播放图标（配文字.png" alt="再次播放" />
+        </div>
+        <div class="pagination">
+          <div class="dot active" @click="switchDeskTopBanner(0)"></div>
+          <div class="dot" @click="switchDeskTopBanner(1)"></div>
+        </div>
+      </div>
+
+      <div class="window-tube">
+        <div class="title-p1">自研窗管更快、更流畅</div>
+        <div class="sub-title">
+          采用全新的Wayland窗口合成器方案，对比23版本使用更丝滑，更高效
+        </div>
+        <div class="content">
+          <div class="left">
+            <p class="w-title">心只所向 如影随行</p>
+            <p class="w-desc">
+              使用感受与人机交互给用户更加愉悦体验感。在笔记本和平板硬件上，做到了人机合一，系统界面响应“如影随形”
+            </p>
+          </div>
+          <div class="right">
+            <div class="data"></div>
+            <div class="data"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="performance">
+        <div class="item">
+          <p class="title">更快速</p>
+          <div class="data">
+            <div class="value">90</div>
+            <div class="right">
+              <img src="./assets/icons/上升（更快.png" alt="上升" />
+              <span>%</span>
+            </div>
+          </div>
+          <p class="desc">窗口渲染性能提升</p>
+        </div>
+        <div class="item second">
+          <p class="title">更高效</p>
+          <div class="data">
+            <div class="value">50</div>
+            <div class="right">
+              <img src="./assets/icons/上升（更高效.png" alt="上升" />
+              <span>%</span>
+            </div>
+          </div>
+          <p class="desc">显卡渲染性能提升</p>
+        </div>
+      </div>
+      <div class="ai">
+        <div class="title-p1">智慧赋能 想你所AI</div>
+        <div class="content">
+          <div class="left">
+            <img
+              class="replay"
+              src="./assets/icons/再次重播图标（配图层.png"
+              alt="再次重播"
+            />
+          </div>
+          <div class="right">
+            <img
+              class="replay"
+              src="./assets/icons/再次重播图标（配图层.png"
+              alt="再次重播"
+            />
+          </div>
+        </div>
+        <div class="answer">
+          <div class="left">
+            <p class="title">快速投喂 精准回答</p>
+            <p class="desc">AI Bar支持划词和文件拖拽解析</p>
+          </div>
+          <div class="right">
+            <img src="./assets/imgs/桌面.png" alt="桌面" />
+            <div class="replay">
+              <span>再次播放</span>
+              <img
+                src="./assets/icons/再次播放图标（配文字.png"
+                alt="再次播放"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="worker">
+        <div class="title-p2">什么工作 轻松搞定</div>
+        <div class="banner">
+          <div class="container" :style="{transform: `translateX(${workerOffsetWidth}px)`}">
+            <div
+              :style="imgWidthStyle"
+              @click="switchWorkerBanner(0)"
+              ></div>
+            <div
+              :style="imgWidthStyle"
+              @click="switchWorkerBanner(1)"
+            ></div>
+            <div
+              :style="imgWidthStyle"
+              @click="switchWorkerBanner(2)"
+              ></div>
+          </div>
+          <div class="toolbar">
+            <div class="container" :style="toolBarWidthStyle">
+              <div class="item">
+                <p>
+                  <span style="color: #000; font-weight: 500">AI写作</span
+                  >：释放创意，灵感不断
+                </p>
+              </div>
+              <div class="item">
+                <div class="button left" tabindex="1" @click="switchPrevWorkerBanner" ></div>
+                <div class="button right" tabindex="2" @click="switchNextWorkerBanner" ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cross">
+        <div class="left">
+          <div class="title">乐享自在，无边界</div>
+          <div class="sub-title">跨端协同</div>
+          <div class="desc">
+            打破设备边界自由分享，手机设备低延迟同步，实现手机、PC互动
+          </div>
+        </div>
+        <div style="width: 1120px; height: 672px; background: blanchedalmond">
+          视频
+        </div>
+      </div>
+      <div class="hardware">
+        <div class="title-p1">最新硬件支持</div>
+        <div class="content">
+          <div class="left item">
+            <p>
+              蓝牙6.0:支持蓝牙HFP协议，保障市面上大部分蓝牙耳机通话接听、挂断等功能正常使用:支持蓝牙HiFI协议，保障市面上大部分蓝牙HIFI耳机可以享受高保真音质
+            </p>
+            <img src="./assets/icons/bluetoothe.png" alt="蓝牙" />
+          </div>
+          <div class="right item">
+            <p>
+              WiFi7:支持目前市面最新的WiFi7网卡，WiFi网络信号和网络传输速度有保障
+            </p>
+            <img src="./assets/icons/wifi.png" alt="wifi" />
+          </div>
+        </div>
+      </div>
+      <div class="distrobox">
+          <div class="title-p1">Distrobox子系统，更强大更自由</div>
+          <p class="desc">
+            为开发者提供轻量级且高效的开发环境解决方案，开发环境的启动和停止非常便捷，在与宿主机文件系统无缝融合的同时，CPU和内存资源占用比传统虚拟机更低
+          </p>
+          <a class="btn"
+            ><span>立刻下载体验</span
+            ><img src="./assets/icons/下载.png" alt="download"
+          /></a>
+          <div style="flex: 1"></div>
+          <p class="tips">
+            *预览版本功能尚未完全开发完成不作为标准生产环境镜像。
+          </p>
+          <p class="tips">*画面仅供参考，具体体验以实际应用为准。</p>
+        
+      </div>
     </div>
-    <script>
+    <script type="module">
       const App = {
         data() {
           return {
-            message: 'Hello Element Plus',
+            isSmallScreen: document.body.clientWidth < 1900,
+            halfBodyWidth: document.body.clientWidth / 2,
+            imgWidthStyle: {
+              width: `${document.body.clientWidth / 2}px`,
+              height: '540px',
+              backgroundColor: '#777',
+              borderRadius: '56px',
+              cursor: 'pointer',
+            },
+            toolBarWidthStyle: {
+              width: `${document.body.clientWidth / 2}px`,
+            },
+            desktopCurrentIndex: 0,
+            desktopOffsetWidth: document.body.clientWidth / 2 - 519,
+            workerCurrentIndex: 1,
+            workerOffsetWidth: -(document.body.clientWidth / 2 + 69 * 2) / 2,
           };
         },
+        methods: {
+          switchDeskTopBanner(index) {
+            if (this.desktopCurrentIndex === index) return;
+            this.desktopCurrentIndex = index;
+            document.querySelector('.desktop .pagination .dot.active').classList.remove('active');
+            document.querySelectorAll('.desktop .pagination .dot')[index].classList.add('active');
+            
+            if (index === 1) {
+              if (this.isSmallScreen) {
+                this.desktopOffsetWidth -= 1020 + 84;
+              } else {
+                this.desktopOffsetWidth -= 1020 + 219;
+              }
+            } else {
+              if (this.isSmallScreen) {
+                this.desktopOffsetWidth += 1020 + 84;
+              } else {
+                this.desktopOffsetWidth += 1020 + 219;
+              }
+            }
+          },
+          switchWorkerBanner(index) {
+            if (this.workerCurrentIndex === index) return;
+            if (index > this.workerCurrentIndex) {
+              this.switchNextWorkerBanner();
+            }else {
+              this.switchPrevWorkerBanner();
+            }
+          },
+          switchPrevWorkerBanner() {
+            console.log(this.workerCurrentIndex,this.workerOffsetWidth);
+            if (this.workerCurrentIndex === 0) return;
+            this.workerOffsetWidth += this.halfBodyWidth + 51;
+            this.workerCurrentIndex--;
+          },
+          switchNextWorkerBanner() {
+            console.log(this.workerCurrentIndex,this.workerOffsetWidth);
+            if (this.workerCurrentIndex === 2) return;
+            this.workerOffsetWidth -= this.halfBodyWidth + 51;
+            this.workerCurrentIndex++;
+          } 
+        }
       };
       const app = Vue.createApp(App);
       app.use(ElementPlus);

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .window-tube .content {
+        padding: 0 180px;
+        margin-top: 140px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 180px;
+        height: 540px;
+      }
+      .window-tube .content .left {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .window-tube .content .left .w-title {
+        margin-top: 80px;
+        font-weight: 600;
+        font-size: 48px;
+        line-height: 55px;
+        background: linear-gradient(104deg, #0050ff 0%, #7500ff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .window-tube .content .left .w-desc {
+        width: 420px;
+        margin-top: 40px;
+        font-family: MiSans-Medium;
+        font-weight: 500;
+        font-size: 24px;
+        color: #7f8287;
+        letter-spacing: 0;
+        line-height: 36px;
+      }
+
+      .window-tube .content .right {
+        /* 合并右边 */
+        grid-column: span 2 / span 2;
+        width: 100%;
+        background: #f5f6f8;
+        border-radius: 56px;
+        display: flex;
+        gap: 135px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .window-tube .content .right .data {
+        width: 223px;
+        height: 229px;
+        background: #af0909;
+        border-radius: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="window-tube">
+      <div class="title-p1">自研窗管更快、更流畅</div>
+      <div class="sub-title">
+        采用全新的Wayland窗口合成器方案，对比23版本使用更丝滑，更高效
+      </div>
+      <div class="content">
+        <div class="left">
+          <p class="w-title">心只所向 如影随行</p>
+          <p class="w-desc">
+            使用感受与人机交互给用户更加愉悦体验感。在笔记本和平板硬件上，做到了人机合一，系统界面响应“如影随形”
+          </p>
+        </div>
+        <div class="right">
+          <div class="data"></div>
+          <div class="data"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
