@@ -1,70 +1,80 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0"
+    />
     <script src="./vue.global.js"></script>
-    <script src="./element.js"></script>
-    <!-- import CSS -->
-    <link rel="stylesheet" href="./element.css" />
     <link rel="stylesheet" href="./index.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.css"
+    />
+    <script src="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.js"></script>
     <title>deepin v25 Preview</title>
   </head>
   <body>
     <div id="app">
-      <div class="navigation"></div>
+      <d-header :lang="currentLanguage"> </d-header>
       <div class="banner1">
-        <img src="./assets/imgs/banner.png" alt="" />
+        <img src="/assets/imgs/banner.png" alt="" />
         <div class="content">
           <div class="title">Deepin V25 Preview</div>
           <div class="slogen">全新设计从心出发</div>
           <a class="btn"><span>了解更多</span></a>
         </div>
       </div>
+      <div class="trigger"></div>
       <div class="monolith">
-        <div class="title">系统稳定，坚如磐石</div>
+        <div class="title">{{ currentMessage.systemStable}}</div>
         <div class="list">
           <div class="item">
-            <img src="./assets/imgs/更稳固.png" alt="图标" />
-            <p>系统核心层文件为只读权限不可修改，系统使用更放心更稳固</p>
+            <img src="/assets/imgs/更稳固.png" alt="图标" />
+            <p>{{ currentMessage.coreSystemFiles}}</p>
           </div>
           <div class="item">
-            <img src="./assets/imgs/兼容.png" alt="图标" />
-            <p>提供应用和驱动兼容层，软件安装和硬件支持更全面更友好</p>
+            <img src="/assets/imgs/兼容.png" alt="图标" />
+            <p>{{ currentMessage.compatibilityLayers}}</p>
           </div>
           <div class="item">
-            <img src="./assets/imgs/原子系统.png" alt="图标" />
-            <p>系统原子化设计，更新包小，仅需更新少量模块，速度更快</p>
+            <img src="/assets/imgs/原子系统.png" alt="图标" />
+            <p>{{ currentMessage.atomicDesign}}</p>
           </div>
           <div class="item">
-            <img src="./assets/imgs/快照.png" alt="图标" />
-            <p>系统原子化设计，更新包小，仅需更新少量模块，速度更快</p>
+            <img src="/assets/imgs/快照.png" alt="图标" />
+            <p>{{ currentMessage.snapshots}}</p>
           </div>
         </div>
       </div>
       <div class="desktop">
-        <div class="title">全新桌面，简介高效</div>
+        <div class="fullscreen-cover">
+          <img src="/assets/imgs/桌面.png" alt="全屏封面图片" />
+        </div>
+        <div class="title">{{ currentMessage.newDesktop}}</div>
         <div class="banner">
-          <div class="container" :style="{transform: `translateX(${desktopOffsetWidth}px)`}">
+          <div class="container">
             <div class="item" @click="switchDeskTopBanner(0)">
-              <p>
-                全新设计的控制中心、任务栏、通知中心，界面空间利用设计的更合理，
-                同时拟物化的设计让功能更直观更易理解
-              </p>
-              <img src="./assets/imgs/笔记本.png" style="margin-top: 40px;width: 1020px;height: 611px;"></img>
+              <p>{{ currentMessage.controlCenter}}</p>
+              <img
+                src="/assets/imgs/笔记本.png"
+                style="margin-top: 40px; width: 1020px; height: 611px"
+              />
             </div>
-            <div class="item" @click="switchDeskTopBanner(1)">
-              <p>
-                QML重构让桌面占用的系统资源更少运行响应速度快，同时全新设计的动效让画面过度更自然更高效
-              </p>
-              <img src="./assets/imgs/笔记本.png" style="margin-top: 40px;width: 1020px;height: 611px;"></img>
+            <div class="item opacity" @click="switchDeskTopBanner(1)">
+              <p>{{ currentMessage.qmlReconstruction}}</p>
+              <img
+                src="/assets/imgs/笔记本.png"
+                style="margin-top: 40px; width: 1020px; height: 611px"
+              />
             </div>
           </div>
         </div>
 
         <div class="replay">
-          <span>再次播放</span>
-          <img src="./assets/icons/再次播放图标（配文字.png" alt="再次播放" />
+          <span>{{ currentMessage.replay }}</span>
+          <img src="/assets/icons/再次播放图标（配文字.png" alt="再次播放" />
         </div>
         <div class="pagination">
           <div class="dot active" @click="switchDeskTopBanner(0)"></div>
@@ -73,16 +83,12 @@
       </div>
 
       <div class="window-tube">
-        <div class="title-p1">自研窗管更快、更流畅</div>
-        <div class="sub-title">
-          采用全新的Wayland窗口合成器方案，对比23版本使用更丝滑，更高效
-        </div>
+        <div class="title-p1">{{ currentMessage.windowManager}}</div>
+        <div class="sub-title">{{ currentMessage.waylandCompositor}}</div>
         <div class="content">
           <div class="left">
-            <p class="w-title">心只所向 如影随行</p>
-            <p class="w-desc">
-              使用感受与人机交互给用户更加愉悦体验感。在笔记本和平板硬件上，做到了人机合一，系统界面响应“如影随形”
-            </p>
+            <p class="w-title">{{currentMessage.heartLeads}}</p>
+            <p class="w-desc">{{ currentMessage.userExperience}}</p>
           </div>
           <div class="right">
             <div class="data"></div>
@@ -97,7 +103,7 @@
           <div class="data">
             <div class="value">90</div>
             <div class="right">
-              <img src="./assets/icons/上升（更快.png" alt="上升" />
+              <img src="/assets/icons/上升（更快.png" alt="上升" />
               <span>%</span>
             </div>
           </div>
@@ -108,7 +114,7 @@
           <div class="data">
             <div class="value">50</div>
             <div class="right">
-              <img src="./assets/icons/上升（更高效.png" alt="上升" />
+              <img src="/assets/icons/上升（更高效.png" alt="上升" />
               <span>%</span>
             </div>
           </div>
@@ -116,34 +122,34 @@
         </div>
       </div>
       <div class="ai">
-        <div class="title-p1">智慧赋能 想你所AI</div>
+        <div class="title-p1">{{ currentMessage.intelligentEmpowerment}}</div>
         <div class="content">
           <div class="left">
             <img
               class="replay"
-              src="./assets/icons/再次重播图标（配图层.png"
+              src="/assets/icons/再次重播图标（配图层.png"
               alt="再次重播"
             />
           </div>
           <div class="right">
             <img
               class="replay"
-              src="./assets/icons/再次重播图标（配图层.png"
+              src="/assets/icons/再次重播图标（配图层.png"
               alt="再次重播"
             />
           </div>
         </div>
         <div class="answer">
           <div class="left">
-            <p class="title">快速投喂 精准回答</p>
-            <p class="desc">AI Bar支持划词和文件拖拽解析</p>
+            <p class="title">{{ currentMessage.quickInput}}</p>
+            <p class="desc">{{ currentMessage.aiTaskbar}}</p>
           </div>
           <div class="right">
             <img src="./assets/imgs/桌面.png" alt="桌面" />
             <div class="replay">
-              <span>再次播放</span>
+              <span>{{currentMessage.replay}}</span>
               <img
-                src="./assets/icons/再次播放图标（配文字.png"
+                src="/assets/icons/再次播放图标（配文字.png"
                 alt="再次播放"
               />
             </div>
@@ -151,48 +157,46 @@
         </div>
       </div>
       <div class="worker">
-        <div class="title-p2">什么工作 轻松搞定</div>
+        <div class="title-p2">{{ currentMessage.job }}</div>
         <div class="banner">
-          <div class="container" :style="{transform: `translateX(${workerOffsetWidth}px)`}">
-            <div
-              :style="imgWidthStyle"
-              @click="switchWorkerBanner(0)"
-              ></div>
-            <div
-              :style="imgWidthStyle"
-              @click="switchWorkerBanner(1)"
-            ></div>
-            <div
-              :style="imgWidthStyle"
-              @click="switchWorkerBanner(2)"
-              ></div>
-          </div>
+          <div class="img left" @click="switchWorkerBanner(0)"></div>
+          <div class="img" @click="switchWorkerBanner(1)"></div>
+          <div class="img right" @click="switchWorkerBanner(2)"></div>
           <div class="toolbar">
             <div class="container" :style="toolBarWidthStyle">
               <div class="item">
                 <p>
-                  <span style="color: #000; font-weight: 500">AI写作</span
-                  >：释放创意，灵感不断
+                  <span style="color: #000; font-weight: 500"
+                    >{{ currentMessage.aiWritingTitle}}</span
+                  >：{{ currentMessage.aiWritingDesc}}
                 </p>
               </div>
               <div class="item">
-                <div class="button left" tabindex="1" @click="switchPrevWorkerBanner" ></div>
-                <div class="button right" tabindex="2" @click="switchNextWorkerBanner" ></div>
+                <div class="button left" @click="switchPrevWorkerBanner"></div>
+                <div class="button right" @click="switchNextWorkerBanner"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="cross">
-        <div class="left">
-          <div class="title">乐享自在，无边界</div>
-          <div class="sub-title">跨端协同</div>
-          <div class="desc">
-            打破设备边界自由分享，手机设备低延迟同步，实现手机、PC互动
-          </div>
+        <div class="fullscreen-cover2">
+          <img src="/assets/imgs/桌面.png" alt="全屏封面图片" />
         </div>
-        <div style="width: 1120px; height: 672px; background: blanchedalmond">
-          视频
+        <div class="container">
+          <div class="left">
+            <div class="title">{{ currentMessage.enjoyWithoutBoundaries }}</div>
+            <div class="sub-title">
+              {{ currentMessage.crossTerminalCollaboration }}
+            </div>
+            <div class="desc">{{ currentMessage.freeSharing }}</div>
+          </div>
+          <div
+            class="cvideo"
+            style="width: 1120px; height: 672px; background: blanchedalmond"
+          >
+            视频
+          </div>
         </div>
       </div>
       <div class="hardware">
@@ -213,90 +217,280 @@
         </div>
       </div>
       <div class="distrobox">
-          <div class="title-p1">Distrobox子系统，更强大更自由</div>
-          <p class="desc">
-            为开发者提供轻量级且高效的开发环境解决方案，开发环境的启动和停止非常便捷，在与宿主机文件系统无缝融合的同时，CPU和内存资源占用比传统虚拟机更低
-          </p>
-          <a class="btn"
-            ><span>立刻下载体验</span
-            ><img src="./assets/icons/下载.png" alt="download"
-          /></a>
-          <div style="flex: 1"></div>
-          <p class="tips">
-            *预览版本功能尚未完全开发完成不作为标准生产环境镜像。
-          </p>
-          <p class="tips">*画面仅供参考，具体体验以实际应用为准。</p>
-        
+        <div class="title-p1">{{ currentMessage.distroboxSubsystem }}</div>
+        <p class="desc">{{ currentMessage.developerEnvironment }}</p>
+        <a class="btn"
+          ><span>{{ currentMessage.downloadExperience }}</span
+          ><img src="./assets/icons/下载.png" alt="download"
+        /></a>
+        <div style="flex: 1"></div>
+        <p class="tips">*{{ currentMessage.previewVersion }}</p>
+        <p class="tips">*{{ currentMessage.screenReference }}</p>
       </div>
+      <d-footer :lang="currentLanguage"></d-footer>
     </div>
     <script type="module">
+      import { i18n } from './i18n.js';
       const App = {
         data() {
           return {
+            currentLanguage: 'zh',
+            i18n: i18n,
             isSmallScreen: document.body.clientWidth < 1900,
             halfBodyWidth: document.body.clientWidth / 2,
-            imgWidthStyle: {
-              width: `${document.body.clientWidth / 2}px`,
-              height: '540px',
-              backgroundColor: '#777',
-              borderRadius: '56px',
-              cursor: 'pointer',
-            },
             toolBarWidthStyle: {
-              width: `${document.body.clientWidth / 2}px`,
+              width: `${window.screen.width / 2}px`,
             },
             desktopCurrentIndex: 0,
-            desktopOffsetWidth: document.body.clientWidth / 2 - 519,
+            desktopOffsetWidth: window.screen.width / 2 - 510,
             workerCurrentIndex: 1,
-            workerOffsetWidth: -(document.body.clientWidth / 2 + 69 * 2) / 2,
+            workerOffsetWidth: -(window.screen.width / 2 + 69 * 2) / 2,
           };
         },
+        created() {
+          console.log(window.screen.width);
+          this.getLanguage();
+        },
         methods: {
+          getBodyWidth() {
+            const width = document.body.clientWidth;
+            console.log(width);
+            return width;
+          },
+          // 从路由中读取语言
+          getLanguage() {
+            const url = location.pathname;
+            const lang = url.split('/')[1];
+            console.log(lang);
+            if (lang.trim() === 'en') {
+              this.currentLanguage = lang;
+            }
+          },
           switchDeskTopBanner(index) {
             if (this.desktopCurrentIndex === index) return;
             this.desktopCurrentIndex = index;
-            document.querySelector('.desktop .pagination .dot.active').classList.remove('active');
-            document.querySelectorAll('.desktop .pagination .dot')[index].classList.add('active');
-            
+            document
+              .querySelectorAll('.desktop .banner .container .item')
+              [index].classList.remove('opacity');
+            document
+              .querySelector('.desktop .pagination .dot.active')
+              .classList.remove('active');
+            document
+              .querySelectorAll('.desktop .pagination .dot')
+              [index].classList.add('active');
+            const container = document.querySelector(
+              '.desktop .banner .container'
+            );
+            console.log(container.style.transform);
             if (index === 1) {
               if (this.isSmallScreen) {
-                this.desktopOffsetWidth -= 1020 + 84;
+                container.style.transform = `translateX(-${510 + 84}px)`;
               } else {
-                this.desktopOffsetWidth -= 1020 + 219;
+                container.style.transform = `translateX(-${510 + 219}px)`;
               }
+              document
+                .querySelectorAll('.desktop .banner .container .item')[0]
+                .classList.add('opacity');
             } else {
-              if (this.isSmallScreen) {
-                this.desktopOffsetWidth += 1020 + 84;
-              } else {
-                this.desktopOffsetWidth += 1020 + 219;
-              }
+              container.style.transform = `translateX(calc(50% - 510px))`;
+              document
+                .querySelectorAll('.desktop .banner .container .item')[1]
+                .classList.add('opacity');
             }
           },
           switchWorkerBanner(index) {
             if (this.workerCurrentIndex === index) return;
             if (index > this.workerCurrentIndex) {
               this.switchNextWorkerBanner();
-            }else {
+            } else {
               this.switchPrevWorkerBanner();
             }
           },
           switchPrevWorkerBanner() {
-            console.log(this.workerCurrentIndex,this.workerOffsetWidth);
             if (this.workerCurrentIndex === 0) return;
-            this.workerOffsetWidth += this.halfBodyWidth + 51;
+            const items = document.querySelectorAll('.worker .banner .img');
+
+            switch (this.workerCurrentIndex) {
+              case 1:
+                items[0].style.left = 'calc(50% - 480px)';
+                items[1].style.left = 'calc(50% + 549px)';
+                items[2].style.left = '200%';
+                break;
+              case 2:
+                items[0].style.left = 'calc(50% - 1509px)';
+                items[1].style.left = 'calc(50% - 480px)';
+                items[2].style.left = 'calc(50% + 549px)';
+                break;
+              default:
+                break;
+            }
             this.workerCurrentIndex--;
+            if (this.workerCurrentIndex === 0) {
+              document
+                .querySelector('.worker .toolbar .button.left')
+                .classList.add('disabled');
+            } else {
+              document
+                .querySelector('.worker .toolbar .button.right')
+                .classList.remove('disabled');
+            }
           },
           switchNextWorkerBanner() {
-            console.log(this.workerCurrentIndex,this.workerOffsetWidth);
             if (this.workerCurrentIndex === 2) return;
-            this.workerOffsetWidth -= this.halfBodyWidth + 51;
+            const items = document.querySelectorAll('.worker .banner .img');
+
+            switch (this.workerCurrentIndex) {
+              case 0:
+                items[0].style.left = 'calc(50% - 1509px)';
+                items[1].style.left = 'calc(50% - 480px)';
+                items[2].style.left = 'calc(50% + 549px)';
+                break;
+              case 1:
+                items[0].style.left = '-200%';
+                items[1].style.left = 'calc(50% - 1509px)';
+                items[2].style.left = 'calc(50% - 480px)';
+                break;
+              default:
+                break;
+            }
             this.workerCurrentIndex++;
-          } 
-        }
+
+            if (this.workerCurrentIndex === 2) {
+              document
+                .querySelector('.worker .toolbar .button.right')
+                .classList.add('disabled');
+            } else {
+              document
+                .querySelector('.worker .toolbar .button.left')
+                .classList.remove('disabled');
+            }
+          },
+        },
+        computed: {
+          currentMessage() {
+            return this.i18n[this.currentLanguage];
+          },
+        },
       };
       const app = Vue.createApp(App);
-      app.use(ElementPlus);
       app.mount('#app');
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const monolith = document.querySelector('.monolith');
+        const maxRadius = 680; // 最大圆角值
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const visibleHeight = entry.intersectionRect.height; // 元素的可见高度
+              const totalHeight = entry.boundingClientRect.height - 64; // 元素的总高度 减去导航栏64px
+
+              // 如果可见高度，小于等于视口高度 - 780 + 64px，
+              // 保持直角
+              if (visibleHeight <= window.innerHeight - 780 + 64) {
+                monolith.style.borderRadius = '0';
+                return;
+              }
+              // 根据可见高度计算当前圆角值
+              const currentRadius = Math.min(
+                maxRadius,
+                (visibleHeight / totalHeight) * maxRadius
+              );
+
+              // 设置圆角值
+              monolith.style.borderRadius = `${currentRadius}px ${currentRadius}px 0 0`;
+            });
+          },
+          {
+            threshold: Array.from({ length: 101 }, (_, i) => i / 100), // 创建 0 到 1 的阈值数组
+          }
+        );
+
+        observer.observe(monolith);
+        // 当desktop 下面的第一个笔记本完全出现的时候，缩放过去
+        const io = new IntersectionObserver(
+          (changes, observe) => {
+            if (changes[0].isIntersecting) {
+              // 让全屏封面图片缩小
+              document.querySelector('.fullscreen-cover').style.transform =
+                'scale(0.4)';
+              // 等待0.5s后完全隐藏
+              setTimeout(() => {
+                document.querySelector('.fullscreen-cover').style.display =
+                  'none';
+              }, 1000);
+              return;
+            }
+            if (changes[0].isIntersecting) {
+              // 恢复全屏封面图片
+              document.querySelector('.fullscreen-cover').style.display =
+                'block';
+              document.querySelector('.fullscreen-cover').style.transform =
+                'scale(1)';
+            }
+          },
+          {
+            threshold: 1,
+          }
+        );
+        const io2 = new IntersectionObserver(
+          (changes, observe) => {
+            if (changes[0].isIntersecting) {
+              // 恢复全屏封面图片
+              document.querySelector('.fullscreen-cover').style.display =
+                'block';
+              document.querySelector('.fullscreen-cover').style.transform =
+                'scale(1)';
+            }
+          },
+          {
+            threshold: [0.2],
+          }
+        );
+        io.observe(document.querySelector('.desktop .banner .container .item'));
+        io2.observe(document.querySelector('.banner1'));
+
+        const crossIo = new IntersectionObserver(
+          (changes, observe) => {
+            if (changes[0].isIntersecting) {
+              // 让全屏封面图片缩小
+              const cover = document.querySelector('.fullscreen-cover2');
+              cover.style.left = '637px';
+              cover.style.top = '0';
+              cover.style.right = '163px';
+              cover.style.bottom = '0';
+              // 等待0.5s后完全隐藏
+              setTimeout(() => {
+                document.querySelector('.fullscreen-cover2').style.display =
+                  'none';
+              }, 1000);
+            }
+          },
+          {
+            threshold: 1,
+          }
+        );
+        const crossIo2 = new IntersectionObserver(
+          (changes, observe) => {
+            if (changes[0].isIntersecting) {
+              // 恢复全屏封面图片
+              document.querySelector('.fullscreen-cover2').style.display =
+                'block';
+              const cover = document.querySelector('.fullscreen-cover2');
+              cover.style.left = '0';
+              cover.style.top = '0';
+              cover.style.right = '0';
+              cover.style.bottom = '0';
+            }
+          },
+          {
+            threshold: 1,
+          }
+        );
+        crossIo2.observe(document.querySelector('.ai .answer .right .replay'));
+        crossIo.observe(document.querySelector('.cross .container .cvideo'));
+      });
     </script>
   </body>
 </html>

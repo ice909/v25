@@ -8,28 +8,30 @@ a {
   color: inherit;
 }
 
-img,video {
+html {
+  overflow-x: hidden;
+}
+
+img,
+video {
   max-width: none !important;
 }
 
 body {
-  max-width: 2220px;
-  min-width: 1900px;
+  max-width: 1920px;
+  min-width: 1920px;
+  overflow: hidden;
   margin: auto;
-}
-.navigation {
-  height: 60px;
-  background-color: blue;
+  font-family: WenQuanYi Micro Hei, Noto Sans CJK SC, PingFang SC,
+    Hiragino Sans GB, Microsoft YaHei, SimHei, Roboto, tahoma, sans-serif;
 }
 
 .banner1 {
-  height: 780px;
   position: relative;
 }
 
 .banner1 img {
   width: 100%;
-  height: 100%;
 }
 
 .banner1 .content {
@@ -39,7 +41,6 @@ body {
 }
 
 .banner1 .title {
-  font-family: AlimamaFangYuanTiVF-Thin_wght2BC0000_BEVL200000;
   font-weight: 600;
   font-size: 80px;
   color: #ffffff;
@@ -77,9 +78,9 @@ body {
 
 .monolith {
   padding-top: 200px;
-  padding-bottom: 270px;
+  padding-bottom: 206px;
   background-image: linear-gradient(180deg, #f4f5f7 0%, #ffffff 100%);
-  border-radius: 680px 680px 0 0;
+  transition: border-radius 0.3s ease;
 }
 
 .monolith .title {
@@ -130,6 +131,60 @@ body {
   line-height: 96px;
 }
 
+.fullscreen-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.5s ease;
+}
+
+.fullscreen-cover img {
+  width: 100%;
+}
+
+.fullscreen-cover.shrink {
+  width: 1020px;
+  height: 611px;
+  top: 40px;
+  left: calc(50% - 510px);
+  background-color: transparent;
+}
+
+.fullscreen-cover2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.5s ease;
+}
+
+.fullscreen-cover2 img {
+  width: 100%;
+}
+
+.fullscreen-cover2.shrink {
+  width: 1020px;
+  height: 611px;
+  top: 40px;
+  left: calc(50% - 510px);
+  background-color: transparent;
+}
+
+.desktop {
+  position: relative;
+}
+
 .desktop .banner {
   margin-top: 40px;
   overflow: hidden;
@@ -139,11 +194,17 @@ body {
   display: flex;
   gap: 219px;
   transition: transform 0.5s ease;
+  transform: translateX(calc(50% - 510px));
 }
 
 .desktop .banner .container .item {
   width: 1020px;
   cursor: pointer;
+  transition: opacity 0.5s ease;
+}
+
+.desktop .banner .container .item.opacity {
+  opacity: 0.85;
 }
 
 .desktop .banner .container .item p {
@@ -210,7 +271,6 @@ body {
 
 .title-p1 {
   margin-top: 175px;
-  font-family: MiSans-Bold;
   font-weight: bold;
   font-size: 64px;
   color: #1e1e1e;
@@ -221,7 +281,6 @@ body {
 
 .sub-title {
   margin-top: 40px;
-  font-family: MiSans-Medium;
   font-weight: 500;
   font-size: 24px;
   color: #7f8287;
@@ -256,7 +315,6 @@ body {
 .window-tube .content .left .w-desc {
   width: 420px;
   margin-top: 40px;
-  font-family: MiSans-Medium;
   font-weight: 500;
   font-size: 24px;
   color: #7f8287;
@@ -338,7 +396,6 @@ body {
 .performance .item .data .right span {
   width: 51px;
   height: 76px;
-  font-family: DINPro-Medium;
   font-weight: 600;
   font-size: 60px;
   color: #fff;
@@ -346,7 +403,6 @@ body {
 
 .performance .item .desc {
   margin-top: 34px;
-  font-family: MiSans-Medium;
   font-weight: 500;
   font-size: 24px;
   color: #ffffff;
@@ -404,6 +460,7 @@ body {
 
 .ai .answer .left .title {
   margin-top: 251px;
+  max-width: 300px;
   font-weight: 600;
   font-size: 48px;
   background: linear-gradient(104deg, #0050ff 0%, #7500ff 100%);
@@ -413,7 +470,6 @@ body {
 
 .ai .answer .left .desc {
   margin-top: 40px;
-  font-family: MiSans-Medium;
   font-weight: 500;
   font-size: 24px;
   color: #7f8287;
@@ -455,7 +511,6 @@ body {
 .title-p2 {
   margin-top: 200px;
   text-align: center;
-  font-family: MiSans-SNaNpxibold;
   font-weight: 600;
   font-size: 48px;
   color: #000000;
@@ -468,9 +523,31 @@ body {
 }
 
 .worker .banner {
+  position: relative;
   margin-top: 100px;
   width: 100%;
+  height: 670px;
   overflow: hidden;
+}
+
+.worker .banner > .img {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 480px);
+  width: 960px;
+  height: 540px;
+  background-color: #777;
+  border-radius: 56px;
+  cursor: pointer;
+  transition: left 0.5s ease;
+}
+
+.worker .banner > .img.left {
+  left: calc(50% - 1509px);
+}
+
+.worker .banner > .img.right {
+  left: calc(50% + 549px);
 }
 
 .worker .banner > .container {
@@ -481,7 +558,10 @@ body {
 }
 
 .worker .banner .toolbar {
-  margin-top: 40px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 .worker .banner .toolbar .container {
@@ -520,15 +600,30 @@ body {
   background-image: url(./assets/icons/右切换（不可.png);
 }
 
-.worker .banner .toolbar .container .item .left:focus {
+.worker .banner .toolbar .container .item .left:active {
   background-image: url(./assets/icons/左切换（点击.png);
 }
 
-.worker .banner .toolbar .container .item .right:focus {
-  background-image: url(./assets/icons/右切换（点击.png)
+.worker .banner .toolbar .container .item .right:active {
+  background-image: url(./assets/icons/右切换（点击.png);
+}
+
+.worker .banner .toolbar .container .item .button.left.disabled {
+  background-image: url(./assets/icons/左切换不可点击.png);
+  cursor: not-allowed;
+}
+.worker .banner .toolbar .container .item .button.right.disabled {
+  background-image: url(./assets/icons/右切换不可点击.png);
+  cursor: not-allowed;
 }
 
 .cross {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.cross .container {
   margin-top: 200px;
   padding: 0 180px;
   display: flex;
@@ -541,7 +636,6 @@ body {
 
 .cross .left .title {
   max-width: 340px;
-  font-family: MiSans-Bold;
   font-weight: 700;
   font-size: 64px;
   color: #1e1e1e;
@@ -551,7 +645,6 @@ body {
 
 .cross .left .sub-title {
   margin-top: 100px;
-  font-family: MiSans-SNaNpxibold;
   font-weight: 600;
   text-align: start;
   font-size: 48px;
@@ -566,7 +659,6 @@ body {
   margin-top: 40px;
   width: 420px;
   height: 72px;
-  font-family: MiSans-Medium;
   font-weight: 500;
   font-size: 24px;
   color: #7f8287;
@@ -593,13 +685,13 @@ body {
 
 .hardware .content .item p {
   width: 420px;
-  font-family: MiSans-Medium;
   font-weight: 500;
   font-size: 28px;
   color: #ffffff;
   letter-spacing: 0;
   line-height: 56px;
 }
+
 .hardware .content {
   margin-top: 100px;
   display: flex;
@@ -652,12 +744,10 @@ body {
   height: 100%;
 }
 
-
 .distrobox .desc {
   margin-top: 40px;
   width: 940px;
   height: 72px;
-  font-family: MiSans-Medium;
   font-weight: Medium;
   font-size: 24px;
   color: #000000;
@@ -668,7 +758,7 @@ body {
 
 .distrobox .btn {
   margin-top: 120px;
-  width: 190px;
+  min-width: 190px;
   height: 56px;
   background-image: linear-gradient(270deg, #1a58ff 0%, #1976ff 100%);
   border-radius: 4px;
@@ -676,12 +766,13 @@ body {
   justify-content: center;
   align-items: center;
   gap: 6px;
+  padding: 0 18px;
+  cursor: pointer;
 }
 
 .distrobox .btn span {
-  width: 120px;
+  min-width: 120px;
   height: 30px;
-  font-family: MiSans-SNaNpxibold;
   font-weight: 600;
   font-size: 20px;
   color: #ffffff;
@@ -716,19 +807,19 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 90px;
   }
-  
+
   .monolith .list .item {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
   }
-  
+
   .monolith .list .item img {
     width: 180px;
     height: 180px;
   }
-  
+
   .monolith .list .item p {
     width: 225px;
     font-weight: 500;
@@ -745,6 +836,11 @@ body {
 
   .desktop .banner .container .item p {
     width: 620px;
+  }
+
+  .hardware .content .item p {
+    width: 318px;
+    line-height: 42px;
   }
 
   .ai .content {
