@@ -18,12 +18,33 @@
   <body>
     <div id="app">
       <d-header :lang="currentLanguage"> </d-header>
+      <div class="video-dialog">
+        <div class="container">
+          <video id="dialog-video">
+            <source src="/assets/videos/跨端协同.mp4" type="video/mp4" />
+          </video>
+          <img
+            src="/assets/icons/close-circle.png"
+            alt="关闭"
+            @click="closeVideoDialog"
+          />
+        </div>
+      </div>
       <div class="banner1">
         <img src="/assets/imgs/banner.png" alt="" />
         <div class="content">
           <div class="title">Deepin V25 Preview</div>
-          <div class="slogen">全新设计从心出发</div>
-          <a class="btn"><span>了解更多</span></a>
+          <div class="slogen" :style="{letterSpacing: isZh ? '12px' : 0 }">
+            {{ currentMessage.design}}
+          </div>
+          <div
+            class="btn"
+            :style="{width: isZh ? '200px' : '236px'}"
+            @click="openVideoDialog"
+          >
+            <span>{{ currentMessage.explore }}</span
+            ><img src="./assets/icons/video.png" />
+          </div>
         </div>
       </div>
       <div class="trigger"></div>
@@ -54,21 +75,19 @@
         </div>
         <div class="title">{{ currentMessage.newDesktop}}</div>
         <div class="banner">
-          <div class="container">
-            <div class="item" @click="switchDeskTopBanner(0)">
-              <p>{{ currentMessage.controlCenter}}</p>
-              <img
-                src="/assets/imgs/笔记本.png"
-                style="margin-top: 40px; width: 1020px; height: 611px"
-              />
-            </div>
-            <div class="item opacity" @click="switchDeskTopBanner(1)">
-              <p>{{ currentMessage.qmlReconstruction}}</p>
-              <img
-                src="/assets/imgs/笔记本.png"
-                style="margin-top: 40px; width: 1020px; height: 611px"
-              />
-            </div>
+          <div class="item left" @click="switchDeskTopBanner(0)">
+            <p>{{ currentMessage.controlCenter}}</p>
+            <img
+              src="/assets/imgs/笔记本.png"
+              style="margin-top: 40px; width: 1020px; height: 611px"
+            />
+          </div>
+          <div class="item right opacity" @click="switchDeskTopBanner(1)">
+            <p>{{ currentMessage.qmlReconstruction}}</p>
+            <img
+              src="/assets/imgs/笔记本.png"
+              style="margin-top: 40px; width: 1020px; height: 611px"
+            />
           </div>
         </div>
 
@@ -87,19 +106,25 @@
         <div class="sub-title">{{ currentMessage.waylandCompositor}}</div>
         <div class="content">
           <div class="left">
-            <p class="w-title">{{currentMessage.heartLeads}}</p>
+            <p
+              class="w-title"
+              :style="{width: isZh ? '399px' : '364px', fontSize: isZh ? '48px' : '32px' }"
+            >
+              {{currentMessage.heartLeads}}
+            </p>
             <p class="w-desc">{{ currentMessage.userExperience}}</p>
           </div>
           <div class="right">
             <div class="data"></div>
             <div class="data"></div>
+            <img src="/assets/icons/再次重播图标（配图层.png" alt="再次重播" />
           </div>
         </div>
       </div>
 
       <div class="performance">
         <div class="item">
-          <p class="title">更快速</p>
+          <p class="title">{{ currentMessage.faster}}</p>
           <div class="data">
             <div class="value">90</div>
             <div class="right">
@@ -107,10 +132,10 @@
               <span>%</span>
             </div>
           </div>
-          <p class="desc">窗口渲染性能提升</p>
+          <p class="desc">{{ currentMessage.windowRender}}</p>
         </div>
         <div class="item second">
-          <p class="title">更高效</p>
+          <p class="title">{{ currentMessage.efficient}}</p>
           <div class="data">
             <div class="value">50</div>
             <div class="right">
@@ -118,12 +143,15 @@
               <span>%</span>
             </div>
           </div>
-          <p class="desc">显卡渲染性能提升</p>
+          <p class="desc">{{ currentMessage.graphicsRender}}</p>
         </div>
       </div>
       <div class="ai">
         <div class="title-p1">{{ currentMessage.intelligentEmpowerment}}</div>
-        <div class="content">
+        <div
+          class="content"
+          :style="{height: isSmallScreen ? '675px' : '900px'}"
+        >
           <div class="left">
             <img
               class="replay"
@@ -141,11 +169,20 @@
         </div>
         <div class="answer">
           <div class="left">
-            <p class="title">{{ currentMessage.quickInput}}</p>
+            <p
+              class="title"
+              :style="{width: isSmallScreen ? '400px' : ( isZh ? '400px' : '300px'),fontSize: isZh ? '48px' : '32px' }"
+            >
+              {{ currentMessage.quickInput}}
+            </p>
             <p class="desc">{{ currentMessage.aiTaskbar}}</p>
           </div>
           <div class="right">
-            <img src="./assets/imgs/桌面.png" alt="桌面" />
+            <img
+              :width="isSmallScreen ? 765 : 1020"
+              src="./assets/imgs/桌面.png"
+              alt="桌面"
+            />
             <div class="replay">
               <span>{{currentMessage.replay}}</span>
               <img
@@ -167,8 +204,8 @@
               <div class="item">
                 <p>
                   <span style="color: #000; font-weight: 500"
-                    >{{ currentMessage.aiWritingTitle}}</span
-                  >：{{ currentMessage.aiWritingDesc}}
+                    >{{ ai.aiTitle }}</span
+                  >：{{ ai.aiDesc }}
                 </p>
               </div>
               <div class="item">
@@ -185,32 +222,53 @@
         </div>
         <div class="container">
           <div class="left">
-            <div class="title">{{ currentMessage.enjoyWithoutBoundaries }}</div>
-            <div class="sub-title">
+            <div
+              class="title"
+              :style="{fontSize: isZh ? '64px' : '48px',
+            lineHeight: isZh ? '96px' : '72px',
+          width: isZh ? '340px' : '430px' }"
+            >
+              {{ currentMessage.enjoyWithoutBoundaries }}
+            </div>
+            <div
+              class="sub-title"
+              :style="{marginTop: isZh ? '100px' : '40px', fontSize: isZh ? '48px' : '32px' }"
+            >
               {{ currentMessage.crossTerminalCollaboration }}
             </div>
             <div class="desc">{{ currentMessage.freeSharing }}</div>
           </div>
-          <div
-            class="cvideo"
-            style="width: 1120px; height: 672px; background: blanchedalmond"
-          >
-            视频
+          <div class="cvideo" style="width: 1020px">
+            <video id="cross" style="width: 100%" muted>
+              <source src="./assets/videos/跨端协同.mp4" type="video/mp4" />
+            </video>
+
+            <div class="replay" @click="replay('#cross')">
+              <span>{{ currentMessage.replay }}</span>
+              <img
+                src="/assets/icons/再次播放图标（配文字.png"
+                alt="再次播放"
+              />
+            </div>
           </div>
         </div>
       </div>
       <div class="hardware">
-        <div class="title-p1">最新硬件支持</div>
+        <div class="title-p1">{{ currentMessage.hardware }}</div>
         <div class="content">
           <div class="left item">
-            <p>
-              蓝牙6.0:支持蓝牙HFP协议，保障市面上大部分蓝牙耳机通话接听、挂断等功能正常使用:支持蓝牙HiFI协议，保障市面上大部分蓝牙HIFI耳机可以享受高保真音质
+            <p
+              :style="{width: isSmallScreen ? (isZh ? '350px' : '321px') : (isZh ? '420px' : '386px'),fontSize: isSmallScreen ?(isZh ? '21px' : '18px') : (isZh ? '28px' : '24px'), lineHeight: isSmallScreen? (isZh ? '56px' : '36px') : ( isZh ? '56px' : '36px') }"
+            >
+              {{ currentMessage.bluetooth }}
             </p>
             <img src="./assets/icons/bluetoothe.png" alt="蓝牙" />
           </div>
           <div class="right item">
-            <p>
-              WiFi7:支持目前市面最新的WiFi7网卡，WiFi网络信号和网络传输速度有保障
+            <p
+              :style="{width: isSmallScreen ? (isZh ? '350px' : '321px') : (isZh ? '420px' : '386px'),fontSize: isSmallScreen ? (isZh ? '21px' : '18px') : (isZh ? '28px' : '24px'), lineHeight: isSmallScreen? (isZh ? '56px' : '36px') : ( isZh ? '56px' : '36px') }"
+            >
+              {{ currentMessage.wifi }}
             </p>
             <img src="./assets/icons/wifi.png" alt="wifi" />
           </div>
@@ -229,268 +287,6 @@
       </div>
       <d-footer :lang="currentLanguage"></d-footer>
     </div>
-    <script type="module">
-      import { i18n } from './i18n.js';
-      const App = {
-        data() {
-          return {
-            currentLanguage: 'zh',
-            i18n: i18n,
-            isSmallScreen: document.body.clientWidth < 1900,
-            halfBodyWidth: document.body.clientWidth / 2,
-            toolBarWidthStyle: {
-              width: `${window.screen.width / 2}px`,
-            },
-            desktopCurrentIndex: 0,
-            desktopOffsetWidth: window.screen.width / 2 - 510,
-            workerCurrentIndex: 1,
-            workerOffsetWidth: -(window.screen.width / 2 + 69 * 2) / 2,
-          };
-        },
-        created() {
-          console.log(window.screen.width);
-          this.getLanguage();
-        },
-        methods: {
-          getBodyWidth() {
-            const width = document.body.clientWidth;
-            console.log(width);
-            return width;
-          },
-          // 从路由中读取语言
-          getLanguage() {
-            const url = location.pathname;
-            const lang = url.split('/')[1];
-            console.log(lang);
-            if (lang.trim() === 'en') {
-              this.currentLanguage = lang;
-            }
-          },
-          switchDeskTopBanner(index) {
-            if (this.desktopCurrentIndex === index) return;
-            this.desktopCurrentIndex = index;
-            document
-              .querySelectorAll('.desktop .banner .container .item')
-              [index].classList.remove('opacity');
-            document
-              .querySelector('.desktop .pagination .dot.active')
-              .classList.remove('active');
-            document
-              .querySelectorAll('.desktop .pagination .dot')
-              [index].classList.add('active');
-            const container = document.querySelector(
-              '.desktop .banner .container'
-            );
-            console.log(container.style.transform);
-            if (index === 1) {
-              if (this.isSmallScreen) {
-                container.style.transform = `translateX(-${510 + 84}px)`;
-              } else {
-                container.style.transform = `translateX(-${510 + 219}px)`;
-              }
-              document
-                .querySelectorAll('.desktop .banner .container .item')[0]
-                .classList.add('opacity');
-            } else {
-              container.style.transform = `translateX(calc(50% - 510px))`;
-              document
-                .querySelectorAll('.desktop .banner .container .item')[1]
-                .classList.add('opacity');
-            }
-          },
-          switchWorkerBanner(index) {
-            if (this.workerCurrentIndex === index) return;
-            if (index > this.workerCurrentIndex) {
-              this.switchNextWorkerBanner();
-            } else {
-              this.switchPrevWorkerBanner();
-            }
-          },
-          switchPrevWorkerBanner() {
-            if (this.workerCurrentIndex === 0) return;
-            const items = document.querySelectorAll('.worker .banner .img');
-
-            switch (this.workerCurrentIndex) {
-              case 1:
-                items[0].style.left = 'calc(50% - 480px)';
-                items[1].style.left = 'calc(50% + 549px)';
-                items[2].style.left = '200%';
-                break;
-              case 2:
-                items[0].style.left = 'calc(50% - 1509px)';
-                items[1].style.left = 'calc(50% - 480px)';
-                items[2].style.left = 'calc(50% + 549px)';
-                break;
-              default:
-                break;
-            }
-            this.workerCurrentIndex--;
-            if (this.workerCurrentIndex === 0) {
-              document
-                .querySelector('.worker .toolbar .button.left')
-                .classList.add('disabled');
-            } else {
-              document
-                .querySelector('.worker .toolbar .button.right')
-                .classList.remove('disabled');
-            }
-          },
-          switchNextWorkerBanner() {
-            if (this.workerCurrentIndex === 2) return;
-            const items = document.querySelectorAll('.worker .banner .img');
-
-            switch (this.workerCurrentIndex) {
-              case 0:
-                items[0].style.left = 'calc(50% - 1509px)';
-                items[1].style.left = 'calc(50% - 480px)';
-                items[2].style.left = 'calc(50% + 549px)';
-                break;
-              case 1:
-                items[0].style.left = '-200%';
-                items[1].style.left = 'calc(50% - 1509px)';
-                items[2].style.left = 'calc(50% - 480px)';
-                break;
-              default:
-                break;
-            }
-            this.workerCurrentIndex++;
-
-            if (this.workerCurrentIndex === 2) {
-              document
-                .querySelector('.worker .toolbar .button.right')
-                .classList.add('disabled');
-            } else {
-              document
-                .querySelector('.worker .toolbar .button.left')
-                .classList.remove('disabled');
-            }
-          },
-        },
-        computed: {
-          currentMessage() {
-            return this.i18n[this.currentLanguage];
-          },
-        },
-      };
-      const app = Vue.createApp(App);
-      app.mount('#app');
-    </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const monolith = document.querySelector('.monolith');
-        const maxRadius = 680; // 最大圆角值
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              const visibleHeight = entry.intersectionRect.height; // 元素的可见高度
-              const totalHeight = entry.boundingClientRect.height - 64; // 元素的总高度 减去导航栏64px
-
-              // 如果可见高度，小于等于视口高度 - 780 + 64px，
-              // 保持直角
-              if (visibleHeight <= window.innerHeight - 780 + 64) {
-                monolith.style.borderRadius = '0';
-                return;
-              }
-              // 根据可见高度计算当前圆角值
-              const currentRadius = Math.min(
-                maxRadius,
-                (visibleHeight / totalHeight) * maxRadius
-              );
-
-              // 设置圆角值
-              monolith.style.borderRadius = `${currentRadius}px ${currentRadius}px 0 0`;
-            });
-          },
-          {
-            threshold: Array.from({ length: 101 }, (_, i) => i / 100), // 创建 0 到 1 的阈值数组
-          }
-        );
-
-        observer.observe(monolith);
-        // 当desktop 下面的第一个笔记本完全出现的时候，缩放过去
-        const io = new IntersectionObserver(
-          (changes, observe) => {
-            if (changes[0].isIntersecting) {
-              // 让全屏封面图片缩小
-              document.querySelector('.fullscreen-cover').style.transform =
-                'scale(0.4)';
-              // 等待0.5s后完全隐藏
-              setTimeout(() => {
-                document.querySelector('.fullscreen-cover').style.display =
-                  'none';
-              }, 1000);
-              return;
-            }
-            if (changes[0].isIntersecting) {
-              // 恢复全屏封面图片
-              document.querySelector('.fullscreen-cover').style.display =
-                'block';
-              document.querySelector('.fullscreen-cover').style.transform =
-                'scale(1)';
-            }
-          },
-          {
-            threshold: 1,
-          }
-        );
-        const io2 = new IntersectionObserver(
-          (changes, observe) => {
-            if (changes[0].isIntersecting) {
-              // 恢复全屏封面图片
-              document.querySelector('.fullscreen-cover').style.display =
-                'block';
-              document.querySelector('.fullscreen-cover').style.transform =
-                'scale(1)';
-            }
-          },
-          {
-            threshold: [0.2],
-          }
-        );
-        io.observe(document.querySelector('.desktop .banner .container .item'));
-        io2.observe(document.querySelector('.banner1'));
-
-        const crossIo = new IntersectionObserver(
-          (changes, observe) => {
-            if (changes[0].isIntersecting) {
-              // 让全屏封面图片缩小
-              const cover = document.querySelector('.fullscreen-cover2');
-              cover.style.left = '637px';
-              cover.style.top = '0';
-              cover.style.right = '163px';
-              cover.style.bottom = '0';
-              // 等待0.5s后完全隐藏
-              setTimeout(() => {
-                document.querySelector('.fullscreen-cover2').style.display =
-                  'none';
-              }, 1000);
-            }
-          },
-          {
-            threshold: 1,
-          }
-        );
-        const crossIo2 = new IntersectionObserver(
-          (changes, observe) => {
-            if (changes[0].isIntersecting) {
-              // 恢复全屏封面图片
-              document.querySelector('.fullscreen-cover2').style.display =
-                'block';
-              const cover = document.querySelector('.fullscreen-cover2');
-              cover.style.left = '0';
-              cover.style.top = '0';
-              cover.style.right = '0';
-              cover.style.bottom = '0';
-            }
-          },
-          {
-            threshold: 1,
-          }
-        );
-        crossIo2.observe(document.querySelector('.ai .answer .right .replay'));
-        crossIo.observe(document.querySelector('.cross .container .cvideo'));
-      });
-    </script>
+    <script type="module" src="./index.js"></script>
   </body>
 </html>
