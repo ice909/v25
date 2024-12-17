@@ -22,6 +22,8 @@ export const i18n = {
     heartLeads: 'Where the heart goes,the shadow follows',
     userExperience:
       'The user experience and human-computer interaction provide a more enjoyable sensation. On laptop and tablet hardware, it achieves a seamless integration of human and machine, with the system interface responding "like a shadow follows the body."',
+    threeFingers: 'Three fingers',
+    fourFingers: 'Four fingers',
     faster: 'Faster',
     windowRender: 'Window rendering performance improvement',
     efficient: 'More efficient',
@@ -79,13 +81,15 @@ export const i18n = {
     controlCenter:
       '全新设计的控制中心、任务栏、通知中心，界面空间利用设计的更合理，同时拟物化的设计让功能更直观更易理解',
     qmlReconstruction:
-      'QML重构让桌面占用的系统资源更少，运行响应速度更快，同时全新设计的动效让画面过度更自然更高效',
+      'QML重构让桌面占用的系统资源更少，运行响应速度更快，同时全新设计的动效让画面过渡更自然更高效',
     windowManager: '自研窗管更快、更流畅',
     waylandCompositor:
       '采用全新的Wayland窗口合成器方案，对比23版本使用更丝滑，更高效',
-    heartLeads: '心只所向 如影随行',
+    heartLeads: '心之所向 如影随行',
     userExperience:
       '使用感受与人机交互给用户更加愉悦体验感。在笔记本和平板硬件上，做到了人机合一，系统界面响应“如影随形”。',
+    threeFingers: '三指',
+    fourFingers: '四指',
     faster: '更快速',
     windowRender: '窗口渲染性能提升',
     efficient: '更高效',
@@ -96,7 +100,7 @@ export const i18n = {
     textCommunication:
       '文字沟通。AI可理解你的指令回答，快速回答问题、对不同语言完成翻译、智能绘画等AI行为，提升你的办公效率',
     quickInput: '快速投喂 精准回答',
-    aiTaskbar: 'AI 任务栏，文件一拖即用,想你所想',
+    aiTaskbar: 'AI Bar支持划词和文件拖拽解析',
     job: '什么工作？轻松搞定',
     ai: [
       {

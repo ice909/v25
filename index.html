@@ -20,8 +20,11 @@
       <d-header :lang="currentLanguage"> </d-header>
       <div class="video-dialog">
         <div class="container">
-          <video id="dialog-video">
-            <source src="/assets/videos/跨端协同.mp4" type="video/mp4" />
+          <video id="dialog-video" preload="metadata">
+            <source
+              :src="baseUrl + '/assets/videos/跨端协同.mp4'"
+              type="video/mp4"
+            />
           </video>
           <img
             src="/assets/icons/close-circle.png"
@@ -31,7 +34,6 @@
         </div>
       </div>
       <div class="banner1">
-        <img src="/assets/imgs/banner.png" alt="" />
         <div class="content">
           <div class="title">Deepin V25 Preview</div>
           <div class="slogen" :style="{letterSpacing: isZh ? '12px' : 0 }">
@@ -108,16 +110,51 @@
           <div class="left">
             <p
               class="w-title"
-              :style="{width: isZh ? '399px' : '364px', fontSize: isZh ? '48px' : '32px' }"
+              :style="{width: isZh ? '399px' : '364px', fontSize: isZh ? '48px' : '32px', marginTop: isZh? '80px' : '40px' }"
             >
               {{currentMessage.heartLeads}}
             </p>
             <p class="w-desc">{{ currentMessage.userExperience}}</p>
+            <div class="tab" :style="{width: isZh ? '246px' : '338px'}">
+              <div class="bg" :style="{width: isZh ? '120px' : '166px'}"></div>
+              <div
+                class="btn active"
+                :style="{padding: isZh ? '6.7px 30px' : '6.7px 15px'}"
+                @click="switchWindowTubeVideo(0)"
+              >
+                <span>{{ currentMessage.threeFingers}}</span>
+              </div>
+              <div
+                class="btn"
+                :style="{padding: isZh ? '6.7px 30px' : '6.7px 15px'}"
+                @click="switchWindowTubeVideo(1)"
+              >
+                <span>{{ currentMessage.fourFingers}}</span>
+              </div>
+            </div>
           </div>
           <div class="right">
-            <div class="data"></div>
-            <div class="data"></div>
-            <img src="/assets/icons/再次重播图标（配图层.png" alt="再次重播" />
+            <div class="data">
+              <video
+                class="video"
+                muted
+                :src="baseUrl + windowTubeVideos[windowTubeCurrentIndex].left"
+                preload="metadata"
+              ></video>
+            </div>
+            <div class="data">
+              <video
+                class="video"
+                muted
+                :src="baseUrl + windowTubeVideos[windowTubeCurrentIndex].right"
+                preload="metadata"
+              ></video>
+            </div>
+            <img
+              src="/assets/icons/再次重播图标（配图层.png"
+              alt="再次重播"
+              @click="replayWindowTube"
+            />
           </div>
         </div>
       </div>
@@ -171,7 +208,7 @@
           <div class="left">
             <p
               class="title"
-              :style="{width: isSmallScreen ? '400px' : ( isZh ? '400px' : '300px'),fontSize: isZh ? '48px' : '32px' }"
+              :style="{width: isSmallScreen ? '300px' : ( isZh ? '400px' : '300px'),fontSize: isSmallScreen ? '36px' : (isZh ? '48px' : '32px') }"
             >
               {{ currentMessage.quickInput}}
             </p>
@@ -196,9 +233,48 @@
       <div class="worker">
         <div class="title-p2">{{ currentMessage.job }}</div>
         <div class="banner">
-          <div class="img left" @click="switchWorkerBanner(0)"></div>
-          <div class="img" @click="switchWorkerBanner(1)"></div>
-          <div class="img right" @click="switchWorkerBanner(2)"></div>
+          <div
+            class="img left"
+            :class="{opacity: workerCurrentIndex != 0}"
+            @click="switchWorkerBanner(0)"
+          >
+            <div class="container">
+              <img
+                v-if="workerCurrentIndex == 0"
+                src="/assets/icons/再次重播图标（配图层.png"
+                alt="再次重播"
+                @click="replayWorkerVideo"
+              />
+            </div>
+          </div>
+          <div
+            class="img"
+            :class="{opacity: workerCurrentIndex != 1}"
+            @click="switchWorkerBanner(1)"
+          >
+            <div class="container">
+              <img
+                v-if="workerCurrentIndex == 1"
+                src="/assets/icons/再次重播图标（配图层.png"
+                alt="再次重播"
+                @click="replayWorkerVideo"
+              />
+            </div>
+          </div>
+          <div
+            class="img right"
+            :class="{opacity: workerCurrentIndex != 2}"
+            @click="switchWorkerBanner(2)"
+          >
+            <div class="container">
+              <img
+                v-if="workerCurrentIndex == 2"
+                src="/assets/icons/再次重播图标（配图层.png"
+                alt="再次重播"
+                @click="replayWorkerVideo"
+              />
+            </div>
+          </div>
           <div class="toolbar">
             <div class="container" :style="toolBarWidthStyle">
               <div class="item">
@@ -238,9 +314,15 @@
             </div>
             <div class="desc">{{ currentMessage.freeSharing }}</div>
           </div>
-          <div class="cvideo" style="width: 1020px">
-            <video id="cross" style="width: 100%" muted>
-              <source src="./assets/videos/跨端协同.mp4" type="video/mp4" />
+          <div
+            class="cvideo"
+            :style="{width: isSmallScreen ? '840px' : '1020px'}"
+          >
+            <video id="cross" style="width: 100%" muted preload="metadata">
+              <source
+                :src="baseUrl + '/assets/videos/跨端协同.mp4'"
+                type="video/mp4"
+              />
             </video>
 
             <div class="replay" @click="replay('#cross')">
