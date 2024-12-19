@@ -14,6 +14,8 @@
   --monolith-list-item-p-width: 300px;
   --monolith-list-item-p-font-size: 24px;
   --desktop-banner-gap: 219px;
+  --ai-content-right-width: 890px;
+  --title-p1-font-size: 64px;
 }
 a {
   text-decoration: none;
@@ -225,7 +227,7 @@ body {
   overflow: hidden;
   display: flex;
   gap: var(--desktop-banner-gap);
-  height: 769px;
+  height: 700px;
 }
 
 .desktop .banner .item {
@@ -236,16 +238,25 @@ body {
   transition: all 0.5s ease;
 }
 
+.desktop .banner .item .video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.desktop .banner .item .video-container video {
+  position: absolute;
+  left: 119px;
+  top: 26px;
+  border-radius: 7px;
+}
+
 .desktop .banner .item.left {
   left: calc(50% - 510px);
 }
 
 .desktop .banner .item.right {
   left: calc(50% + 739px);
-}
-
-.desktop .banner .item .img {
-  width: 100%;
 }
 
 .desktop .banner .item.opacity {
@@ -264,7 +275,7 @@ body {
 }
 
 .desktop .replay {
-  margin-top: 33px;
+  /* margin-top: 33px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -317,7 +328,7 @@ body {
 .title-p1 {
   margin-top: 175px;
   font-weight: bold;
-  font-size: 64px;
+  font-size: var(--title-p1-font-size);
   color: #1e1e1e;
   letter-spacing: 0;
   text-align: center;
@@ -547,22 +558,17 @@ body {
   right: 40px;
   width: 48px;
   height: 48px;
+  cursor: pointer;
 }
 
 .ai .content .left {
   position: relative;
-  flex: 1;
-  height: 100%;
-  background-image: linear-gradient(145deg, #ffd39c 0%, #ffdcf0 100%);
-  border-radius: 56px;
+  width: 615px;
 }
 
 .ai .content .right {
   position: relative;
-  width: 900px;
-  height: 100%;
-  background-image: linear-gradient(180deg, #eeeeee 0%, #d6dbf5 100%);
-  border-radius: 56px;
+  width: var(--ai-content-right-width);
 }
 
 .ai .answer {
@@ -601,6 +607,7 @@ body {
   color: #7f8287;
   letter-spacing: 0;
   line-height: 36px;
+  cursor: pointer;
 }
 
 .ai .answer .right .replay span {
@@ -652,7 +659,10 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  background: red;
+}
+
+.worker .banner > .img .container video {
+  width: 100%;
 }
 
 .worker .banner > .img .container img {
@@ -954,6 +964,8 @@ body {
     --monolith-list-item-p-width: 225px;
     --monolith-list-item-p-font-size: 18px;
     --desktop-banner-gap: 84px;
+    --ai-content-right-width: 660px;
+    --title-p1-font-size: 48px;
   }
 
   .desktop .banner .item.right {
@@ -971,16 +983,9 @@ body {
     gap: 0px;
   }
 
-  .ai .content {
-    height: 800px;
-  }
-
-  .ai .content {
-    padding: 0 135px;
-  }
-
-  .ai .content .right {
-    width: 800px;
+  .ai .content .left {
+    position: relative;
+    width: 456px;
   }
 
   .cross .container {

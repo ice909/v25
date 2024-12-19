@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -20,12 +21,11 @@
       <d-header :lang="currentLanguage"> </d-header>
       <div class="video-dialog">
         <div class="container">
-          <video id="dialog-video" preload="metadata">
-            <source
-              :src="baseUrl + '/assets/videos/跨端协同.mp4'"
-              type="video/mp4"
-            />
-          </video>
+          <video
+            id="dialog-video"
+            preload="metadata"
+            :src="baseUrl + '/assets/videos/跨端协同.mp4'"
+          ></video>
           <img
             src="/assets/icons/close-circle.png"
             alt="关闭"
@@ -73,27 +73,50 @@
       </div>
       <div class="desktop">
         <div class="fullscreen-cover">
-          <img src="/assets/imgs/桌面.png" alt="全屏封面图片" />
+          <img src="/assets/imgs/全新桌面.png" alt="全屏封面图片" />
         </div>
         <div class="title">{{ currentMessage.newDesktop}}</div>
         <div class="banner">
           <div class="item left" @click="switchDeskTopBanner(0)">
             <p>{{ currentMessage.controlCenter}}</p>
-            <img
-              src="/assets/imgs/笔记本.png"
-              style="margin-top: 40px; width: 1020px; height: 611px"
-            />
+            <div
+              class="video-container"
+              style="margin-top: 40px; width: 1020px; height: 556px"
+              :style="{background: `url(${baseUrl}/assets/imgs/笔记本.png)`}"
+            >
+              <video
+                id="desktopVideo0"
+                class="video"
+                muted
+                preload="metadata"
+                style="width: 783px; height: 450px; border-radius: 7px"
+                :src="baseUrl + '/assets/videos/网页_全新桌面.mp4'"
+              ></video>
+            </div>
           </div>
           <div class="item right opacity" @click="switchDeskTopBanner(1)">
             <p>{{ currentMessage.qmlReconstruction}}</p>
-            <img
-              src="/assets/imgs/笔记本.png"
-              style="margin-top: 40px; width: 1020px; height: 611px"
-            />
+            <div
+              class="video-container"
+              style="margin-top: 40px; width: 1020px; height: 556px"
+              :style="{background: `url(${baseUrl}/assets/imgs/笔记本.png)`}"
+            >
+              <video
+                id="desktopVideo1"
+                class="video"
+                muted
+                preload="metadata"
+                style="width: 783px; height: 450px; border-radius: 7px"
+                :src="baseUrl + '/assets/videos/网页_qml.mp4'"
+              ></video>
+            </div>
           </div>
         </div>
 
-        <div class="replay">
+        <div
+          class="replay"
+          @click="replay(`#desktopVideo${desktopCurrentIndex}`)"
+        >
           <span>{{ currentMessage.replay }}</span>
           <img src="/assets/icons/再次播放图标（配文字.png" alt="再次播放" />
         </div>
@@ -185,19 +208,32 @@
       </div>
       <div class="ai">
         <div class="title-p1">{{ currentMessage.intelligentEmpowerment}}</div>
-        <div
-          class="content"
-          :style="{height: isSmallScreen ? '675px' : '900px'}"
-        >
+        <div class="content">
           <div class="left">
+            <video
+              id="ai-left"
+              style="width: 100%; border-radius: 56px"
+              :src="baseUrl + '/assets/videos/网页_语音.mp4'"
+              muted
+              preload="metadata"
+            ></video>
             <img
+              @click="replay('#ai-left')"
               class="replay"
               src="/assets/icons/再次重播图标（配图层.png"
               alt="再次重播"
             />
           </div>
           <div class="right">
+            <video
+              id="ai-right"
+              style="width: 100%; border-radius: 56px"
+              :src="baseUrl + '/assets/videos/网页_UOS AI 问答.mp4'"
+              muted
+              preload="metadata"
+            ></video>
             <img
+              @click="replay('#ai-right')"
               class="replay"
               src="/assets/icons/再次重播图标（配图层.png"
               alt="再次重播"
@@ -215,13 +251,29 @@
             <p class="desc">{{ currentMessage.aiTaskbar}}</p>
           </div>
           <div class="right">
-            <img
-              :width="isSmallScreen ? 765 : 1020"
-              src="./assets/imgs/桌面.png"
-              alt="桌面"
-            />
-            <div class="replay">
-              <span>{{currentMessage.replay}}</span>
+            <div
+              style="position: relative; background-size: cover; width: 1020px"
+            >
+              <img
+                class="position: absolute; width: 100%; height: 100%"
+                src="/assets/imgs/笔记本.png"
+                alt="笔记本"
+              />
+              <video
+                style="
+                  position: absolute;
+                  top: 26px;
+                  left: 109px;
+                  width: 800px;
+                  border-radius: 7px;
+                "
+                :src="baseUrl + '/assets/videos/网页_AIbar.mp4'"
+                muted
+                preload="metadata"
+              ></video>
+            </div>
+            <div class="replay" @click="replay('.ai .answer .right video')">
+              <span>{{ currentMessage.replay}}</span>
               <img
                 src="/assets/icons/再次播放图标（配文字.png"
                 alt="再次播放"
@@ -239,11 +291,17 @@
             @click="switchWorkerBanner(0)"
           >
             <div class="container">
+              <video
+                id="worker0"
+                muted
+                preload="auto"
+                :src="baseUrl + workerVideos[0]"
+              ></video>
               <img
                 v-if="workerCurrentIndex == 0"
                 src="/assets/icons/再次重播图标（配图层.png"
                 alt="再次重播"
-                @click="replayWorkerVideo"
+                @click="replay('#worker0')"
               />
             </div>
           </div>
@@ -253,11 +311,17 @@
             @click="switchWorkerBanner(1)"
           >
             <div class="container">
+              <video
+                id="worker1"
+                muted
+                preload="auto"
+                :src="baseUrl + workerVideos[1]"
+              ></video>
               <img
                 v-if="workerCurrentIndex == 1"
                 src="/assets/icons/再次重播图标（配图层.png"
                 alt="再次重播"
-                @click="replayWorkerVideo"
+                @click="replay('#worker1')"
               />
             </div>
           </div>
@@ -267,11 +331,17 @@
             @click="switchWorkerBanner(2)"
           >
             <div class="container">
+              <video
+                id="worker2"
+                muted
+                preload="auto"
+                :src="baseUrl + workerVideos[2]"
+              ></video>
               <img
                 v-if="workerCurrentIndex == 2"
                 src="/assets/icons/再次重播图标（配图层.png"
                 alt="再次重播"
-                @click="replayWorkerVideo"
+                @click="replay('#worker2')"
               />
             </div>
           </div>
@@ -314,16 +384,19 @@
             </div>
             <div class="desc">{{ currentMessage.freeSharing }}</div>
           </div>
+
+          <div style="flex: 1"></div>
           <div
             class="cvideo"
             :style="{width: isSmallScreen ? '840px' : '1020px'}"
           >
-            <video id="cross" style="width: 100%" muted preload="metadata">
-              <source
-                :src="baseUrl + '/assets/videos/跨端协同.mp4'"
-                type="video/mp4"
-              />
-            </video>
+            <video
+              id="cross"
+              style="width: 100%"
+              muted
+              preload="metadata"
+              :src="baseUrl + '/assets/videos/网页_跨端协同.mp4'"
+            ></video>
 
             <div class="replay" @click="replay('#cross')">
               <span>{{ currentMessage.replay }}</span>

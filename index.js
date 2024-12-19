@@ -6,12 +6,11 @@ const App = {
       baseUrl: '',
       currentLanguage: 'en',
       i18n: i18n,
-      isSmallScreen: document.body.clientWidth < 1900,
+      isSmallScreen: document.body.clientWidth < 1700,
       toolBarWidthStyle: {
         width: `${window.screen.width / 2}px`,
       },
       desktopCurrentIndex: 0,
-      desktopOffsetWidth: window.screen.width / 2 - 510,
       windowTubeCurrentIndex: 0,
       windowTubeVideos: [
         {
@@ -24,7 +23,11 @@ const App = {
         },
       ],
       workerCurrentIndex: 1,
-      workerOffsetWidth: -(window.screen.width / 2 + 69 * 2) / 2,
+      workerVideos: [
+        '/assets/videos/网页_全局搜索.mp4',
+        '/assets/videos/网页_AI写作.mp4',
+        '/assets/videos/网页_AI随航.mp4',
+      ],
     };
   },
   created() {
@@ -55,6 +58,7 @@ const App = {
     },
     resetDesktopBanner() {
       this.switchDeskTopBanner(0);
+      document.querySelector('.desktop .banner .left video').currentTime = 0;
     },
     switchWorkerBanner(index) {
       if (this.workerCurrentIndex === index) return;
@@ -88,11 +92,28 @@ const App = {
       document
         .querySelector('.worker .toolbar .button.right')
         .classList.toggle('disabled', this.workerCurrentIndex === 2);
+
+      // 停止其他并重置，播放当前视频
+      const videos = document.querySelectorAll('.worker .banner .img video');
+      videos.forEach((video, i) => {
+        if (i === this.workerCurrentIndex) {
+          video.currentTime = 0;
+          setTimeout(() => video.play(), 500);
+        } else {
+          video.pause();
+          video.currentTime = 0;
+        }
+      });
     },
     replay(id) {
       const video = document.querySelector(id);
       video.currentTime = 0;
       video.play();
+    },
+    resetAndStopVideo(id) {
+      const video = document.querySelector(id);
+      video.currentTime = 0;
+      video.pause();
     },
     openVideoDialog() {
       const videoDialog = document.querySelector('.video-dialog');
@@ -159,7 +180,7 @@ const App = {
                 this.handleFullScreenCover(
                   change.target,
                   '.desktop',
-                  '.desktop .item img'
+                  '.desktop .item video'
                 );
               } else if (
                 change.target.classList.contains('fullscreen-cover2')
@@ -179,11 +200,97 @@ const App = {
 
       fullCoverOb.observe(document.querySelector('.fullscreen-cover'));
       fullCoverOb.observe(document.querySelector('.fullscreen-cover2'));
+      const workerIo = new IntersectionObserver(
+        (changes) => {
+          changes.forEach((change) => {
+            console.log(change.target.id, change.isIntersecting);
+            if (change.isIntersecting) {
+              const worker = document.querySelector(
+                `#worker${this.workerCurrentIndex}`
+              );
+              console.log(worker);
+              worker.load();
+              worker.play();
+            } else {
+              const worker = document.querySelector(
+                `#worker${this.workerCurrentIndex}`
+              );
+              worker.pause();
+            }
+          });
+        },
+        { threshold: 0.9 }
+      );
+
+      workerIo.observe(document.querySelector('#worker0'));
+      workerIo.observe(document.querySelector('#worker1'));
+      workerIo.observe(document.querySelector('#worker2'));
+
+      const aiBario = new IntersectionObserver(
+        (changes) => {
+          changes.forEach((change) => {
+            if (change.isIntersecting) {
+              change.target.play();
+            } else {
+              change.target.pause();
+            }
+          });
+        },
+        { threshold: 1 }
+      );
+      aiBario.observe(document.querySelector('.answer .right video'));
+
+      const desktopIo = new IntersectionObserver(
+        (changes) => {
+          changes.forEach((change) => {
+            if (change.isIntersecting) {
+              if (
+                document.querySelector('.fullscreen-cover').style.display ===
+                'block'
+              )
+                return;
+              change.target.play();
+            } else {
+              change.target.pause();
+            }
+          });
+        },
+        { threshold: 1 }
+      );
+
+      desktopIo.observe(
+        document.querySelectorAll('.desktop .banner .item video')[0]
+      );
+      desktopIo.observe(
+        document.querySelectorAll('.desktop .banner .item video')[1]
+      );
+      const aiIo = new IntersectionObserver(
+        (changes) => {
+          changes.forEach((change) => {
+            if (change.target.id === 'cross') {
+              if (
+                document.querySelector('.fullscreen-cover2').style.display ===
+                'block'
+              )
+                return;
+            }
+            if (change.isIntersecting) {
+              change.target.play();
+            } else {
+              change.target.pause();
+            }
+          });
+        },
+        { threshold: 0.8 }
+      );
+      aiIo.observe(document.querySelector('#ai-left'));
+      aiIo.observe(document.querySelector('#ai-right'));
+      aiIo.observe(document.querySelector('#cross'));
     },
     handleFullScreenCover(
       cover,
       sectionSelector,
-      imgSelector,
+      videoSelector,
       isCross = false
     ) {
       document
@@ -193,27 +300,28 @@ const App = {
         const sectionRect = document
           .querySelector(sectionSelector)
           .getBoundingClientRect();
-        const imgRect = document
-          .querySelector(imgSelector)
+        const videoRect = document
+          .querySelector(videoSelector)
           .getBoundingClientRect();
         cover.style.top = `${
-          imgRect.top -
+          videoRect.top -
           sectionRect.top +
-          (isCross ? (this.isSmallScreen ? 75 : 90) : 26)
+          (isCross ? (this.isSmallScreen ? 75 : 90) : 5)
         }px`;
         cover.style.left = `${
-          imgRect.left -
+          videoRect.left -
           sectionRect.left +
-          (isCross ? (this.isSmallScreen ? 175 : 211) : 109)
+          (isCross ? (this.isSmallScreen ? 175 : 211) : 0)
         }px`;
         cover.style.right = `${
           sectionRect.right -
-          imgRect.right +
-          (isCross ? (this.isSmallScreen ? 187 : 230) : 135)
+          videoRect.right +
+          (isCross ? (this.isSmallScreen ? 187 : 230) : 0)
         }px`;
         cover.style.bottom = `${
-          sectionRect.bottom - imgRect.bottom - (isCross ? 0 : 79.22)
+          sectionRect.bottom - videoRect.bottom - (isCross ? 0 : 0)
         }px`;
+        cover.style.borderRadius = '7px';
         setTimeout(() => {
           cover.style.opacity = 0;
           setTimeout(() => {
@@ -223,12 +331,10 @@ const App = {
             cover.style.right = '0';
             cover.style.transition = 'none';
             if (isCross) document.querySelector('#cross').play();
+            else document.querySelector(videoSelector).play();
           }, 500);
         }, 500);
       }, 500);
-    },
-    replayWorkerVideo() {
-      console.log('replayWorkerVideo');
     },
   },
   computed: {
@@ -298,8 +404,9 @@ document.addEventListener('DOMContentLoaded', function () {
             });
           }
         }
-        if (change.target.className.includes('replay')) {
+        if (change.target.tagName === 'SPAN') {
           if (change.isIntersecting) {
+            console.log('replay isvisible');
             const cover = document.querySelector('.fullscreen-cover2');
             cover.style.opacity = 1;
             cover.style.transition = 'all 0.5s ease-in-out';
@@ -313,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { threshold: 1 }
   );
 
-  crossIo2.observe(document.querySelector('.ai .answer .right .replay'));
+  crossIo2.observe(document.querySelector('.ai .answer .right .replay span'));
   crossIo2.observe(
     document.querySelector('.window-tube .content .right .data video')
   );
