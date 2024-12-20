@@ -14,19 +14,19 @@ const App = {
       windowTubeCurrentIndex: 0,
       windowTubeVideos: [
         {
-          left: '/assets/videos/触控板三指右.mp4',
-          right: '/assets/videos/窗口右分屏.mp4',
+          left: '/assets/videos/three-finger-right.mp4',
+          right: '/assets/videos/window-right.mp4',
         },
         {
-          left: '/assets/videos/触控板四指左.mp4',
-          right: '/assets/videos/切换后一个桌面.mp4',
+          left: '/assets/videos/four-finger-left.mp4',
+          right: '/assets/videos/next-dekstop.mp4',
         },
       ],
       workerCurrentIndex: 1,
       workerVideos: [
-        '/assets/videos/网页_全局搜索.mp4',
-        '/assets/videos/网页_AI写作.mp4',
-        '/assets/videos/网页_AI随航.mp4',
+        '/assets/videos/ai-search.mp4',
+        '/assets/videos/ai-write.mp4',
+        '/assets/videos/ai-assistant.mp4',
       ],
     };
   },
@@ -125,6 +125,7 @@ const App = {
     closeVideoDialog() {
       const video = document.querySelector('#dialog-video');
       video.pause();
+      video.currentTime = 0;
       document.querySelector('.video-dialog').style.display = 'none';
     },
     switchWindowTubeVideo(index) {
@@ -138,7 +139,7 @@ const App = {
         .classList.remove('active');
       document.querySelector(
         '.window-tube .content .left .tab .bg'
-      ).style.left = index === 0 ? '0' : '50%';
+      ).style.left = index === 0 ? '0' : 'calc(50% + 1.5px)';
       btns[index].classList.add('active');
       this.playVideos('.window-tube .content .right .data video');
     },
@@ -208,9 +209,9 @@ const App = {
               const worker = document.querySelector(
                 `#worker${this.workerCurrentIndex}`
               );
-              console.log(worker);
-              worker.load();
-              worker.play();
+              setTimeout(() => {
+                worker.play();
+              }, 500);
             } else {
               const worker = document.querySelector(
                 `#worker${this.workerCurrentIndex}`
