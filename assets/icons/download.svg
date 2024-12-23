@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>下载</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01-首页" transform="translate(-1015, -10828)">
+            <g id="编组-9" transform="translate(0, 10319)">
+                <g id="btn" transform="translate(865, 488)">
+                    <g id="下载" transform="translate(150, 21)">
+                        <rect id="download-(Background)" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                        <path d="M8.5,9.57746124 L8.49998093,0.5 L7.49998093,0.5 L7.5,9.57745647 L3.73641205,5.81387091 L3.02930534,6.5209775 L7.64644661,11.1381191 C7.84170875,11.3333813 8.15829124,11.3333813 8.35355339,11.1381192 C8.35355339,11.1381191 8.3535534,11.1381191 8.3535534,11.1381191 L12.9706955,6.52097702 L12.9706955,6.52097702 L12.2635889,5.81386995 L8.5,9.57746124 Z M2,13.0000238 C2,13.5523081 2.44771534,14.0000238 3,14.0000238 L13,14.0000238 C13.5522842,14.0000238 14,13.552309 14,13.0000238 L14,11.0000238 L13,11.0000238 L13,13.0000238 L3,13.0000238 L3,11.0000238 L2,11.0000238 L2,13.0000238 Z" id="download" stroke="#FFFFFF" stroke-width="0.5" fill="#FFFFFF"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -244,11 +244,18 @@ body {
   height: 100%;
 }
 
+.desktop .banner .item .video-container img {
+  position: absolute;
+  width: 100%;
+  z-index: 5;
+}
+
 .desktop .banner .item .video-container video {
   position: absolute;
-  left: 119px;
+  left: 107px;
   top: 26px;
   border-radius: 7px;
+  z-index: 10;
 }
 
 .desktop .banner .item.left {
@@ -260,7 +267,7 @@ body {
 }
 
 .desktop .banner .item.opacity {
-  opacity: 0.85;
+  opacity: 0.4;
 }
 
 .desktop .banner .item p {
@@ -714,6 +721,7 @@ body {
 
 .worker .banner .toolbar .container {
   margin: 0 auto;
+  width: 960px;
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -740,28 +748,28 @@ body {
   width: 48px;
   height: 48px;
   cursor: pointer;
-  background-image: url(./assets/icons/左切换（可点.png);
+  background-image: url(./assets/icons/left.svg);
   outline: 0;
 }
 
 .worker .banner .toolbar .container .item .button.right {
-  background-image: url(./assets/icons/右切换（不可.png);
+  background-image: url(./assets/icons/right.svg);
 }
 
 .worker .banner .toolbar .container .item .left:active {
-  background-image: url(./assets/icons/左切换（点击.png);
+  background-image: url(./assets/icons/left-click.svg);
 }
 
 .worker .banner .toolbar .container .item .right:active {
-  background-image: url(./assets/icons/右切换（点击.png);
+  background-image: url(./assets/icons/right-click.svg);
 }
 
 .worker .banner .toolbar .container .item .button.left.disabled {
-  background-image: url(./assets/icons/左切换不可点击.png);
+  background-image: url(./assets/icons/left-disable.svg);
   cursor: not-allowed;
 }
 .worker .banner .toolbar .container .item .button.right.disabled {
-  background-image: url(./assets/icons/右切换不可点击.png);
+  background-image: url(./assets/icons/right-disable.svg);
   cursor: not-allowed;
 }
 

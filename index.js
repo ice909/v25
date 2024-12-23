@@ -7,9 +7,6 @@ const App = {
       currentLanguage: 'zh',
       i18n: i18n,
       isSmallScreen: document.body.clientWidth < 1700,
-      toolBarWidthStyle: {
-        width: `${window.screen.width / 2}px`,
-      },
       desktopCurrentIndex: 0,
       windowTubeCurrentIndex: 0,
       windowTubeVideos: [

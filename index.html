@@ -28,7 +28,7 @@
             :src="baseUrl + '/assets/videos/v25-preview.mp4'"
           ></video>
           <img
-            src="/assets/icons/close-circle.png"
+            src="/assets/icons/close-circle.svg"
             alt="关闭"
             @click="closeVideoDialog"
           />
@@ -46,7 +46,7 @@
             @click="openVideoDialog"
           >
             <span>{{ currentMessage.explore }}</span
-            ><img src="./assets/icons/video.png" />
+            ><img src="./assets/icons/video.svg" />
           </div>
         </div>
       </div>
@@ -82,9 +82,9 @@
             <p>{{ currentMessage.controlCenter}}</p>
             <div
               class="video-container"
-              style="margin-top: 40px; width: 1020px; height: 556px"
-              :style="{background: `url(${baseUrl}/assets/imgs/pc.png)`}"
+              style="margin-top: 40px; width: 1020px; height: 559px"
             >
+              <img src="/assets/imgs/pc.png" alt="pc" />
               <video
                 id="desktopVideo0"
                 class="video"
@@ -99,9 +99,9 @@
             <p>{{ currentMessage.qmlReconstruction}}</p>
             <div
               class="video-container"
-              style="margin-top: 40px; width: 1020px; height: 556px"
-              :style="{background: `url(${baseUrl}/assets/imgs/pc.png)`}"
+              style="margin-top: 40px; width: 1020px; height: 559px"
             >
+              <img src="/assets/imgs/pc.png" alt="pc" />
               <video
                 id="desktopVideo1"
                 class="video"
@@ -119,7 +119,7 @@
           @click="replay(`#desktopVideo${desktopCurrentIndex}`)"
         >
           <span>{{ currentMessage.replay }}</span>
-          <img src="/assets/icons/再次播放图标（配文字.png" alt="再次播放" />
+          <img src="/assets/icons/replay-text.svg" alt="再次播放" />
         </div>
         <div class="pagination">
           <div class="dot active" @click="switchDeskTopBanner(0)"></div>
@@ -134,7 +134,7 @@
           <div class="left">
             <p
               class="w-title"
-              :style="{width: isZh ? '399px' : '364px', fontSize: isZh ? '48px' : '32px', marginTop: isZh? '80px' : '40px' }"
+              :style="{width: isZh ? 'auto' : '364px', fontSize: isZh ? '48px' : '32px', marginTop: isZh? '80px' : '40px' }"
             >
               {{currentMessage.heartLeads}}
             </p>
@@ -175,7 +175,7 @@
               ></video>
             </div>
             <img
-              src="/assets/icons/再次重播图标（配图层.png"
+              src="/assets/icons/replay-img.svg"
               alt="再次重播"
               @click="replayWindowTube"
             />
@@ -189,7 +189,7 @@
           <div class="data">
             <div class="value">90</div>
             <div class="right">
-              <img src="/assets/icons/上升（更快.png" alt="上升" />
+              <img src="/assets/icons/quickly.svg" alt="上升" />
               <span>%</span>
             </div>
           </div>
@@ -200,7 +200,7 @@
           <div class="data">
             <div class="value">50</div>
             <div class="right">
-              <img src="/assets/icons/上升（更高效.png" alt="上升" />
+              <img src="/assets/icons/efficient.svg" alt="上升" />
               <span>%</span>
             </div>
           </div>
@@ -229,7 +229,7 @@
             <img
               @click="replay('#ai-left')"
               class="replay"
-              src="/assets/icons/再次重播图标（配图层.png"
+              src="/assets/icons/replay-img.svg"
               alt="再次重播"
             />
           </div>
@@ -251,7 +251,7 @@
             <img
               @click="replay('#ai-right')"
               class="replay"
-              src="/assets/icons/再次重播图标（配图层.png"
+              src="/assets/icons/replay-img.svg"
               alt="再次重播"
             />
           </div>
@@ -290,10 +290,7 @@
             </div>
             <div class="replay" @click="replay('.ai .answer .right video')">
               <span>{{ currentMessage.replay}}</span>
-              <img
-                src="/assets/icons/再次播放图标（配文字.png"
-                alt="再次播放"
-              />
+              <img src="/assets/icons/replay-text.svg" alt="再次播放" />
             </div>
           </div>
         </div>
@@ -315,7 +312,7 @@
               ></video>
               <img
                 v-if="workerCurrentIndex == 0"
-                src="/assets/icons/再次重播图标（配图层.png"
+                src="/assets/icons/replay-img.svg"
                 alt="再次重播"
                 @click="replay('#worker0')"
               />
@@ -335,7 +332,7 @@
               ></video>
               <img
                 v-if="workerCurrentIndex == 1"
-                src="/assets/icons/再次重播图标（配图层.png"
+                src="/assets/icons/replay-img.svg"
                 alt="再次重播"
                 @click="replay('#worker1')"
               />
@@ -355,14 +352,14 @@
               ></video>
               <img
                 v-if="workerCurrentIndex == 2"
-                src="/assets/icons/再次重播图标（配图层.png"
+                src="/assets/icons/replay-img.svg"
                 alt="再次重播"
                 @click="replay('#worker2')"
               />
             </div>
           </div>
           <div class="toolbar">
-            <div class="container" :style="toolBarWidthStyle">
+            <div class="container">
               <div class="item">
                 <p>
                   <span style="color: #000; font-weight: 500"
@@ -416,10 +413,7 @@
 
             <div class="replay" @click="replay('#cross')">
               <span>{{ currentMessage.replay }}</span>
-              <img
-                src="/assets/icons/再次播放图标（配文字.png"
-                alt="再次播放"
-              />
+              <img src="/assets/icons/replay-text.svg" alt="再次播放" />
             </div>
           </div>
         </div>
@@ -433,7 +427,7 @@
             >
               {{ currentMessage.bluetooth }}
             </p>
-            <img src="./assets/icons/bluetoothe.png" alt="蓝牙" />
+            <img src="./assets/icons/Bluetooth.svg" alt="蓝牙" />
           </div>
           <div class="right item">
             <p
@@ -441,7 +435,7 @@
             >
               {{ currentMessage.wifi }}
             </p>
-            <img src="./assets/icons/wifi.png" alt="wifi" />
+            <img src="./assets/icons/wifi.svg" alt="wifi" />
           </div>
         </div>
       </div>
@@ -450,7 +444,7 @@
         <p class="desc">{{ currentMessage.developerEnvironment }}</p>
         <a class="btn"
           ><span>{{ currentMessage.downloadExperience }}</span
-          ><img src="./assets/icons/下载.png" alt="download"
+          ><img src="./assets/icons/download.svg" alt="download"
         /></a>
         <div style="flex: 1"></div>
         <p class="tips">*{{ currentMessage.previewVersion }}</p>

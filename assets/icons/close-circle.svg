@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>1.Base基础/3.Icon图标/操作/close-circle</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="视频窗口" transform="translate(-1832, -32)">
+            <g id="1.Base基础/3.Icon图标/操作/close-circle" transform="translate(1832, 32)">
+                <rect id="close-circle-(Background)" opacity="0" x="0" y="0" width="56" height="56"></rect>
+                <path d="M28,3.5 C41.5309839,3.5 52.5,14.4690311 52.5,28 C52.5,41.5309839 41.5309706,52.5 28,52.5 C14.4690169,52.5 3.5,41.5309706 3.5,28 C3.5,14.4690161 14.4690319,3.5 28,3.5 Z M36.0914836,17.4334656 L28,25.5249567 L19.9085031,17.4334656 L17.4336292,19.9083395 L25.5251203,27.9998314 L17.4333037,36.0916471 L19.9081776,38.5665202 L28,30.4747045 L36.0918074,38.5665202 L38.5666838,36.0916471 L30.4748664,27.9998314 L38.5663567,19.9083412 L36.0914836,17.4334656 Z" id="Union" fill-opacity="0.9" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

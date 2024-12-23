@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="321px" height="241px" viewBox="0 0 321 241" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>形状</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.792013635" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01-首页" transform="translate(-1339, -9836)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="WIFI" transform="translate(1339, 9836)">
+                <path d="M0,70.55275 L29.1909375,101.541333 C101.696812,24.52175 219.303187,24.52175 291.809062,101.541333 L321,70.55275 C232.424063,-23.5175833 88.716375,-23.5175833 0,70.55275 Z M116.723625,194.507083 L160.5,241 L204.276375,194.507083 C180.201375,168.800417 140.939062,168.800417 116.723625,194.507083 L116.723625,194.507083 Z M58.381875,132.55 L87.5728125,163.538583 C127.83825,120.761083 193.201875,120.761083 233.467312,163.538583 L262.638187,132.55 C206.32275,72.7418333 114.83775,72.7418333 58.3618125,132.55 L58.381875,132.55 Z" id="形状"></path>
+            </g>
+        </g>
+    </g>
+</svg>
