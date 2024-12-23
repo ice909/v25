@@ -4,7 +4,7 @@ const App = {
   data() {
     return {
       baseUrl: '',
-      currentLanguage: 'en',
+      currentLanguage: 'zh',
       i18n: i18n,
       isSmallScreen: document.body.clientWidth < 1700,
       toolBarWidthStyle: {
@@ -276,7 +276,12 @@ const App = {
                 return;
             }
             if (change.isIntersecting) {
-              change.target.play();
+              const onCanPlay = () => {
+                change.target.play();
+                change.target.removeEventListener('canplay', onCanPlay);
+              };
+              change.target.addEventListener('canplay', onCanPlay);
+              change.target.load();
             } else {
               change.target.pause();
             }

@@ -29,8 +29,14 @@ export const i18n = {
     efficient: 'More efficient',
     graphicsRender: 'Graphics card rendering performance enhancement',
     intelligentEmpowerment: 'Empowerment through intelligence, AI as you think',
+    voiceTitle: 'Voice Conversation: ',
+    voiceDesc:
+      'You can have voice conversations with AI, and it will answer any questions you want to know.',
     voiceInteraction:
       'Voice interaction: You can engage in voice conversations with AI, and it will respond to the questions you wish to learn more about.',
+    textTitle: 'Text Communication: ',
+    textDesc:
+      'AI can understand your commands and respond, quickly answer questions, complete translations in different languages, intelligent drawing, and other AI behaviors, enhancing your work efficiency.',
     textCommunication:
       'Text communication: AI can understand your instructions and provide quick answers to questions, perform translations in different languages, create intelligent drawings, and more. This helps improve your work efficiency.',
     quickInput: 'Quick feeding, accurate answers',
@@ -95,8 +101,13 @@ export const i18n = {
     efficient: '更高效',
     graphicsRender: '显卡渲染性能提升',
     intelligentEmpowerment: '智慧赋能 想你所AI',
+    voiceTitle: '语音对话：',
+    voiceDesc: '可对AI进行语音对话，他会回答你所想要了解的问题。',
     voiceInteraction:
       '语音对话。可对AI进行语音对话，他会回答你所想要了解的问题。',
+    textTitle: '文字沟通：',
+    textDesc:
+      'AI可理解你的指令回答，快速回答问题、对不同语言完成翻译、智能绘画等AI行为，提升你的办公效率。',
     textCommunication:
       '文字沟通。AI可理解你的指令回答，快速回答问题、对不同语言完成翻译、智能绘画等AI行为，提升你的办公效率',
     quickInput: '快速投喂 精准回答',

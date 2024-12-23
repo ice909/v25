@@ -211,10 +211,19 @@
         <div class="title-p1">{{ currentMessage.intelligentEmpowerment}}</div>
         <div class="content">
           <div class="left">
+            <div
+              class="desc"
+              :style="{fontSize: isZh? '28px' : '24px',lineHeight: isZh ? '56px' : '36px'}"
+            >
+              <span style="font-weight: 600"
+                >{{ currentMessage.voiceTitle}}</span
+              ><span>{{ currentMessage.voiceDesc}}</span>
+            </div>
             <video
               id="ai-left"
               style="width: 100%; border-radius: 56px"
               :src="baseUrl + '/assets/videos/voice.mp4'"
+              muted
               preload="metadata"
             ></video>
             <img
@@ -225,6 +234,13 @@
             />
           </div>
           <div class="right">
+            <div
+              class="desc"
+              :style="{fontSize: isZh? '28px' : '24px',lineHeight: isZh ? '56px' : '36px'}"
+            >
+              <span style="font-weight: 600">{{ currentMessage.textTitle}}</span
+              ><span>{{ currentMessage.textDesc}}</span>
+            </div>
             <video
               id="ai-right"
               style="width: 100%; border-radius: 56px"

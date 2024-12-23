@@ -552,6 +552,20 @@ body {
   gap: 40px;
 }
 
+.ai .content .desc {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  color: #1e1e1e;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.ai .content .desc span {
+  font-weight: 500;
+}
+
 .ai .content img {
   position: absolute;
   bottom: 40px;
