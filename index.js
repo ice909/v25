@@ -19,7 +19,7 @@ const App = {
         },
         {
           left: '/assets/videos/four-finger-left.mp4',
-          right: '/assets/videos/next-dekstop.mp4',
+          right: '/assets/videos/next-desktop.mp4',
         },
       ],
       workerCurrentIndex: 1,
