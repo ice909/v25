@@ -19,6 +19,12 @@
   <body>
     <div id="app">
       <d-header :lang="currentLanguage"> </d-header>
+      <button
+        @click="currentLanguage = currentLanguage == 'zh' ? 'en': 'zh'"
+        style="position: fixed; bottom: 0; right: 0"
+      >
+        语言切换
+      </button>
       <div class="video-dialog">
         <div class="container">
           <video
@@ -36,7 +42,7 @@
       </div>
       <div class="banner1">
         <div class="content">
-          <div class="title">Deepin V25 Preview</div>
+          <div class="title">deepin V25 Preview</div>
           <div class="slogen" :style="{letterSpacing: isZh ? '12px' : 0 }">
             {{ currentMessage.design}}
           </div>
@@ -78,8 +84,10 @@
         </div>
         <div class="title">{{ currentMessage.newDesktop}}</div>
         <div class="banner">
-          <div class="item left" @click="switchDeskTopBanner(0)">
-            <p>{{ currentMessage.controlCenter}}</p>
+          <div class="item left">
+            <p :style="{width: isZh ? '900px' : '1200px'}">
+              {{ currentMessage.controlCenter}}
+            </p>
             <div
               class="video-container"
               style="margin-top: 40px; width: 1020px; height: 559px"
@@ -95,23 +103,6 @@
               ></video>
             </div>
           </div>
-          <div class="item right opacity" @click="switchDeskTopBanner(1)">
-            <p>{{ currentMessage.qmlReconstruction}}</p>
-            <div
-              class="video-container"
-              style="margin-top: 40px; width: 1020px; height: 559px"
-            >
-              <img src="/assets/imgs/pc.png" alt="pc" />
-              <video
-                id="desktopVideo1"
-                class="video"
-                muted
-                preload="metadata"
-                style="width: 783px; height: 450px; border-radius: 7px"
-                :src="baseUrl + '/assets/videos/qml.mp4'"
-              ></video>
-            </div>
-          </div>
         </div>
 
         <div
@@ -120,10 +111,6 @@
         >
           <span>{{ currentMessage.replay }}</span>
           <img src="/assets/icons/replay-text.svg" alt="再次播放" />
-        </div>
-        <div class="pagination">
-          <div class="dot active" @click="switchDeskTopBanner(0)"></div>
-          <div class="dot" @click="switchDeskTopBanner(1)"></div>
         </div>
       </div>
 
@@ -158,6 +145,7 @@
             </div>
           </div>
           <div class="right">
+            <div class="desc">{{ currentMessage.windowDesc}}</div>
             <div class="data">
               <video
                 class="video"
@@ -187,7 +175,7 @@
         <div class="item">
           <p class="title">{{ currentMessage.faster}}</p>
           <div class="data">
-            <div class="value">90</div>
+            <div class="value">100</div>
             <div class="right">
               <img src="/assets/icons/quickly.svg" alt="上升" />
               <span>%</span>
@@ -442,13 +430,33 @@
       <div class="distrobox">
         <div class="title-p1">{{ currentMessage.distroboxSubsystem }}</div>
         <p class="desc">{{ currentMessage.developerEnvironment }}</p>
+        <div class="icons">
+          <div class="img-container">
+            <div class="bg"></div>
+            <img src="/assets/icons/原子系统图标.svg" alt="系统" />
+          </div>
+          <div class="img-container">
+            <div class="bg"></div>
+            <img src="/assets/icons/原子系统图标3.svg" alt="系统" />
+          </div>
+          <div class="img-container">
+            <div class="bg"></div>
+            <img src="/assets/icons/原子系统图标3 2.svg" alt="系统" />
+          </div>
+          <div class="img-container">
+            <div class="bg"></div>
+            <img src="/assets/icons/原子系统图标4.svg" alt="系统" />
+          </div>
+        </div>
         <a class="btn"
           ><span>{{ currentMessage.downloadExperience }}</span
           ><img src="./assets/icons/download.svg" alt="download"
         /></a>
         <div style="flex: 1"></div>
-        <p class="tips">*{{ currentMessage.previewVersion }}</p>
-        <p class="tips">*{{ currentMessage.screenReference }}</p>
+        <div class="tips">
+          <p>*{{ currentMessage.previewVersion }}</p>
+          <p style="margin-top: 6px">*{{ currentMessage.screenReference }}</p>
+        </div>
       </div>
       <d-footer :lang="currentLanguage"></d-footer>
     </div>

@@ -222,17 +222,12 @@ body {
 }
 
 .desktop .banner {
-  position: relative;
   margin-top: 40px;
-  overflow: hidden;
   display: flex;
-  gap: var(--desktop-banner-gap);
-  height: 700px;
+  justify-content: center;
 }
 
 .desktop .banner .item {
-  position: absolute;
-  left: calc(50% - 510px);
   width: 1020px;
   cursor: pointer;
   transition: all 0.5s ease;
@@ -262,17 +257,8 @@ body {
   left: calc(50% - 510px);
 }
 
-.desktop .banner .item.right {
-  left: calc(50% + 739px);
-}
-
-.desktop .banner .item.opacity {
-  opacity: 0.4;
-}
-
 .desktop .banner .item p {
   margin: 0 auto;
-  width: 790px;
   font-weight: 500;
   font-size: 24px;
   color: #7f8287;
@@ -302,34 +288,6 @@ body {
 .desktop .replay img {
   width: 16px;
   height: 16px;
-}
-
-.desktop .pagination {
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  padding: 5px;
-}
-
-.desktop .pagination .dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 10px;
-  background: #e4e6ea;
-  cursor: pointer;
-  transition: all 0.5s ease;
-}
-
-.desktop .pagination .dot:hover {
-  transform: scale(1.2);
-}
-
-.desktop .pagination .dot.active {
-  width: 40px;
-  height: 12px;
-  background: #d0d3da;
-  border-radius: 10px;
 }
 
 .title-p1 {
@@ -450,6 +408,18 @@ body {
   padding: 0 50px;
 
   height: 540px;
+}
+
+.window-tube .right .desc {
+  position: absolute;
+  left: 50px;
+  top: 40px;
+  right: 50px;
+  font-weight: 500;
+  font-size: 24px;
+  color: #7f8287;
+  letter-spacing: 0;
+  line-height: 36px;
 }
 
 .window-tube .content .right img {
@@ -898,21 +868,53 @@ body {
   position: relative;
   display: flex;
   justify-content: center;
-
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 780px;
+  height: 1080px;
+  background-image: url(./assets/imgs/distrobox.png);
 }
 
-.distrobox::before {
-  content: '';
+.distrobox .icons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+  z-index: 999;
+}
+
+.distrobox .icons .img-container {
+  width: 120px;
+  height: 120px;
+}
+
+.distrobox .icons .img-container {
+  box-sizing: content-box;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 9px;
+  border: 1.5px solid #fff;
+}
+
+.distrobox .icons .img-container .bg {
   width: 100%;
   height: 100%;
+  background-image: linear-gradient(151deg, #ffffffde 8%, #e0e0e052 100%);
+  background-size: cover;
+  border-radius: 9px;
+  filter: blur(1.58px);
+}
+
+.distrobox .icons .img-container img {
   position: absolute;
-  z-index: -1;
-  background-image: url(./assets/imgs/distrobox.png);
-  filter: blur(2px);
+  left: 0;
+  top: 0;
+  width: 120px;
+  height: 120px;
 }
 
 .distrobox .container {
@@ -924,8 +926,7 @@ body {
 .distrobox .desc {
   margin-top: 40px;
   width: 940px;
-  height: 72px;
-  font-weight: Medium;
+  font-weight: 500;
   font-size: 24px;
   color: #000000;
   letter-spacing: 0;
@@ -961,16 +962,21 @@ body {
   height: 16px;
 }
 
-.distrobox .tips {
+.tips {
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tips p {
+  height: 22px;
   font-weight: 400;
   font-size: 16px;
   color: #7f8287;
   letter-spacing: 0;
-}
-
-.distrobox .tips:last-child {
-  margin-top: 6px;
-  margin-bottom: 20px;
+  text-align: center;
 }
 
 @media (max-width: 1700px) {
@@ -987,10 +993,6 @@ body {
     --desktop-banner-gap: 84px;
     --ai-content-right-width: 660px;
     --title-p1-font-size: 48px;
-  }
-
-  .desktop .banner .item.right {
-    left: calc(50% + 600px);
   }
 
   .hardware .content .item p {

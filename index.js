@@ -40,23 +40,6 @@ const App = {
         this.currentLanguage = lang;
       }
     },
-    switchDeskTopBanner(index) {
-      if (this.desktopCurrentIndex === index) return;
-      this.desktopCurrentIndex = index;
-      const items = document.querySelectorAll('.desktop .banner .item');
-      const dots = document.querySelectorAll('.desktop .pagination .dot');
-      items.forEach((item, i) => {
-        item.classList.toggle('opacity', i !== index);
-        item.style.left = this.isSmallScreen
-          ? `calc(50% - ${510 + (index - i) * 1100}px)`
-          : `calc(50% - ${510 + (index - i) * 1239}px)`;
-      });
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-    },
-    resetDesktopBanner() {
-      this.switchDeskTopBanner(0);
-      document.querySelector('.desktop .banner .left video').currentTime = 0;
-    },
     switchWorkerBanner(index) {
       if (this.workerCurrentIndex === index) return;
       index > this.workerCurrentIndex
@@ -163,7 +146,9 @@ const App = {
             cover.style.opacity = 1;
             cover.style.transition = 'all 0.5s ease-in-out';
             cover.style.display = 'block';
-            this.resetDesktopBanner();
+            const video = document.querySelector('#desktopVideo0');
+            video.currentTime = 0;
+            video.pause();
           }
         },
         { threshold: [0.8] }
@@ -256,12 +241,7 @@ const App = {
         { threshold: 1 }
       );
 
-      desktopIo.observe(
-        document.querySelectorAll('.desktop .banner .item video')[0]
-      );
-      desktopIo.observe(
-        document.querySelectorAll('.desktop .banner .item video')[1]
-      );
+      desktopIo.observe(document.querySelector('.desktop .banner .item video'));
       const aiIo = new IntersectionObserver(
         (changes) => {
           changes.forEach((change) => {
