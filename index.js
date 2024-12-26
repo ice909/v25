@@ -35,9 +35,9 @@ const App = {
   },
   methods: {
     getLanguage() {
-      const lang = location.pathname.split('/')[1].trim();
-      if (lang === 'en') {
-        this.currentLanguage = lang;
+      // 判断路由中是否包含/en，如果包含则默认为英文
+      if (window.location.pathname.includes('/en')) {
+        this.currentLanguage = 'en';
       }
     },
     switchWorkerBanner(index) {
@@ -246,13 +246,24 @@ const App = {
         (changes) => {
           changes.forEach((change) => {
             if (change.target.id === 'cross') {
+              console.log(
+                window.getComputedStyle(
+                  document.querySelector('.fullscreen-cover2')
+                ).display
+              );
               if (
                 document.querySelector('.fullscreen-cover2').style.display ===
                 'block'
               )
                 return;
-            }
-            if (change.isIntersecting) {
+              else {
+                if (change.isIntersecting) {
+                  change.target.play();
+                } else {
+                  change.target.pause();
+                }
+              }
+            } else if (change.isIntersecting) {
               const onCanPlay = () => {
                 change.target.play();
                 change.target.removeEventListener('canplay', onCanPlay);
@@ -318,6 +329,15 @@ const App = {
           }, 500);
         }, 500);
       }, 500);
+    },
+    openSupportDialog() {
+      document.querySelector('.support-dialog-wrap').style.display = 'block';
+      // #cross停止播放
+      document.querySelector('#cross').pause();
+    },
+    closeSupportDialog() {
+      document.querySelector('.support-dialog-wrap').style.display = 'none';
+      document.querySelector('#cross').play();
     },
   },
   computed: {

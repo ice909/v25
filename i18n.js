@@ -25,7 +25,7 @@ export const i18n = {
     windowDesc:
       'Press and hold to drag the window，Swipe up or down to adjust the window size.',
     faster: 'Faster',
-    windowRender: 'Rendering Performance lmprovement',
+    windowRender: 'Rendering Performance Improvement',
     efficient: 'Smoother',
     graphicsRender: 'Animation Smoothness Enhancement',
     intelligentEmpowerment: 'Empowerment through intelligence, AI as you think',
@@ -61,6 +61,17 @@ export const i18n = {
     crossTerminalCollaboration: 'Cross-terminal collaboration',
     freeSharing:
       'Free sharing breaks device boundaries, low latency synchronization of mobile devices,Realize mobile phone and PC interaction',
+    supportModelTitle: 'Cross-platform collaboration, Android device support',
+    Redmi: 'Redmi',
+    Honor: 'HONOR',
+    OnePlus: 'OnePlus',
+    Xiaomi: 'Xiaomi',
+    HuaWei: 'HUAWEI',
+    supportModelTips:
+      '*Testing has been conducted on the above models, and we welcome more Android phone users to provide feedback on their experience',
+    brand: 'Mobile phone brand',
+    modelNumber: 'Mobile phone model',
+    watchSupportModel: 'View the tested models',
     hardware: 'Latest hardware support',
     bluetooth:
       'Bluetooth 6.0: Supports the Bluetooth HFP protocol, ensuring that most Bluetooth headsets on the market can be used normally for call answering, hanging up, and other functions; Supports the Bluetooth Hi-Fi protocol, ensuring that most Bluetooth Hi-Fi headphones on the market can enjoy high-fidelity sound quality.',
@@ -129,6 +140,17 @@ export const i18n = {
     enjoyWithoutBoundaries: '乐享自在，无边界',
     crossTerminalCollaboration: '跨端协同',
     freeSharing: '打破设备边界自由分享，手机设备低延迟同步，实现手机、PC互动',
+    supportModelTitle: '跨端协同安卓端支持设备',
+    brand: '手机品牌',
+    modelNumber: '手机型号',
+    Redmi: '红米',
+    Honor: '荣耀',
+    OnePlus: '一加',
+    Xiaomi: '小米',
+    HuaWei: '华为',
+    watchSupportModel: '查看支持机型',
+    supportModelTips:
+      '*已针对以上机型进行测试，欢迎更多安卓手机用户进行体验反馈',
     hardware: '最新硬件支持',
     bluetooth:
       '蓝牙6.0:支持蓝牙HFP协议，保障市面上大部分蓝牙耳机通话接听、挂断等功能正常使用:支持蓝牙HiFI协议，保障市面上大部分蓝牙HiFI耳机可以享受高保真音质',
