@@ -18,6 +18,7 @@
   --ai-content-right-width: 890px;
   --title-p1-font-size: 64px;
   --support-btn-margin-top: 60px;
+  --cross-container-desc-width: 420px;
 }
 a {
   text-decoration: none;
@@ -780,7 +781,7 @@ body {
 
 .cross .left .desc {
   margin-top: 40px;
-  width: 420px;
+  width: var(--cross-container-desc-width);
   font-weight: 500;
   font-size: 24px;
   color: #7f8287;
@@ -826,6 +827,7 @@ body {
   box-shadow: 0 4px 24px 0 #0000001f;
   padding: 0 32px;
   padding-top: 28px;
+  border-radius: 9px;
 }
 
 .cross .left .support-dialog-wrap .support-dialog .close-btn {
@@ -1108,26 +1110,13 @@ body {
     --ai-content-right-width: 660px;
     --title-p1-font-size: 48px;
     --support-btn-margin-top: 40px;
+    --cross-container-desc-width: 300px;
   }
 
   .hardware .content .item p {
     width: 318px;
     font-size: 21px;
     line-height: 42px;
-  }
-
-  .ai .answer {
-    padding: 0 135px;
-    gap: 0px;
-  }
-
-  .cross .container {
-    padding: 0 0 0 180px;
-    gap: 0;
-  }
-
-  .cross .container .left .desc {
-    width: 300px;
   }
 
   .hardware {
@@ -1175,9 +1164,10 @@ body {
     --monolith-list-item-p-width: 300px;
     --monolith-list-item-p-font-size: 24px;
     --desktop-banner-gap: 219px;
-    --ai-content-left-width: 516px;
-    --ai-content-right-width: 890px;
+    --ai-content-left-width: 580px;
+    --ai-content-right-width: 840px;
     --title-p1-font-size: 64px;
     --support-btn-margin-top: 60px;
+    --cross-container-desc-width: 460px;
   }
 }
