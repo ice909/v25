@@ -2,12 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1.0,maximum-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <script src="./vue.global.js"></script>
     <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./tailwind.css" />
+    <link rel="stylesheet" href="./en.css" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -41,20 +40,14 @@
 
           <ul class="d-sub-menu">
             <li>
-              <a href="/index/zh"> 中文 </a>
+              <a href="/"> 中文 </a>
             </li>
             <li>
-              <a href="/index/en"> English </a>
+              <a href="/en"> English </a>
             </li>
           </ul>
         </li>
       </d-header>
-      <button
-        @click="currentLanguage = currentLanguage == 'zh' ? 'en': 'zh'"
-        style="position: fixed; bottom: 0; right: 0; z-index: 9999"
-      >
-        语言切换
-      </button>
       <div class="video-dialog">
         <div class="container">
           <video
@@ -70,27 +63,26 @@
           />
         </div>
       </div>
-      <div class="content">
-        <div class="banner1">
-          <div class="content">
-            <div class="title">deepin V25 Preview</div>
-            <div class="slogen" :style="{letterSpacing: isZh ? '12px' : 0 }">
-              {{ currentMessage.design}}
-            </div>
+      <div class="content" :class="currentLanguage">
+        <div class="banner1 relative w-full bg-no-repeat bg-cover bg-center">
+          <div class="content absolute text-white">
+            <div class="title font-semibold">deepin V25 Preview</div>
+            <div class="slogen font-semibold">{{ currentMessage.design}}</div>
             <div
-              class="btn"
-              :style="{width: isZh ? '200px' : '236px'}"
+              class="btn flex items-center justify-center cursor-pointer"
               @click="openVideoDialog"
             >
-              <span>{{ currentMessage.explore }}</span
-              ><img src="./assets/icons/video.svg" />
+              <span class="text-white font-semibold"
+                >{{ currentMessage.explore }}</span
+              ><img class="w-24 h-24" src="./assets/icons/video.svg" />
             </div>
           </div>
         </div>
-        <div class="trigger"></div>
         <div class="monolith">
-          <div class="title">{{ currentMessage.systemStable}}</div>
-          <div class="list">
+          <div class="title text-center font-bold">
+            {{ currentMessage.systemStable}}
+          </div>
+          <div class="list grid">
             <div class="item">
               <img src="./assets/imgs/stable.png" alt="图标" />
               <p>{{ currentMessage.coreSystemFiles}}</p>
@@ -109,36 +101,34 @@
             </div>
           </div>
         </div>
-        <div class="desktop">
+        <div class="desktop relative">
           <div class="fullscreen-cover">
-            <img src="./assets/imgs/new-desktop.png" alt="全屏封面图片" />
+            <img
+              class="w-full max-h-screen"
+              src="./assets/imgs/new-desktop.png"
+              alt="全屏封面图片"
+            />
           </div>
           <div class="title">{{ currentMessage.newDesktop}}</div>
-          <div class="banner">
-            <div class="item left">
-              <p :style="{width: isZh ? '900px' : '1200px'}">
-                {{ currentMessage.controlCenter}}
-              </p>
-              <div
-                class="video-container"
-                style="margin-top: 40px; width: 1020px; height: 559px"
-              >
-                <img src="./assets/imgs/pc.png" alt="pc" />
-                <video
-                  id="desktopVideo0"
-                  class="video"
-                  muted
-                  preload="metadata"
-                  style="width: 783px; height: 450px; border-radius: 7px"
-                  :src="baseUrl + '/assets/videos/new-desktop.mp4'"
-                ></video>
-              </div>
-            </div>
+          <p class="mt-40">{{ currentMessage.controlCenter}}</p>
+          <div class="video-container relative w-full mt-40 cover-zoom-animal">
+            <img
+              class="absolute w-full z-5"
+              src="./assets/imgs/pc.png"
+              alt="pc"
+            />
+            <video
+              id="desktopVideo"
+              class="video"
+              muted
+              preload="metadata"
+              :src="baseUrl + '/assets/videos/new-desktop.mp4'"
+            ></video>
           </div>
 
           <div
-            class="replay"
-            @click="replay(`#desktopVideo${desktopCurrentIndex}`)"
+            class="replay font-medium transition-all-05 cursor-pointer"
+            @click="replay(`#desktopVideo`)"
           >
             <span>{{ currentMessage.replay }}</span>
             <img src="./assets/icons/replay-text.svg" alt="再次播放" />
@@ -150,30 +140,14 @@
           <div class="sub-title">{{ currentMessage.waylandCompositor}}</div>
           <div class="content">
             <div class="left">
-              <p
-                class="w-title"
-                :style="{width: isZh ? 'auto' : '364px', fontSize: isZh ? '48px' : '32px', marginTop: isZh? '80px' : '40px' }"
-              >
-                {{currentMessage.heartLeads}}
-              </p>
+              <p class="w-title">{{currentMessage.heartLeads}}</p>
               <p class="w-desc">{{ currentMessage.userExperience}}</p>
-              <div class="tab" :style="{width: isZh ? '246px' : '338px'}">
-                <div
-                  class="bg"
-                  :style="{width: isZh ? '120px' : '166px'}"
-                ></div>
-                <div
-                  class="btn active"
-                  :style="{padding: isZh ? '6.7px 30px' : '6.7px 15px'}"
-                  @click="switchWindowTubeVideo(0)"
-                >
+              <div class="tab">
+                <div class="bg"></div>
+                <div class="btn active" @click="switchWindowTubeVideo(0)">
                   <span>{{ currentMessage.threeFingers}}</span>
                 </div>
-                <div
-                  class="btn"
-                  :style="{padding: isZh ? '6.7px 30px' : '6.7px 15px'}"
-                  @click="switchWindowTubeVideo(1)"
-                >
+                <div class="btn" @click="switchWindowTubeVideo(1)">
                   <span>{{ currentMessage.fourFingers}}</span>
                 </div>
               </div>
@@ -190,6 +164,7 @@
               </div>
               <div class="data">
                 <video
+                  id="window-tube-right-video"
                   class="video"
                   muted
                   :src="baseUrl + windowTubeVideos[windowTubeCurrentIndex].right"
@@ -233,10 +208,7 @@
           <div class="title-p1">{{ currentMessage.intelligentEmpowerment}}</div>
           <div class="content">
             <div class="left">
-              <div
-                class="desc"
-                :style="{fontSize: isZh? '28px' : '24px',lineHeight: isZh ? '56px' : '36px'}"
-              >
+              <div class="desc">
                 <span style="font-weight: 600"
                   >{{ currentMessage.voiceTitle}}</span
                 ><span>{{ currentMessage.voiceDesc}}</span>
@@ -256,10 +228,7 @@
               />
             </div>
             <div class="right">
-              <div
-                class="desc"
-                :style="{fontSize: isZh? '28px' : '24px',lineHeight: isZh ? '56px' : '36px'}"
-              >
+              <div class="desc">
                 <span style="font-weight: 600"
                   >{{ currentMessage.textTitle}}</span
                 ><span>{{ currentMessage.textDesc}}</span>
@@ -281,33 +250,29 @@
           </div>
           <div class="answer">
             <div class="left">
-              <p
-                class="title"
-                :style="{width: isSmallScreen ? '300px' : ( isZh ? '400px' : '300px'),fontSize: isSmallScreen ? '36px' : (isZh ? '48px' : '32px') }"
-              >
-                {{ currentMessage.quickInput}}
-              </p>
+              <p class="title">{{ currentMessage.quickInput}}</p>
               <p class="desc">{{ currentMessage.aiTaskbar}}</p>
             </div>
+            <div style="flex: 1"></div>
             <div class="right">
-              <div
-                style="
-                  position: relative;
-                  background-size: cover;
-                  width: 1020px;
-                "
-              >
+              <div style="position: relative">
                 <img
-                  class="position: absolute; width: 100%; height: 100%"
+                  style="
+                    position: absolute;
+                    left: 0;
+                    width: 64rem;
+                    height: 34.75rem;
+                  "
                   src="./assets/imgs/pc.png"
                   alt="笔记本"
                 />
                 <video
+                  id="aiAnswerVideo"
                   style="
                     position: absolute;
-                    top: 26px;
-                    left: 109px;
-                    width: 800px;
+                    top: 1.63rem;
+                    left: 6.7rem;
+                    width: 49rem;
                     border-radius: 7px;
                   "
                   :src="baseUrl + '/assets/videos/aibar.mp4'"
@@ -315,7 +280,10 @@
                   preload="metadata"
                 ></video>
               </div>
-              <div class="replay" @click="replay('.ai .answer .right video')">
+              <div
+                class="replay transition-all-05 cursor-pointer"
+                @click="replay('.ai .answer .right video')"
+              >
                 <span>{{ currentMessage.replay}}</span>
                 <img src="./assets/icons/replay-text.svg" alt="再次播放" />
               </div>
@@ -334,7 +302,7 @@
                 <video
                   id="worker0"
                   muted
-                  preload="auto"
+                  preload="metadata"
                   :src="baseUrl + workerVideos[0]"
                 ></video>
                 <img
@@ -354,7 +322,7 @@
                 <video
                   id="worker1"
                   muted
-                  preload="auto"
+                  preload="metadata"
                   :src="baseUrl + workerVideos[1]"
                 ></video>
                 <img
@@ -374,7 +342,7 @@
                 <video
                   id="worker2"
                   muted
-                  preload="auto"
+                  preload="metadata"
                   :src="baseUrl + workerVideos[2]"
                 ></video>
                 <img
@@ -410,22 +378,18 @@
         </div>
         <div class="cross">
           <div class="fullscreen-cover2">
-            <img src="./assets/imgs/desktop.png" alt="全屏封面图片" />
+            <img
+              class="w-full max-h-screen"
+              src="./assets/imgs/desktop.png"
+              alt="全屏封面图片"
+            />
           </div>
           <div class="container">
             <div class="left">
-              <div
-                class="title"
-                :style="{fontSize: isZh ? '64px' : '48px',
-            lineHeight: isZh ? '96px' : '72px',
-          width: isZh ? '340px' : '430px' }"
-              >
+              <div class="title">
                 {{ currentMessage.enjoyWithoutBoundaries }}
               </div>
-              <div
-                class="sub-title"
-                :style="{marginTop: isZh ? '100px' : '40px', fontSize: isZh ? '48px' : '32px' }"
-              >
+              <div class="sub-title">
                 {{ currentMessage.crossTerminalCollaboration }}
               </div>
               <div class="desc">{{ currentMessage.freeSharing }}</div>
@@ -523,12 +487,8 @@
                 </div>
               </div>
             </div>
-
             <div style="flex: 1"></div>
-            <div
-              class="cvideo"
-              :style="{width: isSmallScreen ? '840px' : '1020px'}"
-            >
+            <div class="cvideo">
               <video
                 id="cross"
                 style="width: 100%"
@@ -537,14 +497,17 @@
                 :src="baseUrl + '/assets/videos/cooperate.mp4'"
               ></video>
 
-              <div class="replay" @click="replay('#cross')">
+              <div
+                class="replay cursor-pointer transition-all-05"
+                @click="replay('#cross')"
+              >
                 <span>{{ currentMessage.replay }}</span>
                 <img src="./assets/icons/replay-text.svg" alt="再次播放" />
               </div>
             </div>
           </div>
         </div>
-        <div class="hardware">
+        <div v-if="false" class="hardware">
           <div class="title-p1">{{ currentMessage.hardware }}</div>
           <div class="content">
             <div class="left item">
@@ -566,7 +529,7 @@
           </div>
         </div>
         <div class="distrobox">
-          <div class="title-p1">{{ currentMessage.distroboxSubsystem }}</div>
+          <div class="title">{{ currentMessage.distroboxSubsystem }}</div>
           <p class="desc">{{ currentMessage.developerEnvironment }}</p>
           <div class="icons">
             <div class="img-container">
@@ -586,7 +549,10 @@
               <img src="./assets/icons/原子系统图标4.svg" alt="系统" />
             </div>
           </div>
-          <a class="btn"
+          <a
+            class="btn"
+            :href="`https://www.deepin.org/${currentLanguage}/download`"
+            target="_blank"
             ><span>{{ currentMessage.downloadExperience }}</span
             ><img src="./assets/icons/download.svg" alt="download"
           /></a>

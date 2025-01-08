@@ -122,7 +122,7 @@ export const i18n = {
       '文字沟通。AI可理解你的指令回答，快速回答问题、对不同语言完成翻译、智能绘画等AI行为，提升你的办公效率',
     quickInput: '快速投喂 精准回答',
     aiTaskbar: 'AI Bar支持划词和文件拖拽解析',
-    job: '什么工作？轻松搞定',
+    job: '日常工作 轻松搞定',
     ai: [
       {
         aiTitle: 'AI搜索',

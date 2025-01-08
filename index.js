@@ -7,6 +7,7 @@ const App = {
       currentLanguage: 'zh',
       i18n: i18n,
       isSmallScreen: document.body.clientWidth < 1700,
+      isLargeScreen: document.body.clientWidth >= 2200,
       desktopCurrentIndex: 0,
       windowTubeCurrentIndex: 0,
       windowTubeVideos: [
@@ -32,6 +33,94 @@ const App = {
   },
   mounted() {
     this.initIntersectionObservers();
+    // 全新桌面视频
+    this.addVideoEventListener('#desktopVideo', 'ended', () => {
+      document.querySelector('.desktop .replay').classList.toggle('visible');
+    });
+    this.addVideoEventListener('#desktopVideo', 'play', () => {
+      document.querySelector('.desktop .replay').classList.remove('visible');
+    });
+    // ai问答
+    this.addVideoEventListener('#ai-left', 'ended', () => {
+      document.querySelector('.ai .content .left .replay').style.visibility =
+        'visible';
+    });
+    this.addVideoEventListener('#ai-left', 'play', () => {
+      document.querySelector('.ai .content .left .replay').style.visibility =
+        'hidden';
+    });
+    this.addVideoEventListener('#ai-right', 'ended', () => {
+      document.querySelector('.ai .content .right .replay').style.visibility =
+        'visible';
+    });
+    this.addVideoEventListener('#ai-right', 'play', () => {
+      document.querySelector('.ai .content .right .replay').style.visibility =
+        'hidden';
+    });
+    this.addVideoEventListener('#aiAnswerVideo', 'ended', () => {
+      document
+        .querySelector('.ai .answer .right .replay')
+        .classList.toggle('visible');
+    });
+    this.addVideoEventListener('#aiAnswerVideo', 'play', () => {
+      document
+        .querySelector('.ai .answer .right .replay')
+        .classList.remove('visible');
+    });
+
+    // worker
+    this.addVideoEventListener('#worker0', 'ended', () => {
+      document.querySelector('.worker .banner .img.left img').style.visibility =
+        'visible';
+    });
+
+    this.addVideoEventListener('#worker0', 'play', () => {
+      document.querySelector('.worker .banner .img.left img').style.visibility =
+        'hidden';
+    });
+    this.addVideoEventListener('#worker1', 'ended', () => {
+      document.querySelector(
+        '.worker .banner .img:nth-child(2) img'
+      ).style.visibility = 'visible';
+    });
+
+    this.addVideoEventListener('#worker1', 'play', () => {
+      document.querySelector(
+        '.worker .banner .img:nth-child(2) img'
+      ).style.visibility = 'hidden';
+    });
+    this.addVideoEventListener('#worker2', 'ended', () => {
+      document.querySelector(
+        '.worker .banner .img.right img'
+      ).style.visibility = 'visible';
+    });
+
+    this.addVideoEventListener('#worker2', 'play', () => {
+      document.querySelector(
+        '.worker .banner .img.right img'
+      ).style.visibility = 'hidden';
+    });
+
+    // 跨端协同
+    this.addVideoEventListener('#cross', 'ended', () => {
+      document.querySelector('.cross .replay').classList.toggle('visible');
+    });
+    this.addVideoEventListener('#cross', 'play', () => {
+      document.querySelector('.cross .replay').classList.remove('visible');
+    });
+    // 播放完成后显示重播按钮
+    this.addVideoEventListener('#window-tube-right-video', 'ended', () => {
+      document.querySelector(
+        '.window-tube .content .right img'
+      ).style.visibility = 'visible';
+    });
+
+    // 开始播放时隐藏重播按钮
+    this.addVideoEventListener('#window-tube-right-video', 'play', () => {
+      document.querySelector(
+        '.window-tube .content .right img'
+      ).style.visibility = 'hidden';
+    });
   },
   methods: {
     getLanguage() {
@@ -59,9 +148,9 @@ const App = {
     updateWorkerBanner() {
       const items = document.querySelectorAll('.worker .banner .img');
       const positions = [
-        ['calc(50% - 480px)', 'calc(50% + 549px)', '200%'],
-        ['calc(50% - 1509px)', 'calc(50% - 480px)', 'calc(50% + 549px)'],
-        ['-200%', 'calc(50% - 1509px)', 'calc(50% - 480px)'],
+        ['calc(50% - 30rem)', 'calc(50% + 35rem)', '200%'],
+        ['calc(50% - 95rem)', 'calc(50% - 30rem)', 'calc(50% + 35rem)'],
+        ['-200%', 'calc(50% - 95rem)', 'calc(50% - 30rem)'],
       ];
       items.forEach(
         (item, i) => (item.style.left = positions[this.workerCurrentIndex][i])
@@ -74,16 +163,7 @@ const App = {
         .classList.toggle('disabled', this.workerCurrentIndex === 2);
 
       // 停止其他并重置，播放当前视频
-      const videos = document.querySelectorAll('.worker .banner .img video');
-      videos.forEach((video, i) => {
-        if (i === this.workerCurrentIndex) {
-          video.currentTime = 0;
-          setTimeout(() => video.play(), 500);
-        } else {
-          video.pause();
-          video.currentTime = 0;
-        }
-      });
+      this.playCurrentVideo('.worker .banner .img video');
     },
     replay(id) {
       const video = document.querySelector(id);
@@ -146,7 +226,7 @@ const App = {
             cover.style.opacity = 1;
             cover.style.transition = 'all 0.5s ease-in-out';
             cover.style.display = 'block';
-            const video = document.querySelector('#desktopVideo0');
+            const video = document.querySelector('#desktopVideo');
             video.currentTime = 0;
             video.pause();
           }
@@ -163,7 +243,7 @@ const App = {
                 this.handleFullScreenCover(
                   change.target,
                   '.desktop',
-                  '.desktop .item video'
+                  '.desktop video'
                 );
               } else if (
                 change.target.classList.contains('fullscreen-cover2')
@@ -183,10 +263,10 @@ const App = {
 
       fullCoverOb.observe(document.querySelector('.fullscreen-cover'));
       fullCoverOb.observe(document.querySelector('.fullscreen-cover2'));
+
       const workerIo = new IntersectionObserver(
         (changes) => {
           changes.forEach((change) => {
-            console.log(change.target.id, change.isIntersecting);
             if (change.isIntersecting) {
               const worker = document.querySelector(
                 `#worker${this.workerCurrentIndex}`
@@ -241,27 +321,21 @@ const App = {
         { threshold: 1 }
       );
 
-      desktopIo.observe(document.querySelector('.desktop .banner .item video'));
+      desktopIo.observe(document.querySelector('.desktop video'));
+
       const aiIo = new IntersectionObserver(
         (changes) => {
           changes.forEach((change) => {
             if (change.target.id === 'cross') {
-              console.log(
-                window.getComputedStyle(
-                  document.querySelector('.fullscreen-cover2')
-                ).display
-              );
               if (
                 document.querySelector('.fullscreen-cover2').style.display ===
                 'block'
               )
                 return;
-              else {
-                if (change.isIntersecting) {
-                  change.target.play();
-                } else {
-                  change.target.pause();
-                }
+              if (change.isIntersecting) {
+                change.target.play();
+              } else {
+                change.target.pause();
               }
             } else if (change.isIntersecting) {
               const onCanPlay = () => {
@@ -300,20 +374,35 @@ const App = {
         cover.style.top = `${
           videoRect.top -
           sectionRect.top +
-          (isCross ? (this.isSmallScreen ? 75 : 90) : 5)
+          (isCross
+            ? this.isSmallScreen
+              ? 82
+              : this.isLargeScreen
+              ? 119
+              : 90
+            : 5)
         }px`;
         cover.style.left = `${
           videoRect.left -
           sectionRect.left +
-          (isCross ? (this.isSmallScreen ? 175 : 211) : 0)
+          (isCross
+            ? this.isSmallScreen
+              ? 193
+              : this.isLargeScreen
+              ? 279
+              : 211
+            : 0)
         }px`;
         cover.style.right = `${
           sectionRect.right -
           videoRect.right +
-          (isCross ? (this.isSmallScreen ? 187 : 230) : 0)
-        }px`;
-        cover.style.bottom = `${
-          sectionRect.bottom - videoRect.bottom - (isCross ? 0 : 0)
+          (isCross
+            ? this.isSmallScreen
+              ? 211
+              : this.isLargeScreen
+              ? 301
+              : 230
+            : 0)
         }px`;
         cover.style.borderRadius = '7px';
         setTimeout(() => {
@@ -338,6 +427,23 @@ const App = {
     closeSupportDialog() {
       document.querySelector('.support-dialog-wrap').style.display = 'none';
       document.querySelector('#cross').play();
+    },
+    // 添加视频事件监听器
+    addVideoEventListener(selector, event, callback) {
+      document.querySelector(selector).addEventListener(event, callback);
+    },
+    // 播放当前视频
+    playCurrentVideo(selector) {
+      const videos = document.querySelectorAll(selector);
+      videos.forEach((video, i) => {
+        if (i === this.workerCurrentIndex) {
+          video.currentTime = 0;
+          setTimeout(() => video.play(), 500);
+        } else {
+          video.pause();
+          video.currentTime = 0;
+        }
+      });
     },
   },
   computed: {
@@ -409,21 +515,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (change.target.tagName === 'SPAN') {
           if (change.isIntersecting) {
-            console.log('replay isvisible');
             const cover = document.querySelector('.fullscreen-cover2');
             cover.style.opacity = 1;
             cover.style.transition = 'all 0.5s ease-in-out';
             cover.style.display = 'block';
             document.querySelector('#cross').currentTime = 0;
             document.querySelector('#cross').pause();
+            console.log('fullscreen-cover2', change.isIntersecting);
           }
         }
       });
     },
-    { threshold: 1 }
+    { threshold: 0.5 }
   );
-
+  // 监听ai问答重播按钮可见
   crossIo2.observe(document.querySelector('.ai .answer .right .replay span'));
+  // 监听窗管视频可见
   crossIo2.observe(
     document.querySelector('.window-tube .content .right .data video')
   );

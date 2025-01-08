@@ -1,0 +1,84 @@
+.en .banner1 .solgen {
+  letter-spacing: 0;
+}
+
+.en .banner1 .btn {
+  width: 14.95rem;
+  text-wrap: nowrap;
+}
+
+.en .monolith .list .item p {
+  width: 20rem;
+}
+
+.en .desktop p {
+  margin-top: 1.56rem;
+  width: 70rem;
+  height: 9rem;
+  line-height: 2.25rem;
+}
+
+.en .window-tube .content .left .w-title {
+  margin-top: 3.13rem;
+  width: 22.19rem;
+  height: 6rem;
+  font-size: 2rem;
+  line-height: 3rem;
+}
+
+.en .window-tube .content .left .w-desc {
+  width: 30rem;
+}
+
+.en .window-tube .content .left .tab {
+  width: 21.13rem;
+}
+
+.en .window-tube .content .left .tab .bg {
+  width: 10.38rem;
+}
+
+.en .window-tube .content .left .tab .btn {
+  padding: 0.5rem 1.5rem;
+}
+
+.en .ai .content .desc {
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+}
+
+.en .ai .answer .left .title {
+  margin-top: 150px;
+  width: 17.44rem;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.en .ai .answer .left .desc {
+  width: 26.25rem;
+  margin-top: 2.69rem;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+}
+
+.en .cross .left .title {
+  width: 30rem;
+  font-size: 3rem;
+  line-height: 4.5rem;
+}
+
+.en .cross .left .sub-title {
+  width: 29.38rem;
+  margin-top: 4.38rem;
+  font-size: 2rem;
+  line-height: 3rem;
+}
+
+.en .cross .cvideo {
+  margin-top: 0;
+}
+
+.en .distrobox .title {
+  font-size: 3rem;
+  line-height: 3rem;
+}
