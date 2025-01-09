@@ -361,9 +361,13 @@ const App = {
       videoSelector,
       isCross = false
     ) {
-      document
-        .querySelector(sectionSelector)
-        .scrollIntoView({ behavior: 'smooth' });
+      window.scrollTo({
+        top: document.querySelector(sectionSelector).offsetTop,
+        behavior: 'smooth',
+      });
+      // document
+      //   .querySelector(sectionSelector)
+      //   .scrollIntoView({ behavior: 'smooth' });
       setTimeout(() => {
         const sectionRect = document
           .querySelector(sectionSelector)
@@ -521,7 +525,6 @@ document.addEventListener('DOMContentLoaded', function () {
             cover.style.display = 'block';
             document.querySelector('#cross').currentTime = 0;
             document.querySelector('#cross').pause();
-            console.log('fullscreen-cover2', change.isIntersecting);
           }
         }
       });
