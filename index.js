@@ -12,12 +12,12 @@ const App = {
       windowTubeCurrentIndex: 0,
       windowTubeVideos: [
         {
-          left: '/assets/videos/three-finger-right.mp4',
-          right: '/assets/videos/window-right.mp4',
+          left: '/assets/videos/触控板三指上下.mp4',
+          right: '/assets/videos/触控板三指窗口大小.mp4',
         },
         {
-          left: '/assets/videos/four-finger-left.mp4',
-          right: '/assets/videos/next-desktop.mp4',
+          left: '/assets/videos/触控板四指左右.mp4',
+          right: '/assets/videos/触控板四指切换桌面.mp4',
         },
       ],
       workerCurrentIndex: 1,
