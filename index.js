@@ -8,6 +8,7 @@ const App = {
       i18n: i18n,
       isSmallScreen: document.body.clientWidth < 1700,
       isLargeScreen: document.body.clientWidth >= 2200,
+      previewSrc: '/assets/videos/v25-preview.mp4',
       desktopCurrentIndex: 0,
       windowTubeCurrentIndex: 0,
       windowTubeVideos: [
@@ -125,8 +126,10 @@ const App = {
   methods: {
     getLanguage() {
       // 判断路由中是否包含/en，如果包含则默认为英文
+      console.log(window.location.pathname);
       if (window.location.pathname.includes('/en')) {
         this.currentLanguage = 'en';
+        this.previewSrc = '/assets/videos/v25-preview-en.mp4';
       }
     },
     switchWorkerBanner(index) {
@@ -459,6 +462,11 @@ const App = {
     },
     isZh() {
       return this.currentLanguage === 'zh';
+    },
+    v25PreviewVideo() {
+      return this.baseUrl + this.currentLanguage === 'zh'
+        ? '/assets/videos/v25-preview.mp4'
+        : '/assets/videos/v25-preview-en.mp4';
     },
   },
 };

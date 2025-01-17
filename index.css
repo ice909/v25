@@ -89,6 +89,7 @@ body {
   margin-top: 50px;
   font-size: 2.5rem;
   line-height: 1.75rem;
+  letter-spacing: 0.75rem;
 }
 
 .banner1 .btn {
@@ -106,6 +107,14 @@ body {
   font-size: 1.25rem;
   line-height: 1.88rem;
   text-wrap: nowrap;
+}
+
+.banner-tips {
+  left: 16.19rem;
+  bottom: 2.5rem;
+  font-size: 1.13rem;
+  line-height: 1.38rem;
+  font-weight: 400;
 }
 
 .monolith {
@@ -1075,38 +1084,20 @@ body {
   text-align: center;
 }
 
-/* @media (max-width: 1400px) {
+@media screen and (min-width: 1300px) and (max-width: 1400px) {
   :root {
-    --page-padding: 0 135px;
-    --body-max-width: 1500px;
+    --body-max-width: 1400px;
   }
-
-  .hardware .content .item p {
-    width: 318px;
-    font-size: 21px;
-    line-height: 42px;
+  html {
+    font-size: 11px;
   }
-
-  .hardware {
-    padding: 0 135px 162px 135px;
+  .cross .container {
+    padding-right: 0;
   }
-
-  .hardware .content .item img {
-    bottom: 60px;
-    right: 60px;
+  .cross .cvideo {
+    width: 935.3px;
   }
-
-  .hardware .content .item.left img {
-    width: 171px;
-  }
-  .hardware .content .item.right img {
-    width: 267px;
-  }
-
-  .window-tube .content {
-    padding-right: 80px;
-  }
-} */
+}
 
 @media screen and (min-width: 1400px) and (max-width: 1500px) {
   :root {
@@ -1150,6 +1141,30 @@ body {
   }
   .cross .cvideo {
     width: 935.3px;
+  }
+}
+
+@media screen and (min-width: 1701px) and (max-width: 1800px) {
+  :root {
+    --body-max-width: 1800px;
+  }
+  html {
+    font-size: 15px;
+  }
+  .cross .container {
+    padding-right: 0;
+  }
+  .cross .cvideo {
+    width: 935.3px;
+  }
+}
+
+@media screen and (min-width: 1801px) and (max-width: 1930px) {
+  :root {
+    --body-max-width: 1920px;
+  }
+  html {
+    font-size: 16px;
   }
 }
 

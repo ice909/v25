@@ -2,6 +2,7 @@ export const i18n = {
   en: {
     design: 'A fresh start with a brand-new design',
     explore: 'Explore now',
+    tips: "*The preview version's features are still under development and are not recommended for use as a regular production environment image.",
     systemStable: 'System stability is rock solid',
     coreSystemFiles:
       'The core system files are read-only and cannot be modified, making the system more reliable and secure to use',
@@ -89,6 +90,7 @@ export const i18n = {
   zh: {
     design: '全新设计从新出发',
     explore: '立刻探索',
+    tips: '*预览版本功能尚未完全开发完成，不建议作为日常正式生产环境镜像使用',
     systemStable: '系统稳定，坚如磐石',
     coreSystemFiles: '系统核心层文件为只读权限不可修改，系统使用更放心、更稳固',
     compatibilityLayers: '提供应用和驱动兼容层，软件安装和硬件支持更全面更友好',

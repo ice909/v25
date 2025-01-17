@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
-    <script src="./vue.global.prod.js"></script>
     <link rel="stylesheet" href="./index.css" />
     <link rel="stylesheet" href="./tailwind.css" />
     <link rel="stylesheet" href="./en.css" />
@@ -13,8 +12,9 @@
       type="text/css"
       href="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.css"
     />
+    <script src="./vue.global.prod.js"></script>
     <script src="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.js"></script>
-    <title>deepin v25 Preview</title>
+    <title>deepin 25 Preview</title>
   </head>
   <body>
     <div id="app">
@@ -56,7 +56,7 @@
             preload="metadata"
             loop
             controls
-            :src="baseUrl + '/assets/videos/v25-preview.mp4'"
+            :src="previewSrc"
           ></video>
           <img
             src="./assets/icons/close-circle.svg"
@@ -68,7 +68,7 @@
       <div class="content" :class="currentLanguage">
         <div class="banner1 relative w-full bg-no-repeat bg-cover bg-center">
           <div class="content absolute text-white">
-            <div class="title font-semibold">deepin V25 Preview</div>
+            <div class="title font-semibold">deepin 25 Preview</div>
             <div class="slogen font-semibold">{{ currentMessage.design}}</div>
             <div
               class="btn flex items-center justify-center cursor-pointer"
@@ -78,6 +78,9 @@
                 >{{ currentMessage.explore }}</span
               ><img class="w-24 h-24" src="./assets/icons/video.svg" />
             </div>
+          </div>
+          <div class="banner-tips absolute text-white">
+            {{ currentMessage.tips }}
           </div>
         </div>
         <div class="monolith">
