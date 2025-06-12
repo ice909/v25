@@ -1,11 +1,8 @@
-import { i18n } from './i18n.js';
-
 const App = {
   data() {
     return {
       baseUrl: '',
-      currentLanguage: 'zh',
-      i18n: i18n,
+      currentLanguage: 'en',
       isSmallScreen: document.body.clientWidth < 1700,
       isLargeScreen: document.body.clientWidth >= 2200,
       previewSrc: '/assets/videos/v25-preview.mp4',
@@ -17,9 +14,6 @@ const App = {
         '/assets/videos/ai-assistant.mp4',
       ],
     };
-  },
-  created() {
-    this.getLanguage();
   },
   mounted() {
     this.initIntersectionObservers();
@@ -58,39 +52,6 @@ const App = {
         .classList.remove('visible');
     });
 
-    // worker
-    this.addVideoEventListener('#worker0', 'ended', () => {
-      document.querySelector('.worker .banner .img.left img').style.visibility =
-        'visible';
-    });
-
-    this.addVideoEventListener('#worker0', 'play', () => {
-      document.querySelector('.worker .banner .img.left img').style.visibility =
-        'hidden';
-    });
-    this.addVideoEventListener('#worker1', 'ended', () => {
-      document.querySelector(
-        '.worker .banner .img:nth-child(2) img'
-      ).style.visibility = 'visible';
-    });
-
-    this.addVideoEventListener('#worker1', 'play', () => {
-      document.querySelector(
-        '.worker .banner .img:nth-child(2) img'
-      ).style.visibility = 'hidden';
-    });
-    this.addVideoEventListener('#worker2', 'ended', () => {
-      document.querySelector(
-        '.worker .banner .img.right img'
-      ).style.visibility = 'visible';
-    });
-
-    this.addVideoEventListener('#worker2', 'play', () => {
-      document.querySelector(
-        '.worker .banner .img.right img'
-      ).style.visibility = 'hidden';
-    });
-
     // 跨端协同
     this.addVideoEventListener('#cross', 'ended', () => {
       document.querySelector('.cross .replay').classList.toggle('visible');
@@ -100,50 +61,6 @@ const App = {
     });
   },
   methods: {
-    getLanguage() {
-      // 判断路由中是否包含/en，如果包含则默认为英文
-      console.log(window.location.pathname);
-      if (window.location.pathname.includes('/en')) {
-        this.currentLanguage = 'en';
-        this.previewSrc = '/assets/videos/v25-preview-en.mp4';
-      }
-    },
-    switchWorkerBanner(index) {
-      if (this.workerCurrentIndex === index) return;
-      index > this.workerCurrentIndex
-        ? this.switchNextWorkerBanner()
-        : this.switchPrevWorkerBanner();
-    },
-    switchPrevWorkerBanner() {
-      if (this.workerCurrentIndex === 0) return;
-      this.workerCurrentIndex--;
-      this.updateWorkerBanner();
-    },
-    switchNextWorkerBanner() {
-      if (this.workerCurrentIndex === 2) return;
-      this.workerCurrentIndex++;
-      this.updateWorkerBanner();
-    },
-    updateWorkerBanner() {
-      const items = document.querySelectorAll('.worker .banner .img');
-      const positions = [
-        ['calc(50% - 30rem)', 'calc(50% + 35rem)', '200%'],
-        ['calc(50% - 95rem)', 'calc(50% - 30rem)', 'calc(50% + 35rem)'],
-        ['-200%', 'calc(50% - 95rem)', 'calc(50% - 30rem)'],
-      ];
-      items.forEach(
-        (item, i) => (item.style.left = positions[this.workerCurrentIndex][i])
-      );
-      document
-        .querySelector('.worker .toolbar .button.left')
-        .classList.toggle('disabled', this.workerCurrentIndex === 0);
-      document
-        .querySelector('.worker .toolbar .button.right')
-        .classList.toggle('disabled', this.workerCurrentIndex === 2);
-
-      // 停止其他并重置，播放当前视频
-      this.playCurrentVideo('.worker .banner .img video');
-    },
     replay(id) {
       const video = document.querySelector(id);
       video.currentTime = 0;
@@ -224,31 +141,6 @@ const App = {
 
       fullCoverOb.observe(document.querySelector('.fullscreen-cover'));
       fullCoverOb.observe(document.querySelector('.fullscreen-cover2'));
-
-      const workerIo = new IntersectionObserver(
-        (changes) => {
-          changes.forEach((change) => {
-            if (change.isIntersecting) {
-              const worker = document.querySelector(
-                `#worker${this.workerCurrentIndex}`
-              );
-              setTimeout(() => {
-                worker.play();
-              }, 500);
-            } else {
-              const worker = document.querySelector(
-                `#worker${this.workerCurrentIndex}`
-              );
-              worker.pause();
-            }
-          });
-        },
-        { threshold: 0.9 }
-      );
-
-      workerIo.observe(document.querySelector('#worker0'));
-      workerIo.observe(document.querySelector('#worker1'));
-      workerIo.observe(document.querySelector('#worker2'));
 
       const aiBario = new IntersectionObserver(
         (changes) => {
@@ -412,12 +304,6 @@ const App = {
     },
   },
   computed: {
-    currentMessage() {
-      return this.i18n[this.currentLanguage];
-    },
-    ai() {
-      return this.currentMessage.ai[this.workerCurrentIndex];
-    },
     isZh() {
       return this.currentLanguage === 'zh';
     },
