@@ -246,11 +246,203 @@ body {
 .title-p1 {
   margin-top: 175px;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 4rem;
   color: #1e1e1e;
   letter-spacing: 0;
   text-align: center;
   line-height: 4rem;
+}
+
+.linyaps {
+  display: flex;
+  flex-direction: column; /* 保持标题和容器垂直排列 */
+  align-items: center;
+}
+
+.linyaps-container {
+  margin-top: 3.38rem;
+  display: grid;
+  gap: 2.5rem;
+  grid-row: 2;
+  grid-template-columns: 38.75rem minmax(0, 47.5rem);
+}
+
+.linyaps a{
+  margin-top: 4.81rem;
+  display: inline-block;
+  width: 7.5rem;
+  height: 2.75rem;
+  background: #0052D9;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: #FFFFFF;
+  border: none;
+  text-align: center;
+  line-height: 2.75rem;
+  cursor: pointer;
+}
+
+
+.linyaps-container .row-title {
+  padding-left: 2.5rem;
+}
+
+.linyaps-container .row-title .desc {
+  margin-top: 2.5rem;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #7F8287;
+  letter-spacing: 0;
+  line-height: 2.25rem;
+  max-width: 43.75rem;
+}
+
+.linyaps-container .row-content {
+  width: 100%;
+  height: 59.75rem;
+  background-image: linear-gradient(147deg, #c7eaff 0%, #dcdfff 100%);
+  border-radius: 3.5rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.56rem;
+}
+
+.linyaps-container .row-content.right {
+  padding: 1.88rem 2.5rem 2.5rem;
+  gap: 0.63rem;
+}
+
+.linyaps-container .row-content.right .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.88rem;
+}
+
+.row-content.right .container>.item {
+  flex: 1;
+  background-image: linear-gradient(118deg, #ffffff94 7%, #ffffff5e 100%);
+  border-radius: 2rem;
+  /* filter: blur(0.19rem); */
+  border: 0.06rem solid #fff;
+  display: flex;
+  gap: 1.88rem;
+  padding: 1.25rem;
+}
+
+.row-content.right .container>.item>img {
+  width: 6.25rem;
+  height: 6.25rem;
+  align-self: center;
+}
+
+.row-content.right .container>.item>.desc {
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #1E1E1E;
+  letter-spacing: 0;
+  line-height: 2.25rem;
+  align-self: center;
+}
+
+.linyaps-container .row-content>.title {
+  font-weight: 600;
+  font-size: 1.75rem;
+  color: #1E1E1E;
+  letter-spacing: 0;
+  line-height: 3.5rem;
+  margin-left: 1.25rem;
+}
+
+.linyaps-container .row-content>.item{
+  flex: 1;
+  background-image: linear-gradient(118deg, #ffffff94 7%, #ffffff5e 100%);
+  border-radius: 2rem;
+  /* filter: blur(0.19rem); */
+  border: 0.06rem solid #fff;
+  display: flex;
+  gap: 1.88rem;
+}
+
+.row-content>.item .title {
+  margin-top: 3.75rem;
+  font-weight: 600;
+  font-size: 1.75rem;
+  color: #1E1E1E;
+  letter-spacing: 0;
+  line-height: 3.5rem;
+}
+
+.row-content>.item .desc {
+  margin-top: 0.75rem;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #1E1E1E;
+  letter-spacing: 0;
+  line-height: 2.25rem;
+  max-width: 23.75rem;
+}
+
+.linyaps-container .title-container {
+  display: flex;
+}
+
+.linyaps-container .title-container .title {
+  margin-top: 0.38rem;
+  height: 3rem;
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 3rem;
+  white-space: nowrap;
+  background: linear-gradient(104deg, #0050ff 0%, #7500ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.linyaps-container .title-container .user {
+  background-color: transparent;
+  height: 2.13rem;
+  padding: 0.09rem;
+  border-radius: 17px;
+  /* --- 1. 渐变边框 (来自方法二) --- */
+  border: 0.09rem solid transparent; 
+  
+  /* 使用双背景技术 */
+  background-image: 
+    linear-gradient(white, white), /* 内层背景, 颜色要和你的页面背景色一致 */
+    linear-gradient(90deg, #064BFF 0%, #7500FF 100%); /* 外层渐变，将作为边框 */
+
+  /* 定义背景的绘制区域 */
+  background-origin: border-box;
+
+  /* 裁剪背景，这是最关键的一步 */
+  background-clip: 
+    padding-box, /* 将内层白色背景裁剪到内边距，露出边框区域 */
+    border-box;  /* 让外层渐变背景铺满整个边框 */
+}
+
+.linyaps-container .title-container .text {
+  margin: 0 0.88rem;
+  background-image: linear-gradient(104deg, #0050FF 0%, #7500FF 100%); /* 文字的渐变 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 400;
+  font-size: 1.5em;
+  line-height: 1.95rem;
+}
+
+.title-linyaps {
+  margin-top: 9.38rem;
+  height: 6rem;
+  font-weight: 700;
+  font-size: 4rem;
+  color: #1e1e1e;
+  letter-spacing: 0;
+  line-height: 6rem;
 }
 
 .sub-title {
@@ -288,6 +480,7 @@ body {
   line-height: 3rem;
   background: linear-gradient(104deg, #0050ff 0%, #7500ff 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

@@ -14,7 +14,7 @@
     />
     <script src="./vue.global.prod.js"></script>
     <script src="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.js"></script>
-    <title>deepin 25 Preview</title>
+    <title>deepin 25</title>
   </head>
   <body>
     <div id="app">
@@ -68,7 +68,7 @@
       <div class="content" :class="currentLanguage">
         <div class="banner1 relative w-full bg-no-repeat bg-cover bg-center">
           <div class="content absolute text-white">
-            <div class="title font-semibold">deepin 25 Preview</div>
+            <div class="title font-semibold">deepin 25</div>
             <div class="slogen font-semibold">{{ currentMessage.design}}</div>
             <div
               class="btn flex items-center justify-center cursor-pointer"
@@ -78,9 +78,6 @@
                 >{{ currentMessage.explore }}</span
               ><img class="w-24 h-24" src="./assets/icons/video.svg" />
             </div>
-          </div>
-          <div class="banner-tips absolute text-white">
-            {{ currentMessage.tips }}
           </div>
         </div>
         <div class="monolith">
@@ -184,7 +181,7 @@
             </div>
           </div>
         </div>
-
+        <!-- 更快，更流畅 -->
         <div class="performance">
           <div class="item">
             <p class="title">{{ currentMessage.faster}}</p>
@@ -208,6 +205,123 @@
             </div>
             <p class="desc">{{ currentMessage.graphicsRender}}</p>
           </div>
+        </div>
+        <!-- 如意玲珑 -->
+        <div class="linyaps">
+          <div class="title-linyaps">{{ currentMessage.linyaps}}</div>
+          <div class="linyaps-container">
+            <div class="row-title">
+              <div class="title-container">
+                <p class="title">稳定性提升</p>
+                <div class="user"><div class="text">用户</div></div>
+              </div>
+              <div class="desc" style="max-width: 33.75rem">
+                针对多样化软件包格式及交叉依赖的兼客性问题，提供统一解决方案，全面提升系统与应用的稳定性
+              </div>
+            </div>
+            <div class="row-title">
+              <div class="title-container">
+                <p class="title">构建一次多处运行</p>
+                <div class="user"><div class="text">开发者</div></div>
+              </div>
+              <div class="desc">
+                有效解决跨发行版本多应用包构建带来的复杂性问题，助力软件开发商与个人开发者显著降低开发与维护成本
+              </div>
+            </div>
+            <div class="row-content">
+              <div class="item">
+                <img
+                  style="
+                    width: 6.25rem;
+                    height: 6.25rem;
+                    align-self: center;
+                    margin-left: 1.25rem;
+                  "
+                  src="/assets/imgs/Enhanced-Rubik-Cube-3D-Icon.png"
+                  alt=""
+                />
+                <div>
+                  <div class="title">多架构支持</div>
+                  <div class="desc">
+                    如意玲珑已完成对AMD64、ARM64、LoongArch64架构的全面适配
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  style="
+                    width: 6.25rem;
+                    height: 6.25rem;
+                    align-self: center;
+                    margin-left: 1.25rem;
+                  "
+                  src="/assets/imgs/Enhanced-Thumbs.png"
+                  alt=""
+                />
+                <div>
+                  <div class="title">发行版支持</div>
+                  <div class="desc">
+                    支持 Debian 、Ubuntu、Fedora、openEuler等多个主流发行版
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  style="
+                    width: 6.25rem;
+                    height: 6.25rem;
+                    align-self: center;
+                    margin-left: 1.25rem;
+                  "
+                  src="/assets/imgs/Enhanced-Earth.png"
+                  alt=""
+                />
+                <div>
+                  <div class="title">生态支持</div>
+                  <div class="desc">
+                    在多种架构平台下累计已完成6000
+                    款软件上架，全面满足日常办公与娱乐等多样化使用需求
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row-content right">
+              <div class="title">完善的工具链体系</div>
+              <div class="container">
+                <div class="item">
+                  <img src="/assets/imgs/App-3D-Icon.png" alt="转置工具" />
+                  <div class="desc">
+                    提供DEB、Appimage、Flatpak等主流格式的应用包转制工具
+                  </div>
+                </div>
+                <div class="item">
+                  <img src="/assets/imgs/Website-3D-Icon.png" alt="转置工具" />
+                  <div class="desc">
+                    提供如意玲珑网页端构建工具，支持可视化打包操作
+                  </div>
+                </div>
+                <div class="item">
+                  <img src="/assets/imgs/Box-3D-Icon.png" alt="转置工具" />
+                  <div class="desc">
+                    提供如意玲珑在线与离线环境的自动化打包工具
+                  </div>
+                </div>
+                <div class="item">
+                  <img src="/assets/imgs/Developer-Icon.png" alt="转置工具" />
+                  <div class="desc">
+                    提供如意玲珑应用的自动化测试工具，保障构建质量与兼容性
+                  </div>
+                </div>
+                <div class="item">
+                  <img src="/assets/imgs/User-Icon.png" alt="转置工具" />
+                  <div class="desc">
+                    建立专属开发者论坛，支持技术交流与社区互动
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="https://linyaps.org.cn">了解更多</a>
         </div>
         <div class="ai">
           <div class="title-p1">{{ currentMessage.intelligentEmpowerment}}</div>
@@ -563,7 +677,6 @@
           /></a>
           <div style="flex: 1"></div>
           <div class="tips">
-            <p>*{{ currentMessage.previewVersion }}</p>
             <p style="margin-top: 6px">*{{ currentMessage.screenReference }}</p>
           </div>
         </div>
