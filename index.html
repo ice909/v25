@@ -12,8 +12,14 @@
       type="text/css"
       href="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.css"
     />
+    <script>
+      window.AppConfig = {
+        baseUrl: ''
+      }
+    </script>
     <script src="./vue.global.prod.js"></script>
     <script src="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.js"></script>
+    <script src="./touchpad.js" defer></script>
     <title>deepin 25</title>
   </head>
   <body>
@@ -103,6 +109,7 @@
             </div>
           </div>
         </div>
+        <!-- 全新桌面，简洁高效 -->
         <div class="desktop relative">
           <div class="fullscreen-cover">
             <img
@@ -136,7 +143,7 @@
             <img src="./assets/icons/replay-text.svg" alt="再次播放" />
           </div>
         </div>
-
+        <!-- 心之所向，如影随行 -->
         <div class="window-tube">
           <div class="title-p1">{{ currentMessage.windowManager}}</div>
           <div class="sub-title">{{ currentMessage.waylandCompositor}}</div>
@@ -146,10 +153,10 @@
               <p class="w-desc">{{ currentMessage.userExperience}}</p>
               <div class="tab">
                 <div class="bg"></div>
-                <div class="btn active" @click="switchWindowTubeVideo(0)">
+                <div class="btn active" data-index="0">
                   <span>{{ currentMessage.threeFingers}}</span>
                 </div>
-                <div class="btn" @click="switchWindowTubeVideo(1)">
+                <div class="btn" data-index="1">
                   <span>{{ currentMessage.fourFingers}}</span>
                 </div>
               </div>
@@ -160,7 +167,6 @@
                 <video
                   class="video"
                   muted
-                  :src="baseUrl + windowTubeVideos[windowTubeCurrentIndex].left"
                   preload="metadata"
                 ></video>
               </div>
@@ -169,14 +175,12 @@
                   id="window-tube-right-video"
                   class="video"
                   muted
-                  :src="baseUrl + windowTubeVideos[windowTubeCurrentIndex].right"
                   preload="metadata"
                 ></video>
               </div>
               <img
                 src="./assets/icons/replay-img.svg"
                 alt="再次重播"
-                @click="replayWindowTube"
               />
             </div>
           </div>

@@ -10,17 +10,6 @@ const App = {
       isLargeScreen: document.body.clientWidth >= 2200,
       previewSrc: '/assets/videos/v25-preview.mp4',
       desktopCurrentIndex: 0,
-      windowTubeCurrentIndex: 0,
-      windowTubeVideos: [
-        {
-          left: '/assets/videos/触控板三指上下.mp4',
-          right: '/assets/videos/触控板三指窗口大小.mp4',
-        },
-        {
-          left: '/assets/videos/触控板四指左右.mp4',
-          right: '/assets/videos/触控板四指切换桌面.mp4',
-        },
-      ],
       workerCurrentIndex: 1,
       workerVideos: [
         '/assets/videos/ai-search.mp4',
@@ -109,19 +98,6 @@ const App = {
     this.addVideoEventListener('#cross', 'play', () => {
       document.querySelector('.cross .replay').classList.remove('visible');
     });
-    // 播放完成后显示重播按钮
-    this.addVideoEventListener('#window-tube-right-video', 'ended', () => {
-      document.querySelector(
-        '.window-tube .content .right img'
-      ).style.visibility = 'visible';
-    });
-
-    // 开始播放时隐藏重播按钮
-    this.addVideoEventListener('#window-tube-right-video', 'play', () => {
-      document.querySelector(
-        '.window-tube .content .right img'
-      ).style.visibility = 'hidden';
-    });
   },
   methods: {
     getLanguage() {
@@ -190,24 +166,6 @@ const App = {
       video.pause();
       video.currentTime = 0;
       document.querySelector('.video-dialog').style.display = 'none';
-    },
-    switchWindowTubeVideo(index) {
-      if (this.windowTubeCurrentIndex === index) return;
-      this.windowTubeCurrentIndex = index;
-      const btns = document.querySelectorAll(
-        '.window-tube .content .left .tab .btn'
-      );
-      document
-        .querySelector('.window-tube .content .left .tab .btn.active')
-        .classList.remove('active');
-      document.querySelector(
-        '.window-tube .content .left .tab .bg'
-      ).style.left = index === 0 ? '0' : 'calc(50% + 1.5px)';
-      btns[index].classList.add('active');
-      this.playVideos('.window-tube .content .right .data video');
-    },
-    replayWindowTube() {
-      this.playVideos('.window-tube .content .right .data video', true);
     },
     playVideos(selector, reset = false) {
       const videos = document.querySelectorAll(selector);
