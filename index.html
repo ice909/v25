@@ -630,27 +630,6 @@
             </div>
           </div>
         </div>
-        <div v-if="false" class="hardware">
-          <div class="title-p1">{{ currentMessage.hardware }}</div>
-          <div class="content">
-            <div class="left item">
-              <p
-                :style="{width: isSmallScreen ? (isZh ? '350px' : '321px') : (isZh ? '420px' : '386px'),fontSize: isSmallScreen ?(isZh ? '21px' : '18px') : (isZh ? '28px' : '24px'), lineHeight: isSmallScreen? (isZh ? '56px' : '36px') : ( isZh ? '56px' : '36px') }"
-              >
-                {{ currentMessage.bluetooth }}
-              </p>
-              <img src="./assets/icons/Bluetooth.svg" alt="蓝牙" />
-            </div>
-            <div class="right item">
-              <p
-                :style="{width: isSmallScreen ? (isZh ? '350px' : '321px') : (isZh ? '420px' : '386px'),fontSize: isSmallScreen ? (isZh ? '21px' : '18px') : (isZh ? '28px' : '24px'), lineHeight: isSmallScreen? (isZh ? '56px' : '36px') : ( isZh ? '56px' : '36px') }"
-              >
-                {{ currentMessage.wifi }}
-              </p>
-              <img src="./assets/icons/wifi.svg" alt="wifi" />
-            </div>
-          </div>
-        </div>
         <div class="distrobox">
           <div class="title">{{ currentMessage.distroboxSubsystem }}</div>
           <p class="desc">{{ currentMessage.developerEnvironment }}</p>

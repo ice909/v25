@@ -1097,59 +1097,6 @@ body {
   height: 1rem;
 }
 
-.hardware {
-  padding: var(--page-padding);
-  padding-bottom: 162px;
-}
-
-.hardware .content .item {
-  position: relative;
-  padding-left: 80px;
-  padding-top: 68px;
-  flex: 1;
-  border-radius: 56px;
-}
-
-.hardware .content .item img {
-  position: absolute;
-  bottom: 80px;
-  right: 80px;
-}
-
-.hardware .content .item p {
-  width: 420px;
-  font-weight: 500;
-  font-size: 28px;
-  color: #ffffff;
-  letter-spacing: 0;
-  line-height: 56px;
-}
-
-.hardware .content {
-  margin-top: 100px;
-  display: flex;
-  gap: 40px;
-  height: 670px;
-}
-
-.hardware .content .left {
-  background-image: linear-gradient(131deg, #0759fd 0%, #43c7ec 100%);
-}
-
-.hardware .content .left img {
-  width: 206px;
-  height: 307px;
-}
-
-.hardware .content .right {
-  background-image: linear-gradient(134deg, #7cd798 0%, #75d7b1 100%);
-}
-
-.hardware .content .right img {
-  width: 321px;
-  height: 241px;
-}
-
 .distrobox {
   position: relative;
   display: flex;
