@@ -15,8 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
   );
 
   videos.forEach((video, i) => {
-    video.src =
-      window.AppConfig.baseUrl + videoSrc[0][i === 0 ? 'left' : 'right'];
+    video.setAttribute(
+      'data-src',
+      window.AppConfig.baseUrl + videoSrc[0][i === 0 ? 'left' : 'right']
+    );
   });
   const replayBtn = document.querySelector('.window-tube .content .right img');
   const btns = document.querySelectorAll(
