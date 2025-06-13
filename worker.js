@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 初始化视频观察器
   const worker0 = document.getElementById('worker0');
-  worker0.src = window.AppConfig.baseUrl + workerVideos[0];
+  worker0.setAttribute('data-src', window.AppConfig.baseUrl + workerVideos[0]);
   worker0.addEventListener('ended', () => {
     document.querySelector('.worker .banner .img.left img').style.visibility =
       'visible';
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   const worker1 = document.getElementById('worker1');
-  worker1.src = window.AppConfig.baseUrl + workerVideos[1];
+  worker1.setAttribute('data-src', window.AppConfig.baseUrl + workerVideos[1]);
   worker1.addEventListener('ended', () => {
     document.querySelector(
       '.worker .banner .img:nth-child(2) img'
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     ).style.visibility = 'hidden';
   });
   const worker2 = document.getElementById('worker2');
-  worker2.src = window.AppConfig.baseUrl + workerVideos[2];
+  worker2.setAttribute('data-src', window.AppConfig.baseUrl + workerVideos[2]);
   worker2.addEventListener('ended', () => {
     document.querySelector('.worker .banner .img.right img').style.visibility =
       'visible';
