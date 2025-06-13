@@ -16,6 +16,7 @@
     <script src="/vue.global.prod.js"></script>
     <script type="text/javascript" src="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.js"></script>
     <script type="text/javascript" src="/touchpad.js" defer></script>
+    <script type="text/javascript" src="/desktop.js" defer></script>
     <script type="text/javascript" src="/worker.js" defer></script>
     <script type="text/javascript" src="/dialog.js" defer></script>
     <title>deepin 25</title>
@@ -111,16 +112,14 @@
             />
             <video
               id="desktopVideo"
-              class="video"
+              class="video lozad"
               muted
-              preload="metadata"
-              :src="baseUrl + '/assets/videos/new-desktop.mp4'"
+              poster="/assets/imgs/new-desktop.png"
             ></video>
           </div>
 
           <div
             class="replay font-medium transition-all-05 cursor-pointer"
-            @click="replay(`#desktopVideo`)"
           >
             <span>再次播放</span>
             <img class="lozad" data-src="/assets/icons/replay-text.svg" alt="再次播放" />

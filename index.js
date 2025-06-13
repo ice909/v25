@@ -66,35 +66,11 @@ const App = {
       video.pause();
     },
     initIntersectionObservers() {
-      const io = new IntersectionObserver(
-        (changes) => {
-          if (changes[0].isIntersecting) {
-            const cover = document.querySelector('.fullscreen-cover');
-            cover.style.opacity = 1;
-            cover.style.transition = 'all 0.5s ease-in-out';
-            cover.style.display = 'block';
-            const video = document.querySelector('#desktopVideo');
-            video.currentTime = 0;
-            video.pause();
-          }
-        },
-        { threshold: [0.8] }
-      );
-      io.observe(document.querySelector('.monolith .title'));
-
       const fullCoverOb = new IntersectionObserver(
         (changes) => {
           changes.forEach((change) => {
             if (change.isIntersecting) {
-              if (change.target.classList.contains('fullscreen-cover')) {
-                this.handleFullScreenCover(
-                  change.target,
-                  '.desktop',
-                  '.desktop video'
-                );
-              } else if (
-                change.target.classList.contains('fullscreen-cover2')
-              ) {
+              if (change.target.classList.contains('fullscreen-cover2')) {
                 this.handleFullScreenCover(
                   change.target,
                   '.cross',
@@ -108,7 +84,6 @@ const App = {
         { threshold: 0.4 }
       );
 
-      fullCoverOb.observe(document.querySelector('.fullscreen-cover'));
       fullCoverOb.observe(document.querySelector('.fullscreen-cover2'));
 
       const aiBario = new IntersectionObserver(
@@ -124,26 +99,6 @@ const App = {
         { threshold: 1 }
       );
       aiBario.observe(document.querySelector('.answer .right video'));
-
-      const desktopIo = new IntersectionObserver(
-        (changes) => {
-          changes.forEach((change) => {
-            if (change.isIntersecting) {
-              if (
-                document.querySelector('.fullscreen-cover').style.display ===
-                'block'
-              )
-                return;
-              change.target.play();
-            } else {
-              change.target.pause();
-            }
-          });
-        },
-        { threshold: 1 }
-      );
-
-      desktopIo.observe(document.querySelector('.desktop video'));
 
       const aiIo = new IntersectionObserver(
         (changes) => {
@@ -187,9 +142,6 @@ const App = {
         top: document.querySelector(sectionSelector).offsetTop,
         behavior: 'smooth',
       });
-      // document
-      //   .querySelector(sectionSelector)
-      //   .scrollIntoView({ behavior: 'smooth' });
       setTimeout(() => {
         const sectionRect = document
           .querySelector(sectionSelector)
@@ -336,4 +288,3 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.window-tube .content .right .data video')
   );
 });
-

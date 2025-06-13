@@ -1,11 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
   const video = document.querySelector('#desktopVideo');
   const replyBtn = document.querySelector('.desktop .replay');
+  console.log('replyBtn:', replyBtn);
   video.addEventListener('ended', () => {
-    replyBtn.classList.toggle('visible');
+    console.log('Video ended');
+    replyBtn.classList.add('visible');
   });
-  video.addEventListener('ended', () => {
+  video.addEventListener('play', () => {
     replyBtn.classList.remove('visible');
+  });
+
+  video.setAttribute(
+    'data-src',
+    window.AppConfig.baseUrl + '/assets/videos/new-desktop.mp4'
+  );
+
+  replyBtn.addEventListener('click', () => {
+    video.currentTime = 0;
+    video.play();
   });
 
   const io = new IntersectionObserver(
