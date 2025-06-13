@@ -888,7 +888,7 @@ body {
   width: 3rem;
   height: 3rem;
   cursor: pointer;
-  background-image: url(./assets/icons/left.svg);
+  background-image: url(../assets/icons/left.svg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -896,23 +896,23 @@ body {
 }
 
 .worker .banner .toolbar .container .item .button.right {
-  background-image: url(./assets/icons/right.svg);
+  background-image: url(../assets/icons/right.svg);
 }
 
 .worker .banner .toolbar .container .item .left:active {
-  background-image: url(./assets/icons/left-click.svg);
+  background-image: url(../assets/icons/left-click.svg);
 }
 
 .worker .banner .toolbar .container .item .right:active {
-  background-image: url(./assets/icons/right-click.svg);
+  background-image: url(../assets/icons/right-click.svg);
 }
 
 .worker .banner .toolbar .container .item .button.left.disabled {
-  background-image: url(./assets/icons/left-disable.svg);
+  background-image: url(../assets/icons/left-disable.svg);
   cursor: not-allowed;
 }
 .worker .banner .toolbar .container .item .button.right.disabled {
-  background-image: url(./assets/icons/right-disable.svg);
+  background-image: url(../assets/icons/right-disable.svg);
   cursor: not-allowed;
 }
 
@@ -1106,7 +1106,7 @@ body {
   align-items: center;
   width: 100%;
   height: 67.5rem;
-  background-image: url(./assets/imgs/distrobox.png);
+  background-image: url(../assets/imgs/distrobox.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
