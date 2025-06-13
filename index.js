@@ -11,40 +11,6 @@ const App = {
     observer.observe();
 
     this.initIntersectionObservers();
-    // 全新桌面视频
-    this.addVideoEventListener('#desktopVideo', 'ended', () => {
-      document.querySelector('.desktop .replay').classList.toggle('visible');
-    });
-    this.addVideoEventListener('#desktopVideo', 'play', () => {
-      document.querySelector('.desktop .replay').classList.remove('visible');
-    });
-    // ai问答
-    this.addVideoEventListener('#ai-left', 'ended', () => {
-      document.querySelector('.ai .content .left .replay').style.visibility =
-        'visible';
-    });
-    this.addVideoEventListener('#ai-left', 'play', () => {
-      document.querySelector('.ai .content .left .replay').style.visibility =
-        'hidden';
-    });
-    this.addVideoEventListener('#ai-right', 'ended', () => {
-      document.querySelector('.ai .content .right .replay').style.visibility =
-        'visible';
-    });
-    this.addVideoEventListener('#ai-right', 'play', () => {
-      document.querySelector('.ai .content .right .replay').style.visibility =
-        'hidden';
-    });
-    this.addVideoEventListener('#aiAnswerVideo', 'ended', () => {
-      document
-        .querySelector('.ai .answer .right .replay')
-        .classList.toggle('visible');
-    });
-    this.addVideoEventListener('#aiAnswerVideo', 'play', () => {
-      document
-        .querySelector('.ai .answer .right .replay')
-        .classList.remove('visible');
-    });
 
     // 跨端协同
     this.addVideoEventListener('#cross', 'ended', () => {
@@ -114,13 +80,6 @@ const App = {
               } else {
                 change.target.pause();
               }
-            } else if (change.isIntersecting) {
-              const onCanPlay = () => {
-                change.target.play();
-                change.target.removeEventListener('canplay', onCanPlay);
-              };
-              change.target.addEventListener('canplay', onCanPlay);
-              change.target.load();
             } else {
               change.target.pause();
             }

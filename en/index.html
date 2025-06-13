@@ -17,6 +17,7 @@
     <script type="text/javascript" src="/vue.global.prod.js"></script>
     <script type="text/javascript" src="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.js"></script>
     <script type="text/javascript" src="/desktop.js" defer></script>
+    <script type="text/javascript" src="/ai.js" defer></script>
     <script type="text/javascript" src="/touchpad.js" defer></script>
     <script type="text/javascript" src="/dialog.js" defer></script>
     <script type="text/javascript" src="/worker.js" defer></script>
@@ -115,7 +116,7 @@
             />
             <video
               id="desktopVideo"
-              class="video"
+              class="video lozad"
               muted
               poster="/assets/imgs/new-desktop.png"
             ></video>
@@ -150,7 +151,7 @@
               <div class="desc">Press and hold to drag the window，Swipe up or down to adjust the window size.</div>
               <div class="data">
                 <video
-                  class="video"
+                  class="video lozad"
                   muted
                   preload="metadata"
                 ></video>
@@ -158,7 +159,7 @@
               <div class="data">
                 <video
                   id="window-tube-right-video"
-                  class="video"
+                  class="video lozad"
                   muted
                   preload="metadata"
                 ></video>
@@ -322,13 +323,11 @@
               </div>
               <video
                 id="ai-left"
+                class="lozad"
                 style="width: 100%; border-radius: 56px"
-                :src="baseUrl + '/assets/videos/voice.mp4'"
                 muted
-                preload="metadata"
               ></video>
               <img
-                @click="replay('#ai-left')"
                 class="replay lozad" data-src="/assets/icons/replay-img.svg"
                 alt="再次重播"
               />
@@ -341,13 +340,11 @@
               </div>
               <video
                 id="ai-right"
+                class="lozad"
                 style="width: 100%; border-radius: 56px"
-                :src="baseUrl + '/assets/videos/qa.mp4'"
                 muted
-                preload="metadata"
               ></video>
               <img
-                @click="replay('#ai-right')"
                 class="replay lozad"
                 data-src="/assets/icons/replay-img.svg"
                 alt="再次重播"
