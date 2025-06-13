@@ -4,14 +4,6 @@ const App = {
       baseUrl: '',
       isSmallScreen: document.body.clientWidth < 1700,
       isLargeScreen: document.body.clientWidth >= 2200,
-      previewSrc: '/assets/videos/v25-preview.mp4',
-      desktopCurrentIndex: 0,
-      workerCurrentIndex: 1,
-      workerVideos: [
-        '/assets/videos/ai-search.mp4',
-        '/assets/videos/ai-write.mp4',
-        '/assets/videos/ai-assistant.mp4',
-      ],
     };
   },
   mounted() {
@@ -72,31 +64,6 @@ const App = {
       const video = document.querySelector(id);
       video.currentTime = 0;
       video.pause();
-    },
-    openVideoDialog() {
-      const videoDialog = document.querySelector('.video-dialog');
-      videoDialog.style.display = 'block';
-      const video = document.querySelector('#dialog-video');
-      video.currentTime = 0;
-      video.play();
-    },
-    closeVideoDialog() {
-      const video = document.querySelector('#dialog-video');
-      video.pause();
-      video.currentTime = 0;
-      document.querySelector('.video-dialog').style.display = 'none';
-    },
-    playVideos(selector, reset = false) {
-      const videos = document.querySelectorAll(selector);
-      videos.forEach((video) => {
-        if (reset) video.currentTime = 0;
-        const onCanPlay = () => {
-          video.play();
-          video.removeEventListener('canplay', onCanPlay);
-        };
-        video.addEventListener('canplay', onCanPlay);
-        video.load();
-      });
     },
     initIntersectionObservers() {
       const io = new IntersectionObserver(
@@ -290,19 +257,6 @@ const App = {
     // 添加视频事件监听器
     addVideoEventListener(selector, event, callback) {
       document.querySelector(selector).addEventListener(event, callback);
-    },
-    // 播放当前视频
-    playCurrentVideo(selector) {
-      const videos = document.querySelectorAll(selector);
-      videos.forEach((video, i) => {
-        if (i === this.workerCurrentIndex) {
-          video.currentTime = 0;
-          setTimeout(() => video.play(), 500);
-        } else {
-          video.pause();
-          video.currentTime = 0;
-        }
-      });
     },
   },
 };
