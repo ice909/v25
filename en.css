@@ -83,3 +83,28 @@
   font-size: 3rem;
   line-height: 3rem;
 }
+
+.row-content > .item > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.row-content > .item .title {
+  margin-top: 0;
+  font-size: 1.55rem;
+}
+
+.row-content > .item .desc {
+  margin-top: 0.34rem;
+  font-size: 1.2rem;
+  max-width: none;
+}
+
+.row-content.right .container>.item>.desc {
+  font-size: 1.2rem;
+}
+
+.linyaps a{
+  font-size: 1.1rem;
+}

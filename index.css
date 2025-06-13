@@ -403,6 +403,7 @@ body {
 }
 
 .linyaps-container .title-container .user {
+  white-space: nowrap;
   background-color: transparent;
   height: 2.13rem;
   padding: 0.09rem;

@@ -2,7 +2,6 @@ const App = {
   data() {
     return {
       baseUrl: '',
-      currentLanguage: 'en',
       isSmallScreen: document.body.clientWidth < 1700,
       isLargeScreen: document.body.clientWidth >= 2200,
       previewSrc: '/assets/videos/v25-preview.mp4',
@@ -301,16 +300,6 @@ const App = {
           video.currentTime = 0;
         }
       });
-    },
-  },
-  computed: {
-    isZh() {
-      return this.currentLanguage === 'zh';
-    },
-    v25PreviewVideo() {
-      return this.baseUrl + this.currentLanguage === 'zh'
-        ? '/assets/videos/v25-preview.mp4'
-        : '/assets/videos/v25-preview-en.mp4';
     },
   },
 };
