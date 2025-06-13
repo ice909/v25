@@ -69,4 +69,33 @@ document.addEventListener('DOMContentLoaded', () => {
       video.play();
     });
   });
+
+  const touchpad = new IntersectionObserver(
+    (changes) => {
+      changes.forEach((change) => {
+        const videos = document.querySelectorAll(
+          '.window-tube .content .right .data video'
+        );
+        if (change.isIntersecting) {
+          videos.forEach((video) => {
+            const onCanPlay = () => {
+              video.play();
+              video.removeEventListener('canplay', onCanPlay);
+            };
+            video.addEventListener('canplay', onCanPlay);
+            video.load();
+          });
+        } else {
+          videos.forEach((video) => {
+            video.currentTime = 0;
+            video.pause();
+          });
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+  touchpad.observe(
+    document.querySelector('.window-tube .content .right .data video')
+  );
 });

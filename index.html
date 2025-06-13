@@ -19,6 +19,7 @@
     <script type="text/javascript" src="/desktop.js" defer></script>
     <script type="text/javascript" src="/ai.js" defer></script>
     <script type="text/javascript" src="/worker.js" defer></script>
+    <script type="text/javascript" src="/cross.js" defer></script>
     <script type="text/javascript" src="/dialog.js" defer></script>
     <title>deepin 25</title>
   </head>
@@ -333,7 +334,7 @@
               <div class="desc">
                 <span style="font-weight: 600"
                   >文字沟通：</span
-                ><span >AI可理解你的指令回答，快速回答问题、对不同语言完成翻译、智能绘画等AI行为，提升你的办公效率。</spandat>
+                ><span >AI可理解你的指令回答，快速回答问题、对不同语言完成翻译、智能绘画等AI行为，提升你的办公效率。</span>
               </div>
               <video
                 id="ai-right"
@@ -470,12 +471,12 @@
               <div class="sub-title">跨端协同
               </div>
               <div class="desc">打破设备边界自由分享，手机设备低延迟同步，实现手机、PC互动</div>
-              <div class="support-btn" @click="openSupportDialog" >查看支持机型 
+              <div class="support-btn">查看支持机型 
               </div>
-              <div class="support-dialog-wrap" @mousewheel.prevent>
+              <div class="support-dialog-wrap">
                 <div class="support-dialog-container">
                   <div class="support-dialog">
-                    <div class="close-btn" @click.stop="closeSupportDialog">
+                    <div class="close-btn">
                       <img class="lozad" data-src="/assets/icons/close.svg" alt="关闭" />
                     </div>
 
@@ -562,14 +563,11 @@
                 id="cross"
                 style="width: 100%"
                 muted
-                preload="metadata"
-                :src="baseUrl + '/assets/videos/cooperate.mp4'"
+                class="lozad"
               ></video>
 
               <div
-                class="replay cursor-pointer transition-all-05"
-                @click="replay('#cross')"
-                
+                class="replay cursor-pointer transition-all-05"                
               >
                 <span >再次播放</span>
                 <img class="lozad" data-src="/assets/icons/replay-text.svg" alt="再次播放" />

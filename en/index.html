@@ -21,6 +21,7 @@
     <script type="text/javascript" src="/touchpad.js" defer></script>
     <script type="text/javascript" src="/dialog.js" defer></script>
     <script type="text/javascript" src="/worker.js" defer></script>
+    <script type="text/javascript" src="/cross.js" defer></script>
     <title>deepin 25</title>
   </head>
   <body>
@@ -336,7 +337,7 @@
               <div class="desc">
                 <span style="font-weight: 600"
                  >Text Communication: </span
-                ><span >AI can understand your commands and respond, quickly answer questions, complete translations in different languages, intelligent drawing, and other AI behaviors, enhancing your work efficiency.</spandat>
+                ><span >AI can understand your commands and respond, quickly answer questions, complete translations in different languages, intelligent drawing, and other AI behaviors, enhancing your work efficiency.</span>
               </div>
               <video
                 id="ai-right"
@@ -477,12 +478,12 @@
               <div class="sub-title">
                 Cross-terminal collaboration</div>
               <div class="desc">Free sharing breaks device boundaries, low latency synchronization of mobile devices,Realize mobile phone and PC interaction</div>
-              <div class="support-btn" @click="openSupportDialog"> 
+              <div class="support-btn"> 
                 View the tested models</div>
-              <div class="support-dialog-wrap" @mousewheel.prevent>
+              <div class="support-dialog-wrap" >
                 <div class="support-dialog-container">
                   <div class="support-dialog">
-                    <div class="close-btn" @click.stop="closeSupportDialog">
+                    <div class="close-btn">
                       <img class="lozad" data-src="/assets/icons/close.svg" alt="关闭" />
                     </div>
 
@@ -569,13 +570,11 @@
                 id="cross"
                 style="width: 100%"
                 muted
-                preload="metadata"
-                :src="baseUrl + '/assets/videos/cooperate.mp4'"
+                class="lozad"
               ></video>
 
               <div
                 class="replay cursor-pointer transition-all-05"
-                @click="replay('#cross')"
                 
               >
                 <span>Play again</span>
