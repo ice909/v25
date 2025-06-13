@@ -5,3 +5,4 @@ window.AppConfig = {
   baseUrl: '',
   lang: lang,
 };
+

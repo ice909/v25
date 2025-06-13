@@ -11,12 +11,13 @@
       type="text/css"
       href="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.css"
     />
-    <script src="/global.js"></script>
+    <script type="text/javascript" src="/global.js"></script>
+    <script type="text/javascript" src="/lozad.min.js"></script>
     <script src="/vue.global.prod.js"></script>
-    <script src="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.js"></script>
-    <script src="/touchpad.js" defer></script>
-    <script src="/worker.js" defer></script>
-    <script src="/dialog.js" defer></script>
+    <script type="text/javascript" src="https://cdn-nu-common.uniontech.com/deepin-component/web-component/v1/main.js"></script>
+    <script type="text/javascript" src="/touchpad.js" defer></script>
+    <script type="text/javascript" src="/worker.js" defer></script>
+    <script type="text/javascript" src="/dialog.js" defer></script>
     <title>deepin 25</title>
   </head>
   <body>
@@ -53,7 +54,7 @@
             controls
           ></video>
           <img
-            src="/assets/icons/close-circle.svg"
+          class="lozad" data-src="/assets/icons/close-circle.svg"
             alt="关闭"
             @click="closeVideoDialog"
           />
@@ -77,19 +78,19 @@
           <div class="title text-center font-bold" >系统稳定，坚如磐石</div>
           <div class="list grid">
             <div class="item">
-              <img src="/assets/imgs/stable.png" alt="图标" />
+              <img class="lozad" data-src="/assets/imgs/stable.png" alt="图标" />
               <p >系统核心层文件为只读权限不可修改，系统使用更放心、更稳固</p>
             </div>
             <div class="item">
-              <img src="/assets/imgs/compatible.png" alt="图标" />
+              <img class="lozad" data-src="/assets/imgs/compatible.png" alt="图标" />
               <p >提供应用和驱动兼容层，软件安装和硬件支持更全面更友好 </p>
             </div>
             <div class="item">
-              <img src="/assets/imgs/atomic-system.png" alt="图标" />
+              <img class="lozad" data-src="/assets/imgs/atomic-system.png" alt="图标" />
               <p >系统原子化设计，更新包小，仅需更新少量模块，速度更快</p>
             </div>
             <div class="item">
-              <img src="/assets/imgs/snapshot.png" alt="图标" />
+              <img class="lozad" data-src="/assets/imgs/snapshot.png" alt="图标" />
               <p>系统支持创建管理快照，更新或启动失败时可自动回滚至上个正常快照</p>
             </div>
           </div>
@@ -107,8 +108,7 @@
           <p class="mt-40" >全新设计的控制中心、任务栏和通知中心，通过更合理的界面空间布局，提高了使用效率。拟物化设计使图标更加直观易懂。QML的重构不仅减少了桌面对系统资源的占用，还显著提升了运行和响应速度，为用户提供更加流畅的体验。</p>
           <div class="video-container relative w-full mt-40 cover-zoom-animal">
             <img
-              class="absolute w-full z-5"
-              src="/assets/imgs/pc.png"
+              class="absolute w-full z-5 lozad" data-src="/assets/imgs/pc.png"
               alt="pc"
             />
             <video
@@ -125,7 +125,7 @@
             @click="replay(`#desktopVideo`)"
           >
             <span>再次播放</span>
-            <img src="/assets/icons/replay-text.svg" alt="再次播放" />
+            <img class="lozad" data-src="/assets/icons/replay-text.svg" alt="再次播放" />
           </div>
         </section>
         <!-- 心之所向，如影随行 -->
@@ -164,7 +164,8 @@
                 ></video>
               </div>
               <img
-                src="/assets/icons/replay-img.svg"
+              class="lozad"
+                data-src="/assets/icons/replay-img.svg"
                 alt="再次重播"
               />
             </div>
@@ -177,7 +178,7 @@
             <div class="data">
               <div class="value">100</div>
               <div class="right">
-                <img src="/assets/icons/quickly.svg" alt="上升" />
+                <img class="lozad" data-src="/assets/icons/quickly.svg" alt="上升" />
                 <span>%</span>
               </div>
             </div>
@@ -188,7 +189,7 @@
             <div class="data">
               <div class="value">50</div>
               <div class="right">
-                <img src="/assets/icons/efficient.svg" alt="上升" />
+                <img class="lozad" data-src="/assets/icons/efficient.svg" alt="上升" />
                 <span>%</span>
               </div>
             </div>
@@ -226,7 +227,7 @@
                     align-self: center;
                     margin-left: 1.25rem;
                   "
-                  src="/assets/imgs/Enhanced-Rubik-Cube-3D-Icon.png"
+                  class="lozad" data-src="/assets/imgs/Enhanced-Rubik-Cube-3D-Icon.png"
                   alt=""
                 />
                 <div>
@@ -244,7 +245,7 @@
                     align-self: center;
                     margin-left: 1.25rem;
                   "
-                  src="/assets/imgs/Enhanced-Thumbs.png"
+                  class="lozad" data-src="/assets/imgs/Enhanced-Thumbs.png"
                   alt=""
                 />
                 <div>
@@ -262,7 +263,7 @@
                     align-self: center;
                     margin-left: 1.25rem;
                   "
-                  src="/assets/imgs/Enhanced-Earth.png"
+                  class="lozad" data-src="/assets/imgs/Enhanced-Earth.png"
                   alt=""
                 />
                 <div>
@@ -278,31 +279,31 @@
               <div class="title">完善的工具链体系</div>
               <div class="container">
                 <div class="item">
-                  <img src="/assets/imgs/App-3D-Icon.png" alt="转置工具" />
+                  <img class="lozad" data-src="/assets/imgs/App-3D-Icon.png" alt="转置工具" />
                   <div class="desc">
                     提供DEB、Appimage、Flatpak等主流格式的应用包转制工具
                   </div>
                 </div>
                 <div class="item">
-                  <img src="/assets/imgs/Website-3D-Icon.png" alt="转置工具" />
+                  <img class="lozad" data-src="/assets/imgs/Website-3D-Icon.png" alt="转置工具" />
                   <div class="desc">
                     提供如意玲珑网页端构建工具，支持可视化打包操作
                   </div>
                 </div>
                 <div class="item">
-                  <img src="/assets/imgs/Box-3D-Icon.png" alt="转置工具" />
+                  <img class="lozad" data-src="/assets/imgs/Box-3D-Icon.png" alt="转置工具" />
                   <div class="desc">
                     提供如意玲珑在线与离线环境的自动化打包工具
                   </div>
                 </div>
                 <div class="item">
-                  <img src="/assets/imgs/Developer-Icon.png" alt="转置工具" />
+                  <img class="lozad" data-src="/assets/imgs/Developer-Icon.png" alt="转置工具" />
                   <div class="desc">
                     提供如意玲珑应用的自动化测试工具，保障构建质量与兼容性
                   </div>
                 </div>
                 <div class="item">
-                  <img src="/assets/imgs/User-Icon.png" alt="转置工具" />
+                  <img class="lozad" data-src="/assets/imgs/User-Icon.png" alt="转置工具" />
                   <div class="desc">
                     建立专属开发者论坛，支持技术交流与社区互动
                   </div>
@@ -330,8 +331,7 @@
               ></video>
               <img
                 @click="replay('#ai-left')"
-                class="replay"
-                src="/assets/icons/replay-img.svg"
+                class="replay lozad" data-src="/assets/icons/replay-img.svg"
                 alt="再次重播"
               />
             </div>
@@ -350,8 +350,8 @@
               ></video>
               <img
                 @click="replay('#ai-right')"
-                class="replay"
-                src="/assets/icons/replay-img.svg"
+                class="replay lozad"
+                data-src="/assets/icons/replay-img.svg"
                 alt="再次重播"
               />
             </div>
@@ -371,7 +371,7 @@
                     width: 64rem;
                     height: 34.75rem;
                   "
-                  src="/assets/imgs/pc.png"
+                  class="lozad" data-src="/assets/imgs/pc.png"
                   alt="笔记本"
                 />
                 <video
@@ -393,7 +393,7 @@
                 @click="replay('.ai .answer .right video')"
               >
                 <span>再次播放</span>
-                <img src="/assets/icons/replay-text.svg" alt="再次播放" />
+                <img class="lozad" data-src="/assets/icons/replay-text.svg" alt="再次播放" />
               </div>
             </div>
           </div>
@@ -411,7 +411,7 @@
                   preload="metadata"
                 ></video>
                 <img
-                  src="/assets/icons/replay-img.svg"
+                class="lozad" data-src="/assets/icons/replay-img.svg"
                   alt="再次重播"
                 />
               </div>
@@ -426,7 +426,7 @@
                   preload="metadata"
                 ></video>
                 <img
-                  src="/assets/icons/replay-img.svg"
+                class="lozad" data-src="/assets/icons/replay-img.svg"
                   alt="再次重播"
                 />
               </div>
@@ -441,7 +441,7 @@
                   preload="metadata"
                 ></video>
                 <img
-                  src="/assets/icons/replay-img.svg"
+                class="lozad" data-src="/assets/icons/replay-img.svg"
                   alt="再次重播"
                 />
               </div>
@@ -470,8 +470,7 @@
         <section class="cross">
           <div class="fullscreen-cover2">
             <img
-              class="w-full max-h-screen"
-              src="/assets/imgs/desktop.png"
+              class="w-full max-h-screen" src="/assets/imgs/desktop.png"
               alt="全屏封面图片"
             />
           </div>
@@ -487,7 +486,7 @@
                 <div class="support-dialog-container">
                   <div class="support-dialog">
                     <div class="close-btn" @click.stop="closeSupportDialog">
-                      <img src="/assets/icons/close.svg" alt="关闭" />
+                      <img class="lozad" data-src="/assets/icons/close.svg" alt="关闭" />
                     </div>
 
                     <div class="support-title">跨端协同安卓端支持设备
@@ -583,7 +582,7 @@
                 
               >
                 <span >再次播放</span>
-                <img src="/assets/icons/replay-text.svg" alt="再次播放" />
+                <img class="lozad" data-src="/assets/icons/replay-text.svg" alt="再次播放" />
               </div>
             </div>
           </div>
@@ -594,27 +593,27 @@
           <div class="icons">
             <div class="img-container">
               <div class="bg"></div>
-              <img src="/assets/icons/原子系统图标.svg" alt="系统" />
+              <img class="lozad" data-src="/assets/icons/原子系统图标.svg" alt="系统" />
             </div>
             <div class="img-container">
               <div class="bg"></div>
-              <img src="/assets/icons/原子系统图标3.svg" alt="系统" />
+              <img class="lozad" data-src="/assets/icons/原子系统图标3.svg" alt="系统" />
             </div>
             <div class="img-container">
               <div class="bg"></div>
-              <img src="/assets/icons/原子系统图标3 2.svg" alt="系统" />
+              <img class="lozad" data-src="/assets/icons/原子系统图标3 2.svg" alt="系统" />
             </div>
             <div class="img-container">
               <div class="bg"></div>
-              <img src="/assets/icons/原子系统图标4.svg" alt="系统" />
+              <img class="lozad" data-src="/assets/icons/原子系统图标4.svg" alt="系统" />
             </div>
           </div>
           <a
             class="btn"
-            :href="`https://www.deepin.org/zh/download`"
+            href="https://www.deepin.org/zh/download"
             target="_blank"
             ><span>立刻下载体验</span
-            ><img src="/assets/icons/download.svg" alt="download"
+            ><img class="lozad" data-src="/assets/icons/download.svg" alt="download"
           /></a>
           <div style="flex: 1"></div>
           <div class="tips">

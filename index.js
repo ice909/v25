@@ -15,6 +15,9 @@ const App = {
     };
   },
   mounted() {
+    const observer = window.lozad();
+    observer.observe();
+
     this.initIntersectionObservers();
     // 全新桌面视频
     this.addVideoEventListener('#desktopVideo', 'ended', () => {
@@ -379,3 +382,4 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.window-tube .content .right .data video')
   );
 });
+
