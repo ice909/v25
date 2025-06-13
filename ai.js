@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
   replayLeftBtn.addEventListener('click', () => {
     aiLeftVideo.currentTime = 0;
     aiLeftVideo.play();
-  })
+  });
   replayRightBtn.addEventListener('click', () => {
     aiRightVideo.currentTime = 0;
     aiRightVideo.play();
-  })
+  });
 
   aiLeftVideo.addEventListener('ended', () => {
     replayLeftBtn.style.visibility = 'visible';
@@ -56,4 +56,32 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   aiIo.observe(document.querySelector('#ai-left'));
   aiIo.observe(document.querySelector('#ai-right'));
+
+  // ai问答
+  const aiAnswerVideo = document.querySelector('#aiAnswerVideo');
+  const aiAnswerReplayBtn = document.querySelector('.ai .answer .replay');
+
+  aiAnswerVideo.setAttribute(
+    'data-src',
+    window.AppConfig.baseUrl + '/assets/videos/aibar.mp4'
+  );
+
+  aiAnswerReplayBtn.addEventListener('click', () => {
+    aiAnswerVideo.currentTime = 0;
+    aiAnswerVideo.play();
+  });
+
+  const aiBario = new IntersectionObserver(
+    (changes) => {
+      changes.forEach((change) => {
+        if (change.isIntersecting) {
+          change.target.play();
+        } else {
+          change.target.pause();
+        }
+      });
+    },
+    { threshold: 1 }
+  );
+  aiBario.observe(document.querySelector('#aiAnswerVideo'));
 });

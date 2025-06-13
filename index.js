@@ -52,20 +52,6 @@ const App = {
 
       fullCoverOb.observe(document.querySelector('.fullscreen-cover2'));
 
-      const aiBario = new IntersectionObserver(
-        (changes) => {
-          changes.forEach((change) => {
-            if (change.isIntersecting) {
-              change.target.play();
-            } else {
-              change.target.pause();
-            }
-          });
-        },
-        { threshold: 1 }
-      );
-      aiBario.observe(document.querySelector('.answer .right video'));
-
       const aiIo = new IntersectionObserver(
         (changes) => {
           changes.forEach((change) => {
@@ -80,15 +66,11 @@ const App = {
               } else {
                 change.target.pause();
               }
-            } else {
-              change.target.pause();
             }
           });
         },
         { threshold: 0.8 }
       );
-      aiIo.observe(document.querySelector('#ai-left'));
-      aiIo.observe(document.querySelector('#ai-right'));
       aiIo.observe(document.querySelector('#cross'));
     },
     handleFullScreenCover(

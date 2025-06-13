@@ -379,14 +379,12 @@
                     width: 49rem;
                     border-radius: 7px;
                   "
-                  :src="baseUrl + '/assets/videos/aibar.mp4'"
+                  class="lozad"
                   muted
-                  preload="metadata"
                 ></video>
               </div>
               <div
                 class="replay transition-all-05 cursor-pointer"
-                @click="replay('.ai .answer .right video')"
               >
                 <span>Play again</span>
                 <img class="lozad" data-src="/assets/icons/replay-text.svg" alt="再次播放" />
