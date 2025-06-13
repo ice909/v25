@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const video = document.querySelector('#desktopVideo');
   const replyBtn = document.querySelector('.desktop .replay');
-  console.log('replyBtn:', replyBtn);
   video.addEventListener('ended', () => {
-    console.log('Video ended');
     replyBtn.classList.add('visible');
   });
   video.addEventListener('play', () => {
