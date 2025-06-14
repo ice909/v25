@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const video = document.querySelector('#cross')
+  const video = document.querySelector('#cross');
   const replayBtn = document.querySelector('.cross .replay');
   video.setAttribute(
     'data-src',
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     video.play();
   });
   video.addEventListener('ended', () => {
-    replayBtn.classList.toggle('visible')
+    replayBtn.classList.toggle('visible');
   });
   video.addEventListener('play', () => {
     replayBtn.classList.remove('visible');
@@ -19,22 +19,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const supportDialogWrap = document.querySelector('.support-dialog-wrap');
 
-  supportDialogWrap.addEventListener('wheel', (e) => {
-    e.preventDefault()
-  }, { passive: false });
+  supportDialogWrap.addEventListener(
+    'wheel',
+    (e) => {
+      e.preventDefault();
+    },
+    { passive: false }
+  );
 
-  const supportBtn = document.querySelector('.cross .support-btn')
+  const supportBtn = document.querySelector('.cross .support-btn');
   supportBtn.addEventListener('click', () => {
     supportDialogWrap.style.display = 'block';
     video.pause();
   });
-  const closeSupportDialog = document.querySelector('.support-dialog .close-btn');
+  const closeSupportDialog = document.querySelector(
+    '.support-dialog .close-btn'
+  );
   closeSupportDialog.addEventListener('click', (e) => {
     // 阻止事件冒泡
     e.stopPropagation();
     supportDialogWrap.style.display = 'none';
     video.play();
-  })
+  });
 
   function handleFullScreenCover(
     cover,
@@ -58,35 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
       cover.style.top = `${
         videoRect.top -
         sectionRect.top +
-        (isCross
-          ? isSmallScreen
-            ? 82
-            : isLargeScreen
-            ? 119
-            : 90
-          : 5)
+        (isCross ? (isSmallScreen ? 82 : isLargeScreen ? 119 : 90) : 5)
       }px`;
       cover.style.left = `${
         videoRect.left -
         sectionRect.left +
-        (isCross
-          ? isSmallScreen
-            ? 193
-            : isLargeScreen
-            ? 279
-            : 211
-          : 0)
+        (isCross ? (isSmallScreen ? 193 : isLargeScreen ? 279 : 211) : 0)
       }px`;
       cover.style.right = `${
         sectionRect.right -
         videoRect.right +
-        (isCross
-          ? isSmallScreen
-            ? 211
-            : isLargeScreen
-            ? 301
-            : 230
-          : 0)
+        (isCross ? (isSmallScreen ? 211 : isLargeScreen ? 301 : 230) : 0)
       }px`;
       cover.style.borderRadius = '7px';
       setTimeout(() => {
@@ -162,4 +150,4 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   // 监听ai问答重播按钮可见
   crossIo2.observe(document.querySelector('.ai .answer .right .replay span'));
- })
+});

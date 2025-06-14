@@ -105,10 +105,10 @@
   max-width: none;
 }
 
-.row-content.right .container>.item>.desc {
+.row-content.right .container > .item > .desc {
   font-size: 1.2rem;
 }
 
-.linyaps a{
+.linyaps a {
   font-size: 1.1rem;
 }

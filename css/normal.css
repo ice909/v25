@@ -106,22 +106,21 @@
   grid-template-columns: 38.75rem minmax(0, 47.5rem);
 }
 
-.linyaps a{
+.linyaps a {
   margin-top: 4.81rem;
   display: inline-block;
   width: 7.5rem;
   height: 2.75rem;
-  background: #0052D9;
+  background: #0052d9;
   border-radius: 0.25rem;
   font-weight: 500;
   font-size: 1.25rem;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   text-align: center;
   line-height: 2.75rem;
   cursor: pointer;
 }
-
 
 .linyaps-container .row-title {
   padding-left: 2.5rem;
@@ -131,7 +130,7 @@
   margin-top: 2.5rem;
   font-weight: 500;
   font-size: 1.5rem;
-  color: #7F8287;
+  color: #7f8287;
   letter-spacing: 0;
   line-height: 2.25rem;
   max-width: 43.75rem;
@@ -160,7 +159,7 @@
   gap: 1.88rem;
 }
 
-.row-content.right .container>.item {
+.row-content.right .container > .item {
   flex: 1;
   background-image: linear-gradient(118deg, #ffffff94 7%, #ffffff5e 100%);
   border-radius: 2rem;
@@ -171,31 +170,31 @@
   padding: 1.25rem;
 }
 
-.row-content.right .container>.item>img {
+.row-content.right .container > .item > img {
   width: 6.25rem;
   height: 6.25rem;
   align-self: center;
 }
 
-.row-content.right .container>.item>.desc {
+.row-content.right .container > .item > .desc {
   font-weight: 400;
   font-size: 1.5rem;
-  color: #1E1E1E;
+  color: #1e1e1e;
   letter-spacing: 0;
   line-height: 2.25rem;
   align-self: center;
 }
 
-.linyaps-container .row-content>.title {
+.linyaps-container .row-content > .title {
   font-weight: 600;
   font-size: 1.75rem;
-  color: #1E1E1E;
+  color: #1e1e1e;
   letter-spacing: 0;
   line-height: 3.5rem;
   margin-left: 1.25rem;
 }
 
-.linyaps-container .row-content>.item{
+.linyaps-container .row-content > .item {
   flex: 1;
   background-image: linear-gradient(118deg, #ffffff94 7%, #ffffff5e 100%);
   border-radius: 2rem;
@@ -205,20 +204,20 @@
   gap: 1.88rem;
 }
 
-.row-content>.item .title {
+.row-content > .item .title {
   margin-top: 3.75rem;
   font-weight: 600;
   font-size: 1.75rem;
-  color: #1E1E1E;
+  color: #1e1e1e;
   letter-spacing: 0;
   line-height: 3.5rem;
 }
 
-.row-content>.item .desc {
+.row-content > .item .desc {
   margin-top: 0.75rem;
   font-weight: 400;
   font-size: 1.5rem;
-  color: #1E1E1E;
+  color: #1e1e1e;
   letter-spacing: 0;
   line-height: 2.25rem;
   max-width: 23.75rem;
@@ -248,25 +247,28 @@
   padding: 0.09rem;
   border-radius: 17px;
   /* --- 1. 渐变边框 (来自方法二) --- */
-  border: 0.09rem solid transparent; 
-  
+  border: 0.09rem solid transparent;
+
   /* 使用双背景技术 */
-  background-image: 
-    linear-gradient(white, white), /* 内层背景, 颜色要和你的页面背景色一致 */
-    linear-gradient(90deg, #064BFF 0%, #7500FF 100%); /* 外层渐变，将作为边框 */
+  background-image: linear-gradient(white, white),
+    /* 内层背景, 颜色要和你的页面背景色一致 */
+      linear-gradient(90deg, #064bff 0%, #7500ff 100%); /* 外层渐变，将作为边框 */
 
   /* 定义背景的绘制区域 */
   background-origin: border-box;
 
   /* 裁剪背景，这是最关键的一步 */
-  background-clip: 
-    padding-box, /* 将内层白色背景裁剪到内边距，露出边框区域 */
-    border-box;  /* 让外层渐变背景铺满整个边框 */
+  background-clip: padding-box,
+    /* 将内层白色背景裁剪到内边距，露出边框区域 */ border-box; /* 让外层渐变背景铺满整个边框 */
 }
 
 .linyaps-container .title-container .text {
   margin: 0 0.88rem;
-  background-image: linear-gradient(104deg, #0050FF 0%, #7500FF 100%); /* 文字的渐变 */
+  background-image: linear-gradient(
+    104deg,
+    #0050ff 0%,
+    #7500ff 100%
+  ); /* 文字的渐变 */
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

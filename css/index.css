@@ -100,7 +100,6 @@ body {
   border-radius: 4px;
   gap: 16px;
   padding: 0 40px;
-  border: 2px solid linear-gradient(202deg, #6fbbff 100%, #6988ff 100%);
 }
 
 .banner1 .btn span {
@@ -158,8 +157,6 @@ body {
   text-align: center;
   line-height: 2.25rem;
 }
-
-
 
 .tips {
   margin-bottom: 3.75rem;
