@@ -2,6 +2,10 @@
   letter-spacing: 0;
 }
 
+.banner1 {
+  background-image: url('../assets/imgs/banner.jpg');
+}
+
 .en .banner1 .btn {
   width: 14.95rem;
   text-wrap: nowrap;

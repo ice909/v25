@@ -72,7 +72,7 @@ body {
 
 .banner1 {
   height: 780px;
-  background-image: url('/assets/imgs/banner.jpg');
+  background-image: url('../assets/imgs/banner.jpg');
 }
 
 .banner1 .content {
