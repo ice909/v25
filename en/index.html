@@ -621,6 +621,13 @@
       </div>
       <d-footer lang="en"></d-footer>
     </div>
+    <script>
+    // 动态加载非关键CSS
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '../css/normal.css';
+      document.head.appendChild(link);
+  </script>
     <script type="module" src="../js/index.js"></script>
   </body>
 </html>
