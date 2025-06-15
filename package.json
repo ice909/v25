@@ -1,0 +1,32 @@
+{
+  "name": "v25",
+  "version": "1.0.0",
+  "description": "v25介绍页",
+  "scripts": {
+    "clean": "rm -rf v25 && mkdir v25",
+    "copy:assets": "cp -r assets v25/",
+    "copy:favicon": "cp favicon.ico v25/",
+    "minify:root-html": "for file in *.html; do html-minifier \"$file\" --output \"v25/$file\" --collapse-whitespace --remove-comments --minify-js true --minify-css true; done",
+    "minify:en-html": "mkdir -p v25/en && html-minifier en/index.html --output v25/en/index.html --collapse-whitespace --remove-comments --minify-js true --minify-css true",
+    "minify:css": "mkdir -p v25/css && for file in css/*.css; do cleancss -O1 \"$file\" -o \"v25/$file\"; done",
+    "minify:js": "mkdir -p v25/js && for file in js/*.js; do terser \"$file\" -c -m -o \"v25/$file\"; done",
+    "build": "npm run clean && npm run copy:assets && npm run copy:favicon && npm run minify:root-html && npm run minify:en-html && npm run minify:css && npm run minify:js",
+    "serve": "serve v25"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "html-minifier": "^4.0.0",
+    "terser": "^5.42.0",
+    "serve": "^14.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ice909/v25.git"
+  },
+  "author": "ice",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/ice909/v25/issues"
+  },
+  "homepage": "https://github.com/ice909/v25#readme"
+}
