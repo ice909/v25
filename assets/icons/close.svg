@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="22px" viewBox="0 0 23 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>menu_normal</title>
+    <g id="页面1.1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="设备弹窗" transform="translate(-1583, -304)" fill="#000000">
+            <g id="编组-5" transform="translate(180, 166)">
+                <g id="电脑" transform="translate(557, 93)">
+                    <g id="手机pc" transform="translate(712.8938, 45.3053)">
+                        <g id="标题栏/常态" transform="translate(0.0869, 0)">
+                            <g id="close_normal" transform="translate(133.9831, 0.0158)">
+                                <rect id="Rectangle-10" fill-opacity="0.288836051" opacity="0" x="0" y="0" width="21.6101695" height="21.6101695"></rect>
+                                <g transform="translate(8.465, 8.465)" fill-opacity="0.7" fill-rule="nonzero" id="Combined-Shape">
+                                    <polygon points="0.458420922 4.73701619 0.305613948 4.88982316 2.77954266e-13 4.58420922 0.152806974 4.43140224 2.13929763 2.44491158 0.152806974 0.458420922 2.77954266e-13 0.305613948 0.305613948 5.55908533e-13 0.458420922 0.152806974 2.44491158 2.13929763 4.43140224 0.152806974 4.58420922 -2.77954266e-13 4.88982316 0.305613948 4.73701619 0.458420922 2.75052553 2.44491158 4.73701619 4.43140224 4.88982316 4.58420922 4.58420922 4.88982316 4.43140224 4.73701619 2.44491158 2.75052553"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

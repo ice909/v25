@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>上升（更高效</title>
+    <defs>
+        <linearGradient x1="65.378798%" y1="11.1932991%" x2="41.1659416%" y2="81.2669341%" id="linearGradient-1">
+            <stop stop-color="#00FF42" offset="0%"></stop>
+            <stop stop-color="#00FFC9" stop-opacity="0.540252686" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01-首页" transform="translate(-1449, -4544)">
+            <g id="编组-7" transform="translate(980, 4290)">
+                <g id="上升（更高效" transform="translate(469, 254)">
+                    <rect id="矩形" x="0" y="0" width="40" height="40"></rect>
+                    <path d="M31.53,2.4 L11.53,10.635 L20.94,15.81 C20.94,15.81 12.705,36.05 0,36.52 C0,36.52 18.5875,44.05 30.5875,20.05 L40,25.2225 L31.53,2.4 Z" id="路径" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
