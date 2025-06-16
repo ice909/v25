@@ -131,8 +131,8 @@ body {
 
 .monolith .list {
   margin-top: 180px;
-  padding: 0 11.25rem;
-  grid-template-columns: repeat(4, 1fr);
+  padding: 0 19rem;
+  grid-template-columns: repeat(3, 1fr);
   gap: auto;
 }
 
