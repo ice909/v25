@@ -119,12 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
       (changes) => {
         changes.forEach((change) => {
           if (change.isIntersecting) {
-            const onCanPlay = () => {
-              change.target.play();
-              change.target.removeEventListener('canplay', onCanPlay);
-            };
-            change.target.addEventListener('canplay', onCanPlay);
-            change.target.load();
+            change.target.play();
           } else {
             change.target.pause();
           }
@@ -521,7 +516,6 @@ document.addEventListener('DOMContentLoaded', function () {
             video.src =
               window.AppConfig.oldBaseUrl +
               videoSrc[index][i === 0 ? 'left' : 'right'];
-            video.load();
             video.play();
           });
         }
@@ -553,12 +547,7 @@ document.addEventListener('DOMContentLoaded', function () {
           );
           if (change.isIntersecting) {
             videos.forEach((video) => {
-              const onCanPlay = () => {
-                video.play();
-                video.removeEventListener('canplay', onCanPlay);
-              };
-              video.addEventListener('canplay', onCanPlay);
-              video.load();
+              video.play();
             });
           } else {
             videos.forEach((video) => {
