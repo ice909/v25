@@ -7,6 +7,14 @@ const videoSrc = [
     left: '/assets/videos/触控板四指左右.mp4',
     right: '/assets/videos/触控板四指切换桌面.mp4',
   },
+  // {
+  //   left: '/assets/videos/touchpad-three-finger-up-down.mp4',
+  //   right: '/assets/videos/touchpad-three-finger-window-size.mp4',
+  // },
+  // {
+  //   left: '/assets/videos/touchpad-four-finger-left-right.mp4',
+  //   right: '/assets/videos/touchpad-four-finger-switch-desktop.mp4',
+  // },
 ];
 
 let workerCurrentIndex = 1; // 初始居中
@@ -41,11 +49,18 @@ const translations = {
   ],
 };
 
-const workerVideos = [
-  '/assets/videos/ai-search.mp4',
-  '/assets/videos/ai-write.mp4',
-  '/assets/videos/ai-assistant.mp4',
-];
+const workerVideos = {
+  zh: [
+    '/assets/videos/ai-search.mp4',
+    '/assets/videos/ai-write.mp4',
+    '/assets/videos/ai-assistant.mp4',
+  ],
+  en: [
+    '/assets/videos/ai-search-en.mp4',
+    '/assets/videos/ai-write-en.mp4',
+    '/assets/videos/ai-assistant-en.mp4',
+  ],
+};
 
 document.addEventListener('DOMContentLoaded', function () {
   function ai() {
@@ -56,14 +71,25 @@ document.addEventListener('DOMContentLoaded', function () {
       '.ai .content .right .replay'
     );
 
-    aiLeftVideo.setAttribute(
-      'data-src',
-      window.AppConfig.baseUrl + '/assets/videos/voice.mp4'
-    );
-    aiRightVideo.setAttribute(
-      'data-src',
-      window.AppConfig.baseUrl + '/assets/videos/qa.mp4'
-    );
+    if (window.AppConfig.lang === 'en') {
+      aiLeftVideo.setAttribute(
+        'data-src',
+        window.AppConfig.baseUrl + '/assets/videos/voice-en.mp4'
+      );
+      aiRightVideo.setAttribute(
+        'data-src',
+        window.AppConfig.baseUrl + '/assets/videos/qa-en.mp4'
+      );
+    } else {
+      aiLeftVideo.setAttribute(
+        'data-src',
+        window.AppConfig.baseUrl + '/assets/videos/voice.mp4'
+      );
+      aiRightVideo.setAttribute(
+        'data-src',
+        window.AppConfig.baseUrl + '/assets/videos/qa.mp4'
+      );
+    }
 
     replayLeftBtn.addEventListener('click', () => {
       aiLeftVideo.currentTime = 0;
@@ -113,10 +139,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const aiAnswerVideo = document.querySelector('#aiAnswerVideo');
     const aiAnswerReplayBtn = document.querySelector('.ai .answer .replay');
 
-    aiAnswerVideo.setAttribute(
-      'data-src',
-      window.AppConfig.baseUrl + '/assets/videos/aibar.mp4'
-    );
+    if (window.AppConfig.lang === 'en') {
+      aiAnswerVideo.setAttribute(
+        'data-src',
+        window.AppConfig.baseUrl + '/assets/videos/aibar-en.mp4'
+      );
+    } else {
+      aiAnswerVideo.setAttribute(
+        'data-src',
+        window.AppConfig.baseUrl + '/assets/videos/aibar.mp4'
+      );
+    }
 
     aiAnswerReplayBtn.addEventListener('click', () => {
       aiAnswerVideo.currentTime = 0;
@@ -141,10 +174,11 @@ document.addEventListener('DOMContentLoaded', function () {
   function cross() {
     const video = document.querySelector('#cross');
     const replayBtn = document.querySelector('.cross .replay');
-    video.setAttribute(
-      'data-src',
-      window.AppConfig.baseUrl + '/assets/videos/cooperate.mp4'
-    );
+    const src =
+      window.AppConfig.lang === 'en'
+        ? '/assets/videos/cooperate-en.mp4'
+        : '/assets/videos/cooperate.mp4';
+    video.setAttribute('data-src', window.AppConfig.baseUrl + src);
 
     replayBtn.addEventListener('click', () => {
       video.currentTime = 0;
@@ -456,7 +490,7 @@ document.addEventListener('DOMContentLoaded', function () {
     videos.forEach((video, i) => {
       video.setAttribute(
         'data-src',
-        window.AppConfig.baseUrl + videoSrc[0][i === 0 ? 'left' : 'right']
+        window.AppConfig.oldBaseUrl + videoSrc[0][i === 0 ? 'left' : 'right']
       );
     });
     const replayBtn = document.querySelector(
@@ -485,7 +519,7 @@ document.addEventListener('DOMContentLoaded', function () {
           btn.classList.add('active');
           videos.forEach((video, i) => {
             video.src =
-              window.AppConfig.baseUrl +
+              window.AppConfig.oldBaseUrl +
               videoSrc[index][i === 0 ? 'left' : 'right'];
             video.load();
             video.play();
@@ -621,7 +655,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const worker0 = document.getElementById('worker0');
     worker0.setAttribute(
       'data-src',
-      window.AppConfig.baseUrl + workerVideos[0]
+      window.AppConfig.baseUrl + workerVideos[window.AppConfig.lang][0]
     );
     worker0.addEventListener('ended', () => {
       document.querySelector('.worker .banner .img.left img').style.visibility =
@@ -636,7 +670,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const worker1 = document.getElementById('worker1');
     worker1.setAttribute(
       'data-src',
-      window.AppConfig.baseUrl + workerVideos[1]
+      window.AppConfig.baseUrl + workerVideos[window.AppConfig.lang][1]
     );
     worker1.addEventListener('ended', () => {
       document.querySelector(
@@ -652,7 +686,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const worker2 = document.getElementById('worker2');
     worker2.setAttribute(
       'data-src',
-      window.AppConfig.baseUrl + workerVideos[2]
+      window.AppConfig.baseUrl + workerVideos[window.AppConfig.lang][2]
     );
     worker2.addEventListener('ended', () => {
       document.querySelector(
