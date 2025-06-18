@@ -62,6 +62,8 @@ const workerVideos = {
   ],
 };
 
+const observers = [];
+
 document.addEventListener('DOMContentLoaded', function () {
   function ai() {
     const aiLeftVideo = document.querySelector('#ai-left');
@@ -115,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 监听视频是否可见
 
-    const aiIo = new IntersectionObserver(
+    const aiOb = new IntersectionObserver(
       (changes) => {
         changes.forEach((change) => {
           if (change.isIntersecting) {
@@ -127,8 +129,9 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       { threshold: 0.8 }
     );
-    aiIo.observe(document.querySelector('#ai-left'));
-    aiIo.observe(document.querySelector('#ai-right'));
+    aiOb.observe(document.querySelector('#ai-left'));
+    aiOb.observe(document.querySelector('#ai-right'));
+    observers.push(aiOb);
 
     // ai问答
     const aiAnswerVideo = document.querySelector('#aiAnswerVideo');
@@ -151,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
       aiAnswerVideo.play();
     });
 
-    const aiBario = new IntersectionObserver(
+    const aiBarOb = new IntersectionObserver(
       (changes) => {
         changes.forEach((change) => {
           if (change.isIntersecting) {
@@ -163,7 +166,9 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       { threshold: 1 }
     );
-    aiBario.observe(document.querySelector('#aiAnswerVideo'));
+    aiBarOb.observe(document.querySelector('#aiAnswerVideo'));
+
+    observers.push(aiBarOb);
   }
 
   function cross() {
@@ -278,8 +283,9 @@ document.addEventListener('DOMContentLoaded', function () {
     );
 
     fullCoverOb.observe(document.querySelector('.fullscreen-cover2'));
+    observers.push(fullCoverOb);
 
-    const aiIo = new IntersectionObserver(
+    const aiOb = new IntersectionObserver(
       (changes) => {
         changes.forEach((change) => {
           if (change.target.id === 'cross') {
@@ -298,9 +304,11 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       { threshold: 0.8 }
     );
-    aiIo.observe(document.querySelector('#cross'));
+    aiOb.observe(document.querySelector('#cross'));
 
-    const crossIo2 = new IntersectionObserver(
+    observers.push(aiOb);
+
+    const crossOb = new IntersectionObserver(
       (changes) => {
         changes.forEach((change) => {
           if (change.target.tagName === 'SPAN') {
@@ -318,7 +326,8 @@ document.addEventListener('DOMContentLoaded', function () {
       { threshold: 0.5 }
     );
     // 监听ai问答重播按钮可见
-    crossIo2.observe(document.querySelector('.ai .answer .right .replay span'));
+    crossOb.observe(document.querySelector('.ai .answer .right .replay span'));
+    observers.push(crossOb);
   }
 
   function desktop() {
@@ -341,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function () {
       video.play();
     });
 
-    const io = new IntersectionObserver(
+    const monolithOb = new IntersectionObserver(
       (changes) => {
         if (changes[0].isIntersecting) {
           const cover = document.querySelector('.fullscreen-cover');
@@ -355,7 +364,8 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       { threshold: [0.8] }
     );
-    io.observe(document.querySelector('.monolith .title'));
+    monolithOb.observe(document.querySelector('.monolith .title'));
+    observers.push(monolithOb);
 
     const fullCoverOb = new IntersectionObserver(
       (changes) => {
@@ -401,8 +411,9 @@ document.addEventListener('DOMContentLoaded', function () {
     );
 
     fullCoverOb.observe(document.querySelector('.fullscreen-cover'));
+    observers.push(fullCoverOb);
 
-    const desktopIo = new IntersectionObserver(
+    const desktopOb = new IntersectionObserver(
       (changes) => {
         changes.forEach((change) => {
           if (change.isIntersecting) {
@@ -420,7 +431,8 @@ document.addEventListener('DOMContentLoaded', function () {
       { threshold: 1 }
     );
 
-    desktopIo.observe(document.querySelector('.desktop video'));
+    desktopOb.observe(document.querySelector('.desktop video'));
+    observers.push(desktopOb);
   }
 
   function dialog() {
@@ -460,7 +472,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const monolith = document.querySelector('.monolith');
     const maxRadius = 680;
 
-    const observer = new IntersectionObserver(
+    const monolithOb = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const visibleHeight = entry.intersectionRect.height;
@@ -479,7 +491,8 @@ document.addEventListener('DOMContentLoaded', function () {
       { threshold: Array.from({ length: 101 }, (_, i) => i / 100) }
     );
 
-    observer.observe(monolith);
+    monolithOb.observe(monolith);
+    observers.push(monolithOb);
   }
 
   function touchpad() {
@@ -544,7 +557,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    const touchpad = new IntersectionObserver(
+    const touchpadOb = new IntersectionObserver(
       (changes) => {
         changes.forEach((change) => {
           const videos = document.querySelectorAll(
@@ -564,9 +577,10 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       { threshold: 0.5 }
     );
-    touchpad.observe(
+    touchpadOb.observe(
       document.querySelector('.window-tube .content .right .data video')
     );
+    observers.push(touchpadOb);
   }
 
   function worker() {
@@ -694,7 +708,7 @@ document.addEventListener('DOMContentLoaded', function () {
       ).style.visibility = 'hidden';
     });
 
-    const workerIo = new IntersectionObserver(
+    const workerOb = new IntersectionObserver(
       (changes) => {
         changes.forEach((change) => {
           if (change.isIntersecting) {
@@ -709,9 +723,11 @@ document.addEventListener('DOMContentLoaded', function () {
       { threshold: 0.9 }
     );
 
-    workerIo.observe(document.querySelector('#worker0'));
-    workerIo.observe(document.querySelector('#worker1'));
-    workerIo.observe(document.querySelector('#worker2'));
+    workerOb.observe(document.querySelector('#worker0'));
+    workerOb.observe(document.querySelector('#worker1'));
+    workerOb.observe(document.querySelector('#worker2'));
+
+    observers.push(workerOb);
   }
 
   ai();
@@ -721,4 +737,10 @@ document.addEventListener('DOMContentLoaded', function () {
   monolith();
   touchpad();
   worker();
+});
+
+window.addEventListener('beforeunload', () => {
+  observers.forEach((observer) => {
+    if (observer) observer.disconnect();
+  });
 });
