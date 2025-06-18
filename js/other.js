@@ -427,10 +427,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const video = document.querySelector('#dialog-video');
     const videoDialog = document.querySelector('.video-dialog');
     if (window.AppConfig.lang == 'zh')
-      video.src = window.AppConfig.baseUrl + '/assets/videos/v25-preview.mp4';
+      video.src = window.AppConfig.baseUrl + '/assets/videos/v25-release.mp4';
     else
       video.src =
-        window.AppConfig.baseUrl + '/assets/videos/v25-preview-en.mp4';
+        window.AppConfig.baseUrl + '/assets/videos/v25-release-en.mp4';
 
     const closeBtn = document.querySelector('.video-dialog img');
     // 关闭对话框
