@@ -1,1 +1,1 @@
-const isEn=window.location.pathname.includes("/en"),lang=isEn?"en":"zh";window.AppConfig={baseUrl:"https://cdn-nu-common.uniontech.com/deepin-component/v25-preview",lang:lang};
+const isEn=window.location.pathname.includes("/en"),lang=isEn?"en":"zh";window.AppConfig={oldBaseUrl:"https://cdn-nu-common.uniontech.com/deepin-component/v25-preview",baseUrl:"https://cdn-nu-common.uniontech.com/deepin-component/v25",lang:lang};
