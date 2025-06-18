@@ -577,17 +577,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function worker() {
     // 左右切换按钮绑定点击事件
+    const workerBanner = document.querySelector('.worker .banner');
     const items = document.querySelectorAll('.worker .banner .img');
     const leftBtn = document.querySelector('.worker .toolbar .button.left');
     const rightBtn = document.querySelector('.worker .toolbar .button.right');
-    const replyBtns = document.querySelectorAll('.worker .banner .img img');
 
-    replyBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const video = items[workerCurrentIndex].querySelector('video');
+    workerBanner.addEventListener('click', (e) => {
+      if (e.target.matches('.worker .banner .img img')) {
+        const video = document.getElementById(`worker${workerCurrentIndex}`);
         video.currentTime = 0;
         video.play();
-      });
+      } else if (e.target.closest('.worker .banner .img')) {
+        const clickedItem = e.target.closest('.worker .banner .img');
+        const idx = Array.from(
+          document.querySelectorAll('.worker .banner .img')
+        ).indexOf(clickedItem);
+
+        if (workerCurrentIndex === idx) return;
+        if (idx > workerCurrentIndex) switchNextWorkerBanner();
+        else switchPrevWorkerBanner();
+      }
     });
 
     function updateWorkerBanner() {
@@ -641,15 +650,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     leftBtn.addEventListener('click', switchPrevWorkerBanner);
     rightBtn.addEventListener('click', switchNextWorkerBanner);
-
-    // 图片点击切换
-    items.forEach((item, idx) => {
-      item.addEventListener('click', function () {
-        if (workerCurrentIndex === idx) return;
-        if (idx > workerCurrentIndex) switchNextWorkerBanner();
-        else switchPrevWorkerBanner();
-      });
-    });
 
     // 初始化视频观察器
     const worker0 = document.getElementById('worker0');
