@@ -426,11 +426,16 @@ document.addEventListener('DOMContentLoaded', function () {
   function dialog() {
     const video = document.querySelector('#dialog-video');
     const videoDialog = document.querySelector('.video-dialog');
-    if (window.AppConfig.lang == 'zh')
-      video.src = window.AppConfig.baseUrl + '/assets/videos/v25-release.mp4';
+    if (window.AppConfig.lang == 'en')
+      video.setAttribute(
+        'data-src',
+        window.AppConfig.baseUrl + '/assets/videos/v25-release-en.mp4'
+      );
     else
-      video.src =
-        window.AppConfig.baseUrl + '/assets/videos/v25-release-en.mp4';
+      video.setAttribute(
+        'data-src',
+        window.AppConfig.baseUrl + '/assets/videos/v25-release.mp4'
+      );
 
     const closeBtn = document.querySelector('.video-dialog img');
     // 关闭对话框
