@@ -64,6 +64,8 @@ const workerVideos = {
 
 const observers = [];
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 document.addEventListener('DOMContentLoaded', function () {
   function ai() {
     const aiLeftVideo = document.querySelector('#ai-left');
@@ -367,6 +369,33 @@ document.addEventListener('DOMContentLoaded', function () {
     monolithOb.observe(document.querySelector('.monolith .title'));
     observers.push(monolithOb);
 
+    async function animateElement(el) {
+      await delay(600);
+
+      const sectionRect = document
+        .querySelector('.desktop')
+        .getBoundingClientRect();
+      const videoRect = document
+        .querySelector('.desktop video')
+        .getBoundingClientRect();
+
+      el.style.top = `${videoRect.top - sectionRect.top + 5}px`;
+      el.style.left = `${videoRect.left - sectionRect.left}px`;
+      el.style.right = `${sectionRect.right - videoRect.right}px`;
+      el.style.borderRadius = '7px';
+
+      await delay(500);
+      el.style.opacity = 0;
+
+      await delay(500);
+      el.style.display = 'none';
+      el.style.top = '0';
+      el.style.left = '0';
+      el.style.right = '0';
+      el.style.transition = 'none';
+      document.querySelector('.desktop video').play();
+    }
+
     const fullCoverOb = new IntersectionObserver(
       (changes) => {
         changes.forEach((change) => {
@@ -375,35 +404,7 @@ document.addEventListener('DOMContentLoaded', function () {
               top: document.querySelector('.desktop').offsetTop,
               behavior: 'smooth',
             });
-            setTimeout(() => {
-              const sectionRect = document
-                .querySelector('.desktop')
-                .getBoundingClientRect();
-              const videoRect = document
-                .querySelector('.desktop video')
-                .getBoundingClientRect();
-              change.target.style.top = `${
-                videoRect.top - sectionRect.top + 5
-              }px`;
-              change.target.style.left = `${
-                videoRect.left - sectionRect.left
-              }px`;
-              change.target.style.right = `${
-                sectionRect.right - videoRect.right
-              }px`;
-              change.target.style.borderRadius = '7px';
-              setTimeout(() => {
-                change.target.style.opacity = 0;
-                setTimeout(() => {
-                  change.target.style.display = 'none';
-                  change.target.style.top = '0';
-                  change.target.style.left = '0';
-                  change.target.style.right = '0';
-                  change.target.style.transition = 'none';
-                  document.querySelector('.desktop video').play();
-                }, 500);
-              }, 500);
-            }, 500);
+            animateElement(change.target);
           }
         });
       },

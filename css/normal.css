@@ -15,7 +15,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  transition: all 0.5s ease;
+  transition: all 0.8s ease;
 }
 
 .desktop .video-container {
