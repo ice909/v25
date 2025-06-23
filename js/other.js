@@ -72,6 +72,15 @@ function setVideoSource(video, src) {
   video.setAttribute('data-src', src);
 }
 
+function addReplayEvent(video, btn) {
+  if (btn && video) {
+    btn.addEventListener('click', () => {
+      video.currentTime = 0;
+      video.play();
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   function ai() {
     const aiLeftVideo = document.querySelector('#ai-left');
@@ -89,14 +98,8 @@ document.addEventListener('DOMContentLoaded', function () {
       setVideoSource(aiRightVideo, baseUrl + '/assets/videos/qa.mp4');
     }
 
-    replayLeftBtn.addEventListener('click', () => {
-      aiLeftVideo.currentTime = 0;
-      aiLeftVideo.play();
-    });
-    replayRightBtn.addEventListener('click', () => {
-      aiRightVideo.currentTime = 0;
-      aiRightVideo.play();
-    });
+    addReplayEvent(aiLeftVideo, replayLeftBtn);
+    addReplayEvent(aiRightVideo, replayRightBtn);
 
     aiLeftVideo.addEventListener('ended', () => {
       replayLeftBtn.style.visibility = 'visible';
@@ -140,10 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
         : '/assets/videos/aibar.mp4');
     setVideoSource(aiAnswerVideo, src);
 
-    aiAnswerReplayBtn.addEventListener('click', () => {
-      aiAnswerVideo.currentTime = 0;
-      aiAnswerVideo.play();
-    });
+    addReplayEvent(aiAnswerVideo, aiAnswerReplayBtn);
 
     const aiBarOb = new IntersectionObserver(
       (changes) => {
@@ -171,10 +171,8 @@ document.addEventListener('DOMContentLoaded', function () {
         : '/assets/videos/cooperate.mp4';
     setVideoSource(video, baseUrl + src);
 
-    replayBtn.addEventListener('click', () => {
-      video.currentTime = 0;
-      video.play();
-    });
+    addReplayEvent(video, replayBtn);
+
     video.addEventListener('ended', () => {
       replayBtn.classList.toggle('visible');
     });
@@ -338,10 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setVideoSource(video, baseUrl + src);
 
-    replyBtn.addEventListener('click', () => {
-      video.currentTime = 0;
-      video.play();
-    });
+    addReplayEvent(video, replyBtn);
 
     const monolithOb = new IntersectionObserver(
       (changes) => {
