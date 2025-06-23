@@ -81,6 +81,26 @@ function addReplayEvent(video, btn) {
   }
 }
 
+/**
+ * IntersectionObserver 工厂函数
+ * @param {*} obj : threshold 交叉阈值，默认值为 1, onEnter 进入时的回调函数, onLeave 离开时的回调函数
+ * @returns IntersectionObserver 实例
+ */
+function createObserver({ threshold = 1, onEnter, onLeave }) {
+  return new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          onEnter && onEnter(entry.target, entry);
+        } else {
+          onLeave && onLeave(entry.target, entry);
+        }
+      });
+    },
+    { threshold }
+  );
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   function ai() {
     const aiLeftVideo = document.querySelector('#ai-left');
@@ -116,18 +136,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 监听视频是否可见
 
-    const aiOb = new IntersectionObserver(
-      (changes) => {
-        changes.forEach((change) => {
-          if (change.isIntersecting) {
-            change.target.play();
-          } else {
-            change.target.pause();
-          }
-        });
+    const aiOb = createObserver({
+      threshold: 0.8,
+      onEnter: (video) => {
+        video.play();
       },
-      { threshold: 0.8 }
-    );
+      onLeave: (video) => {
+        video.pause();
+      },
+    });
+
     aiOb.observe(document.querySelector('#ai-left'));
     aiOb.observe(document.querySelector('#ai-right'));
     observers.push(aiOb);
@@ -145,20 +163,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     addReplayEvent(aiAnswerVideo, aiAnswerReplayBtn);
 
-    const aiBarOb = new IntersectionObserver(
-      (changes) => {
-        changes.forEach((change) => {
-          if (change.isIntersecting) {
-            change.target.play();
-          } else {
-            change.target.pause();
-          }
-        });
+    const aiBarOb = createObserver({
+      threshold: 1,
+      onEnter: (video) => {
+        video.play();
       },
-      { threshold: 1 }
-    );
+      onLeave: (video) => {
+        video.pause();
+      },
+    });
     aiBarOb.observe(document.querySelector('#aiAnswerVideo'));
-
     observers.push(aiBarOb);
   }
 
@@ -297,23 +311,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     observers.push(aiOb);
 
-    const crossOb = new IntersectionObserver(
-      (changes) => {
-        changes.forEach((change) => {
-          if (change.target.tagName === 'SPAN') {
-            if (change.isIntersecting) {
-              const cover = document.querySelector('.fullscreen-cover2');
-              cover.style.opacity = 1;
-              cover.style.transition = 'all 0.5s ease-in-out';
-              cover.style.display = 'block';
-              document.querySelector('#cross').currentTime = 0;
-              document.querySelector('#cross').pause();
-            }
-          }
-        });
+    const crossOb = createObserver({
+      threshold: 0.5,
+      onEnter: (target) => {
+        if (target.tagName === 'SPAN') {
+          const cover = document.querySelector('.fullscreen-cover2');
+          cover.style.opacity = 1;
+          cover.style.transition = 'all 0.5s ease-in-out';
+          cover.style.display = 'block';
+          document.querySelector('#cross').currentTime = 0;
+          document.querySelector('#cross').pause();
+        }
       },
-      { threshold: 0.5 }
-    );
+    });
+
     // 监听ai问答重播按钮可见
     crossOb.observe(document.querySelector('.ai .answer .right .replay span'));
     observers.push(crossOb);
@@ -338,20 +349,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     addReplayEvent(video, replyBtn);
 
-    const monolithOb = new IntersectionObserver(
-      (changes) => {
-        if (changes[0].isIntersecting) {
-          const cover = document.querySelector('.fullscreen-cover');
-          cover.style.opacity = 1;
-          cover.style.transition = 'all 0.5s ease-in-out';
-          cover.style.display = 'block';
-          const video = document.querySelector('#desktopVideo');
-          video.currentTime = 0;
-          video.pause();
-        }
+    const monolithOb = createObserver({
+      threshold: 0.8,
+      onEnter: () => {
+        const cover = document.querySelector('.fullscreen-cover');
+        cover.style.opacity = 1;
+        cover.style.transition = 'all 0.5s ease-in-out';
+        cover.style.display = 'block';
+        const video = document.querySelector('#desktopVideo');
+        video.currentTime = 0;
+        video.pause();
       },
-      { threshold: [0.8] }
-    );
+    });
     monolithOb.observe(document.querySelector('.monolith .title'));
     observers.push(monolithOb);
 
@@ -382,41 +391,33 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelector('.desktop video').play();
     }
 
-    const fullCoverOb = new IntersectionObserver(
-      (changes) => {
-        changes.forEach((change) => {
-          if (change.isIntersecting) {
-            window.scrollTo({
-              top: document.querySelector('.desktop').offsetTop,
-              behavior: 'smooth',
-            });
-            animateElement(change.target);
-          }
+    const fullCoverOb = createObserver({
+      threshold: 0.4,
+      onEnter: (target) => {
+        window.scrollTo({
+          top: document.querySelector('.desktop').offsetTop,
+          behavior: 'smooth',
         });
+        animateElement(target);
       },
-      { threshold: 0.4 }
-    );
+    });
 
     fullCoverOb.observe(document.querySelector('.fullscreen-cover'));
     observers.push(fullCoverOb);
 
-    const desktopOb = new IntersectionObserver(
-      (changes) => {
-        changes.forEach((change) => {
-          if (change.isIntersecting) {
-            if (
-              document.querySelector('.fullscreen-cover').style.display ===
-              'block'
-            )
-              return;
-            change.target.play();
-          } else {
-            change.target.pause();
-          }
-        });
+    const desktopOb = createObserver({
+      threshold: 1,
+      onEnter: (target) => {
+        if (
+          document.querySelector('.fullscreen-cover').style.display === 'block'
+        )
+          return;
+        target.play();
       },
-      { threshold: 1 }
-    );
+      onLeave: (target) => {
+        target.pause();
+      },
+    });
 
     desktopOb.observe(document.querySelector('.desktop video'));
     observers.push(desktopOb);
@@ -680,20 +681,16 @@ document.addEventListener('DOMContentLoaded', function () {
       ).style.visibility = 'hidden';
     });
 
-    const workerOb = new IntersectionObserver(
-      (changes) => {
-        changes.forEach((change) => {
-          if (change.isIntersecting) {
-            setTimeout(() => {
-              change.target.play();
-            }, 500);
-          } else {
-            change.target.pause();
-          }
-        });
+    const workerOb = createObserver({
+      threshold: 0.9,
+      onEnter: async (video) => {
+        await delay(500);
+        video.play();
       },
-      { threshold: 0.9 }
-    );
+      onLeave: (video) => {
+        video.pause();
+      },
+    });
 
     workerOb.observe(document.querySelector('#worker0'));
     workerOb.observe(document.querySelector('#worker1'));
