@@ -645,44 +645,26 @@ document.addEventListener('DOMContentLoaded', function () {
     leftBtn.addEventListener('click', switchPrevWorkerBanner);
     rightBtn.addEventListener('click', switchNextWorkerBanner);
 
-    // 初始化视频观察器
-    const worker0 = document.getElementById('worker0');
-    setVideoSource(worker0, baseUrl + workerVideos[lang][0]);
-    worker0.addEventListener('ended', () => {
-      document.querySelector('.worker .banner .img.left img').style.visibility =
-        'visible';
-    });
+    
+    const workerVideoIds = ['worker0', 'worker1', 'worker2'];
+    const imgSelectors = [
+      '.worker .banner .img.left img',
+      '.worker .banner .img:nth-child(2) img',
+      '.worker .banner .img.right img',
+    ];
 
-    worker0.addEventListener('play', () => {
-      document.querySelector('.worker .banner .img.left img').style.visibility =
-        'hidden';
-    });
+    workerVideoIds.forEach((id, idx) => {
+      const video = document.getElementById(id);
+      setVideoSource(video, baseUrl + workerVideos[lang][idx]);
+      const img = document.querySelector(imgSelectors[idx]);
+      if (!video || !img) return; // 容错
 
-    const worker1 = document.getElementById('worker1');
-    setVideoSource(worker1, baseUrl + workerVideos[lang][1]);
-    worker1.addEventListener('ended', () => {
-      document.querySelector(
-        '.worker .banner .img:nth-child(2) img'
-      ).style.visibility = 'visible';
-    });
-
-    worker1.addEventListener('play', () => {
-      document.querySelector(
-        '.worker .banner .img:nth-child(2) img'
-      ).style.visibility = 'hidden';
-    });
-    const worker2 = document.getElementById('worker2');
-    setVideoSource(worker2, baseUrl + workerVideos[lang][2]);
-    worker2.addEventListener('ended', () => {
-      document.querySelector(
-        '.worker .banner .img.right img'
-      ).style.visibility = 'visible';
-    });
-
-    worker2.addEventListener('play', () => {
-      document.querySelector(
-        '.worker .banner .img.right img'
-      ).style.visibility = 'hidden';
+      video.addEventListener('ended', () => {
+        img.style.visibility = 'visible';
+      });
+      video.addEventListener('play', () => {
+        img.style.visibility = 'hidden';
+      });
     });
 
     const workerOb = createObserver({
