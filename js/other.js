@@ -68,6 +68,10 @@ const observers = [];
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+function setVideoSource(video, src) {
+  video.setAttribute('data-src', src);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   function ai() {
     const aiLeftVideo = document.querySelector('#ai-left');
@@ -78,20 +82,11 @@ document.addEventListener('DOMContentLoaded', function () {
     );
 
     if (lang === 'en') {
-      aiLeftVideo.setAttribute(
-        'data-src',
-        baseUrl + '/assets/videos/voice-en.mp4'
-      );
-      aiRightVideo.setAttribute(
-        'data-src',
-        baseUrl + '/assets/videos/qa-en.mp4'
-      );
+      setVideoSource(aiLeftVideo, baseUrl + '/assets/videos/voice-en.mp4');
+      setVideoSource(aiRightVideo, baseUrl + '/assets/videos/qa-en.mp4');
     } else {
-      aiLeftVideo.setAttribute(
-        'data-src',
-        baseUrl + '/assets/videos/voice.mp4'
-      );
-      aiRightVideo.setAttribute('data-src', baseUrl + '/assets/videos/qa.mp4');
+      setVideoSource(aiLeftVideo, baseUrl + '/assets/videos/voice.mp4');
+      setVideoSource(aiRightVideo, baseUrl + '/assets/videos/qa.mp4');
     }
 
     replayLeftBtn.addEventListener('click', () => {
@@ -138,17 +133,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const aiAnswerVideo = document.querySelector('#aiAnswerVideo');
     const aiAnswerReplayBtn = document.querySelector('.ai .answer .replay');
 
-    if (lang === 'en') {
-      aiAnswerVideo.setAttribute(
-        'data-src',
-        baseUrl + '/assets/videos/aibar-en.mp4'
-      );
-    } else {
-      aiAnswerVideo.setAttribute(
-        'data-src',
-        baseUrl + '/assets/videos/aibar.mp4'
-      );
-    }
+    const src =
+      baseUrl +
+      (lang === 'en'
+        ? '/assets/videos/aibar-en.mp4'
+        : '/assets/videos/aibar.mp4');
+    setVideoSource(aiAnswerVideo, src);
 
     aiAnswerReplayBtn.addEventListener('click', () => {
       aiAnswerVideo.currentTime = 0;
@@ -179,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
       lang === 'en'
         ? '/assets/videos/cooperate-en.mp4'
         : '/assets/videos/cooperate.mp4';
-    video.setAttribute('data-src', baseUrl + src);
+    setVideoSource(video, baseUrl + src);
 
     replayBtn.addEventListener('click', () => {
       video.currentTime = 0;
@@ -341,7 +331,12 @@ document.addEventListener('DOMContentLoaded', function () {
       replyBtn.classList.remove('visible');
     });
 
-    video.setAttribute('data-src', baseUrl + '/assets/videos/new-desktop.mp4');
+    const src =
+      lang === 'en'
+        ? '/assets/videos/new-desktop-en.mp4'
+        : '/assets/videos/new-desktop.mp4';
+
+    setVideoSource(video, baseUrl + src);
 
     replyBtn.addEventListener('click', () => {
       video.currentTime = 0;
@@ -435,16 +430,11 @@ document.addEventListener('DOMContentLoaded', function () {
   function dialog() {
     const video = document.querySelector('#dialog-video');
     const videoDialog = document.querySelector('.video-dialog');
-    if (lang == 'en')
-      video.setAttribute(
-        'data-src',
-        baseUrl + '/assets/videos/v25-release-en.mp4'
-      );
-    else
-      video.setAttribute(
-        'data-src',
-        baseUrl + '/assets/videos/v25-release.mp4'
-      );
+    const src =
+      lang === 'en'
+        ? '/assets/videos/v25-release-en.mp4'
+        : '/assets/videos/v25-release.mp4';
+    setVideoSource(video, baseUrl + src);
 
     const closeBtn = document.querySelector('.video-dialog img');
     // 关闭对话框
@@ -498,8 +488,8 @@ document.addEventListener('DOMContentLoaded', function () {
     );
 
     videos.forEach((video, i) => {
-      video.setAttribute(
-        'data-src',
+      setVideoSource(
+        video,
         oldBaseUrl + videoSrc[0][i === 0 ? 'left' : 'right']
       );
     });
@@ -657,7 +647,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 初始化视频观察器
     const worker0 = document.getElementById('worker0');
-    worker0.setAttribute('data-src', baseUrl + workerVideos[lang][0]);
+    setVideoSource(worker0, baseUrl + workerVideos[lang][0]);
     worker0.addEventListener('ended', () => {
       document.querySelector('.worker .banner .img.left img').style.visibility =
         'visible';
@@ -669,7 +659,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const worker1 = document.getElementById('worker1');
-    worker1.setAttribute('data-src', baseUrl + workerVideos[lang][1]);
+    setVideoSource(worker1, baseUrl + workerVideos[lang][1]);
     worker1.addEventListener('ended', () => {
       document.querySelector(
         '.worker .banner .img:nth-child(2) img'
@@ -682,7 +672,7 @@ document.addEventListener('DOMContentLoaded', function () {
       ).style.visibility = 'hidden';
     });
     const worker2 = document.getElementById('worker2');
-    worker2.setAttribute('data-src', baseUrl + workerVideos[lang][2]);
+    setVideoSource(worker2, baseUrl + workerVideos[lang][2]);
     worker2.addEventListener('ended', () => {
       document.querySelector(
         '.worker .banner .img.right img'
