@@ -1,4 +1,6 @@
 const { lang, baseUrl, oldBaseUrl } = window.AppConfig;
+const SMALL_SCREEN_WIDTH_Threshold = 1700;
+const LARGE_SCREEN_WIDTH_Threshold = 2200;
 
 const videoSrc = [
   {
@@ -230,8 +232,10 @@ document.addEventListener('DOMContentLoaded', function () {
         behavior: 'smooth',
       });
       setTimeout(() => {
-        const isSmallScreen = document.body.clientWidth < 1700;
-        const isLargeScreen = document.body.clientWidth >= 2200;
+        const isSmallScreen =
+          document.body.clientWidth < SMALL_SCREEN_WIDTH_Threshold;
+        const isLargeScreen =
+          document.body.clientWidth >= LARGE_SCREEN_WIDTH_Threshold;
         const sectionRect = document
           .querySelector(sectionSelector)
           .getBoundingClientRect();
