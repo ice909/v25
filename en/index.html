@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="../favicon.ico" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/en.css" />
     <link rel="stylesheet" href="../css/tailwind.css" />
     <link
       rel="stylesheet"
@@ -745,10 +744,14 @@
     </div>
     <script>
       // 动态加载非关键CSS
-      var link = document.createElement('link');
+      let link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '../css/normal.css';
       document.head.appendChild(link);
+      let enLink = document.createElement('link');
+      enLink.rel = 'stylesheet';
+      enLink.href = '../css/en.css';
+      document.head.appendChild(enLink);
     </script>
     <script src="../js/index.js"></script>
     <script src="../js/other.js" defer></script>

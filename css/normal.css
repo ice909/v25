@@ -109,7 +109,6 @@
 .linyaps a {
   margin-top: 4.81rem;
   display: inline-block;
-  width: 7.5rem;
   height: 2.75rem;
   background: #0052d9;
   border-radius: 0.25rem;
@@ -120,6 +119,7 @@
   text-align: center;
   line-height: 2.75rem;
   cursor: pointer;
+  padding: 0 1.5rem;
 }
 
 .linyaps-container .row-title {
