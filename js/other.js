@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function () {
       video.play();
     });
 
-    function handleFullScreenCover(
+    async function handleFullScreenCover(
       cover,
       sectionSelector,
       videoSelector,
@@ -231,45 +231,43 @@ document.addEventListener('DOMContentLoaded', function () {
         top: document.querySelector(sectionSelector).offsetTop,
         behavior: 'smooth',
       });
-      setTimeout(() => {
-        const isSmallScreen =
-          document.body.clientWidth < SMALL_SCREEN_WIDTH_Threshold;
-        const isLargeScreen =
-          document.body.clientWidth >= LARGE_SCREEN_WIDTH_Threshold;
-        const sectionRect = document
-          .querySelector(sectionSelector)
-          .getBoundingClientRect();
-        const videoRect = document
-          .querySelector(videoSelector)
-          .getBoundingClientRect();
-        cover.style.top = `${
-          videoRect.top -
-          sectionRect.top +
-          (isCross ? (isSmallScreen ? 82 : isLargeScreen ? 119 : 90) : 5)
-        }px`;
-        cover.style.left = `${
-          videoRect.left -
-          sectionRect.left +
-          (isCross ? (isSmallScreen ? 193 : isLargeScreen ? 279 : 211) : 0)
-        }px`;
-        cover.style.right = `${
-          sectionRect.right -
-          videoRect.right +
-          (isCross ? (isSmallScreen ? 211 : isLargeScreen ? 301 : 230) : 0)
-        }px`;
-        cover.style.borderRadius = '7px';
-        setTimeout(() => {
-          cover.style.opacity = 0;
-          setTimeout(() => {
-            cover.style.display = 'none';
-            cover.style.top = '0';
-            cover.style.left = '0';
-            cover.style.right = '0';
-            cover.style.transition = 'none';
-            document.querySelector('#cross').play();
-          }, 500);
-        }, 500);
-      }, 500);
+      await delay(500);
+      const isSmallScreen =
+        document.body.clientWidth < SMALL_SCREEN_WIDTH_Threshold;
+      const isLargeScreen =
+        document.body.clientWidth >= LARGE_SCREEN_WIDTH_Threshold;
+      const sectionRect = document
+        .querySelector(sectionSelector)
+        .getBoundingClientRect();
+      const videoRect = document
+        .querySelector(videoSelector)
+        .getBoundingClientRect();
+      cover.style.top = `${
+        videoRect.top -
+        sectionRect.top +
+        (isCross ? (isSmallScreen ? 82 : isLargeScreen ? 119 : 90) : 5)
+      }px`;
+      cover.style.left = `${
+        videoRect.left -
+        sectionRect.left +
+        (isCross ? (isSmallScreen ? 193 : isLargeScreen ? 279 : 211) : 0)
+      }px`;
+      cover.style.right = `${
+        sectionRect.right -
+        videoRect.right +
+        (isCross ? (isSmallScreen ? 211 : isLargeScreen ? 301 : 230) : 0)
+      }px`;
+      cover.style.borderRadius = '7px';
+      await delay(500);
+      cover.style.opacity = 0;
+      await delay(500);
+
+      cover.style.display = 'none';
+      cover.style.top = '0';
+      cover.style.left = '0';
+      cover.style.right = '0';
+      cover.style.transition = 'none';
+      document.querySelector('#cross').play();
     }
     const fullCoverOb = new IntersectionObserver(
       (changes) => {
