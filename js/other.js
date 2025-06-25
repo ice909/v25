@@ -1,24 +1,16 @@
-const { lang, baseUrl, oldBaseUrl } = window.AppConfig;
+const { lang, baseUrl } = window.AppConfig;
 const SMALL_SCREEN_WIDTH_Threshold = 1700;
 const LARGE_SCREEN_WIDTH_Threshold = 2200;
 
 const videoSrc = [
   {
-    left: '/assets/videos/触控板三指上下.mp4',
-    right: '/assets/videos/触控板三指窗口大小.mp4',
+    left: '/assets/videos/touchpad-four-finger-up-down.mp4',
+    right: '/assets/videos/touchpad-three-finger-window-size.mp4',
   },
   {
-    left: '/assets/videos/触控板四指左右.mp4',
-    right: '/assets/videos/触控板四指切换桌面.mp4',
+    left: '/assets/videos/touchpad-four-finger-left-right.mp4',
+    right: '/assets/videos/touchpad-four-finger-switch-desktop.mp4',
   },
-  // {
-  //   left: '/assets/videos/touchpad-three-finger-up-down.mp4',
-  //   right: '/assets/videos/touchpad-three-finger-window-size.mp4',
-  // },
-  // {
-  //   left: '/assets/videos/touchpad-four-finger-left-right.mp4',
-  //   right: '/assets/videos/touchpad-four-finger-switch-desktop.mp4',
-  // },
 ];
 
 let workerCurrentIndex = 1; // 初始居中
@@ -486,10 +478,7 @@ document.addEventListener('DOMContentLoaded', function () {
     );
 
     videos.forEach((video, i) => {
-      setVideoSource(
-        video,
-        oldBaseUrl + videoSrc[0][i === 0 ? 'left' : 'right']
-      );
+      setVideoSource(video, baseUrl + videoSrc[0][i === 0 ? 'left' : 'right']);
     });
     const replayBtn = document.querySelector(
       '.window-tube .content .right img'
@@ -516,8 +505,7 @@ document.addEventListener('DOMContentLoaded', function () {
           bg.style.left = index === 0 ? '0' : 'calc(50% + 1.5px)';
           btn.classList.add('active');
           videos.forEach((video, i) => {
-            video.src =
-              oldBaseUrl + videoSrc[index][i === 0 ? 'left' : 'right'];
+            video.src = baseUrl + videoSrc[index][i === 0 ? 'left' : 'right'];
             video.play();
           });
         }
@@ -643,7 +631,6 @@ document.addEventListener('DOMContentLoaded', function () {
     leftBtn.addEventListener('click', switchPrevWorkerBanner);
     rightBtn.addEventListener('click', switchNextWorkerBanner);
 
-    
     const workerVideoIds = ['worker0', 'worker1', 'worker2'];
     const imgSelectors = [
       '.worker .banner .img.left img',
