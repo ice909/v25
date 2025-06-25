@@ -2,6 +2,9 @@ const { lang, baseUrl } = window.AppConfig;
 const SMALL_SCREEN_WIDTH_Threshold = 1700;
 const LARGE_SCREEN_WIDTH_Threshold = 2200;
 
+const isSmallScreen = document.body.clientWidth < SMALL_SCREEN_WIDTH_Threshold;
+const isLargeScreen = document.body.clientWidth >= LARGE_SCREEN_WIDTH_Threshold;
+
 const videoSrc = [
   {
     left: '/assets/videos/touchpad-four-finger-up-down.mp4',
@@ -224,10 +227,6 @@ document.addEventListener('DOMContentLoaded', function () {
         behavior: 'smooth',
       });
       await delay(500);
-      const isSmallScreen =
-        document.body.clientWidth < SMALL_SCREEN_WIDTH_Threshold;
-      const isLargeScreen =
-        document.body.clientWidth >= LARGE_SCREEN_WIDTH_Threshold;
       const sectionRect = document
         .querySelector(sectionSelector)
         .getBoundingClientRect();
@@ -677,6 +676,10 @@ document.addEventListener('DOMContentLoaded', function () {
   monolith();
   touchpad();
   worker();
+
+  if (isSmallScreen) {
+    document.getElementById('cross').style.width = '935px';
+  }
 });
 
 window.addEventListener('beforeunload', () => {
